@@ -13,8 +13,8 @@ public class TPB_Player_Data : MonoBehaviour
     [Header("Health and Soul Settings")]
     public int currentHealth = 50; // WIP
     public int maxHealth = 100;
-    public int currentSouls = 50;
-    public int maxSouls = 50;
+    public int currentEssence = 50;
+    public int maxEssence = 50;
 
     [Header("Reference Data")]
     [SerializeField] private GameObject player;
@@ -24,7 +24,7 @@ public class TPB_Player_Data : MonoBehaviour
      * Each ability is containerized by a particular TPB_Ability ScriptableObject
      */
     [Header("Ability Definitions")]
-    [SerializeField] private TPB_Ability phaseShift;
+    [SerializeField] private PhaseShift phaseShift;
 
     private TPB_Ability_Controller abilities;
     
@@ -52,10 +52,10 @@ public class TPB_Player_Data : MonoBehaviour
     void PhaseShift()
     {
         if (abilities.IsAbilityUnlocked(TPB_Ability_Controller.AbilityTypes.PhaseShift)) {
-            if (Input.GetKeyDown(phaseShift.buttonAssignment)) {
+            // Check if the character is mid-phaseshift, casting continues if shift is not complete
+            if (Input.GetKeyDown(phaseShift.buttonAssignment) && !phaseShift.isPhaseShifting) {
                 phaseShift.Cast();
-            }
-            if (Input.GetKeyUp(phaseShift.buttonAssignment)) {
+            } else if (phaseShift.isPhaseShifting) {
                 phaseShift.Cast();
             }
         }

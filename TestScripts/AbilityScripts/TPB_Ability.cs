@@ -14,9 +14,10 @@ public abstract class TPB_Ability : ScriptableObject
         CurrentTarget
     };
 
+    [Header("Default Ability Data")]
     [SerializeField] protected string abilityName;
     [SerializeField] protected int damage;
-    [SerializeField] protected int soulCost = 10; 
+    [SerializeField] protected int essenceCost = 10; 
     [SerializeField] protected float cooldown = 0f;
     [SerializeField] protected Targeting targetingType;
     [SerializeField] public KeyCode buttonAssignment;

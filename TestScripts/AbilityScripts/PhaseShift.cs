@@ -11,27 +11,49 @@ using UnityEngine;
 [CreateAssetMenu (menuName = "Abilities/Phase Shift")]
 public class PhaseShift : TPB_Ability
 {   
+    [Header("Phase Shift Ability Data")]    
+    [SerializeField] private float phaseShiftSpeed = 0f;
+    [SerializeField] private float startPhaseShiftTime = 0f;
+    private float phaseShiftTime;
+
     private GameObject player;
-    private SpriteRenderer affectedSpriteRenderer;
-    private bool toggle = false;
+    private Rigidbody2D playerRigidBody;
+    private SpriteRenderer playerSpriteRenderer;    
+
+    [HideInInspector] public bool isPhaseShifting = false;
 
     public override void Initialize(GameObject obj) 
     {
         player = obj;
-        affectedSpriteRenderer = obj.GetComponent<SpriteRenderer>();
+        playerRigidBody = obj.GetComponent<Rigidbody2D>();
+        playerSpriteRenderer = obj.GetComponent<SpriteRenderer>();
+
+        // Initialize phase shift time to be decremented as FixedUpdate() calls are made
+        phaseShiftTime = startPhaseShiftTime;
     }
 
     public override void Cast() 
     {
-        toggle = !toggle;
-        if (toggle) {
-            Debug.Log("PhaseShift was casted.");
-            Debug.Log("PhaseShift has a soulCost of " + soulCost);
-            player.layer = LayerMask.NameToLayer("PlayerIgnoreWall");
-            affectedSpriteRenderer.color = new Color(1,1,1,.5f);   
-        } else {
+        if (phaseShiftTime <= 0) {
+            isPhaseShifting = false;
+            phaseShiftTime = startPhaseShiftTime;
+            playerRigidBody.velocity = Vector2.zero;
+            
             player.layer = LayerMask.NameToLayer("Default");
-            affectedSpriteRenderer.color = new Color(1,1,1,1);
+            playerSpriteRenderer.color = new Color(1,1,1,1);
+        } else {
+            isPhaseShifting = true;
+            phaseShiftTime -= Time.deltaTime;
+                        
+            // At 0, player idles
+            if (playerRigidBody.velocity.x  > 0) {
+                playerRigidBody.AddRelativeForce(Vector2.right * phaseShiftSpeed);
+            } else if (playerRigidBody.velocity.x  < 0) {
+                playerRigidBody.AddRelativeForce(Vector2.left * phaseShiftSpeed);
+            }
+
+            player.layer = LayerMask.NameToLayer("PlayerIgnoreWall");
+            playerSpriteRenderer.color = new Color(1,1,1,.5f);
         }
     }
 }
