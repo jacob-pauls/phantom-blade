@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Phase Shift
   damage: 0
-  soulCost: 10
+  essenceCost: 10
   cooldown: 1
   targetingType: 0
   buttonAssignment: 122
+  phaseShiftSpeed: 1000
+  startPhaseShiftTime: 0.25
+  isPhaseShifting: 0

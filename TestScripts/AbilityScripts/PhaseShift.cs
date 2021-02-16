@@ -13,7 +13,7 @@ public class PhaseShift : TPB_Ability
 {   
     [Header("Phase Shift Ability Data")]    
     [SerializeField] private float phaseShiftSpeed = 0f;
-    [SerializeField] private float startPhaseShiftTime = 0f;
+    [SerializeField] private float phaseShiftDistance = 0f;
     private float phaseShiftTime;
 
     private GameObject player;
@@ -29,14 +29,14 @@ public class PhaseShift : TPB_Ability
         playerSpriteRenderer = obj.GetComponent<SpriteRenderer>();
 
         // Initialize phase shift time to be decremented as FixedUpdate() calls are made
-        phaseShiftTime = startPhaseShiftTime;
+        phaseShiftTime = phaseShiftDistance;
     }
 
     public override void Cast() 
     {
         if (phaseShiftTime <= 0) {
             isPhaseShifting = false;
-            phaseShiftTime = startPhaseShiftTime;
+            phaseShiftTime = phaseShiftDistance;
             playerRigidBody.velocity = Vector2.zero;
             
             player.layer = LayerMask.NameToLayer("Default");
