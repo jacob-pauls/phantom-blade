@@ -19,5 +19,5 @@ MonoBehaviour:
   targetingType: 0
   buttonAssignment: 122
   phaseShiftSpeed: 1000
-  startPhaseShiftTime: 0.25
+  phaseShiftDistance: 0.1
   isPhaseShifting: 0
