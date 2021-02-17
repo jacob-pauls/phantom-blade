@@ -23,6 +23,7 @@ public class TPB_Player_Data : MonoBehaviour
      */
     [Header("Ability Definitions")]
     [SerializeField] private PhaseShift phaseShift;
+    [SerializeField] private WallJump wallJump;
 
     private TPB_Ability_Controller abilities;
     
@@ -32,6 +33,7 @@ public class TPB_Player_Data : MonoBehaviour
 
         // TODO: Clean up ability initialization logic
         phaseShift.Initialize(player);
+        wallJump.Initialize(player);
     }
 
     void Update()
@@ -42,6 +44,7 @@ public class TPB_Player_Data : MonoBehaviour
     void CheckIfAbilitiesAreCasted() 
     {
         PhaseShift();
+        WallJump();
     }
 
     /**
@@ -55,6 +58,16 @@ public class TPB_Player_Data : MonoBehaviour
                 phaseShift.Cast();
             } else if (phaseShift.isPhaseShifting) {
                 phaseShift.Cast();
+            }
+        }
+    }
+
+    void WallJump() 
+    {
+        if (abilities.IsAbilityUnlocked(TPB_Ability_Controller.AbilityTypes.WallJump)) {
+            if (Input.GetKeyDown(wallJump.buttonAssignment) && wallJump.isWallSliding) {
+                wallJump.Cast();
+                wallJump.AssertWallJumpDirection();
             }
         }
     }

@@ -45,6 +45,7 @@ public class TPB_Character_Controller : MonoBehaviour
     public UnityEvent ON_GROUND_EVENT;
     public UnityEvent ON_CROUCH_EVENT;
     public UnityEvent ON_WALL_EVENT;
+    public UnityEvent OFF_WALL_EVENT;
     
     void Awake() 
     {
@@ -63,7 +64,7 @@ public class TPB_Character_Controller : MonoBehaviour
         Jump();
         Crouch();
         WallSlide();
-        WallJump();
+        // WallJump();
     }
 
     void MovementCheck() 
@@ -152,11 +153,11 @@ public class TPB_Character_Controller : MonoBehaviour
             ON_WALL_EVENT.Invoke();
         } else {
             isWallSliding = false;
+            OFF_WALL_EVENT.Invoke();
         }
 
         if(isWallSliding) {
             rb2D.velocity = new Vector2(rb2D.velocity.x, Mathf.Clamp(rb2D.velocity.y, -wallSlideSpeed/10, float.MaxValue));
-            Debug.Log("This is what that clamped thing is doing: " + Mathf.Clamp(rb2D.velocity.y, -wallSlideSpeed, float.MaxValue));
         }        
     }
 
@@ -169,6 +170,7 @@ public class TPB_Character_Controller : MonoBehaviour
         }
 
         if (isWallJumping) {
+                        Debug.Log("Horizontal Value -> " + (horizontalWallForce * -movement));
             rb2D.velocity = new Vector2(horizontalWallForce * -movement, verticalWallForce);
         }
     }
@@ -196,5 +198,7 @@ public class TPB_Character_Controller : MonoBehaviour
             ON_CROUCH_EVENT = new UnityEvent();
         if (ON_WALL_EVENT == null)
             ON_WALL_EVENT = new UnityEvent();
+        if (OFF_WALL_EVENT == null)
+            OFF_WALL_EVENT = new UnityEvent();
     }
 }
