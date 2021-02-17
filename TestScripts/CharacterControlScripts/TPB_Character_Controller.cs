@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Events;
 
 /**
@@ -9,13 +10,22 @@ using UnityEngine.Events;
 
 public class TPB_Character_Controller : MonoBehaviour
 {
+    [Header ("Movement Metrics")]
     [SerializeField] private float speed = 1f;
     [SerializeField] private float jumpForce = 1f;
     [SerializeField] private float crouchResistance = 0.1f;
-    [SerializeField] private LayerMask environmentLayer;
+    [SerializeField] private float wallSlideSpeed = 0.1f;
+    [SerializeField] private float horizontalWallForce = 0f;
+    [SerializeField] private float verticalWallForce = 0f;
+    [SerializeField] private float wallJumpDuration = 0f;
+
+    [Header ("Collision Detection")]
     [SerializeField] private Collider2D disabledColliderOnCrouch;
+    [SerializeField] private LayerMask environmentLayer;
+    [SerializeField] private LayerMask phaseShiftWallLayer;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform ceilingCheck;
+    [SerializeField] private Transform wallCheck;
 
     Rigidbody2D rb2D;
     BoxCollider2D bc2D;
@@ -27,10 +37,14 @@ public class TPB_Character_Controller : MonoBehaviour
 
     bool isGrounded;
     bool isCrouching;
+    bool isTouchingWall;
+    bool isWallSliding;
+    bool isWallJumping;
     bool canStandUp = true;
-    bool isFacingRight = true;
+    bool isFacingRight = true;    
     
-    void Awake() {
+    void Awake() 
+    {
         rb2D = GetComponent<Rigidbody2D>();
         bc2D = GetComponent<BoxCollider2D>();
         cc2D = GetComponent<CircleCollider2D>();
@@ -43,14 +57,18 @@ public class TPB_Character_Controller : MonoBehaviour
             ON_CROUCH_EVENT = new UnityEvent();
     }
 
-    void FixedUpdate() {
+    void FixedUpdate() 
+    {
         MovementCheck();
         GroundCheck();
         JumpCheck();
         CrouchCheck();
+        WallSlideCheck();
+        WallJump();
     }
 
-    void MovementCheck() {
+    void MovementCheck() 
+    {
         float movement = Input.GetAxisRaw("Horizontal");
 
         // Check player input, apply velocity
@@ -69,7 +87,8 @@ public class TPB_Character_Controller : MonoBehaviour
         }
     }
 
-    void GroundCheck() {
+    void GroundCheck() 
+    {
         // Perform a linecast to the ground in reference to the "ground" layer mask
         if (Physics2D.Linecast(transform.position, groundCheck.position, environmentLayer)) {
             isGrounded = true;
@@ -79,13 +98,15 @@ public class TPB_Character_Controller : MonoBehaviour
         }
     }
 
-    void JumpCheck() {
+    void JumpCheck() 
+    {
         if ((Input.GetKey("space")) && isGrounded) {
             rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
         }
     }
 
-    void CrouchCheck() {
+    void CrouchCheck() 
+    {
         if ((Input.GetKey("s") && isGrounded) || !canStandUp) {
             rb2D.velocity = new Vector2(rb2D.velocity.x * crouchResistance, 0f);
             isCrouching = true;
@@ -98,7 +119,8 @@ public class TPB_Character_Controller : MonoBehaviour
         DisableCrouchColliderCheck();
     }
 
-    void DisableCrouchColliderCheck() {
+    void DisableCrouchColliderCheck() 
+    {
         RaycastHit2D ceilingRaycast = Physics2D.Raycast(ceilingCheck.position, Vector2.up, 0.1f);
 
         // If we're not crouching, check if we can stand up
@@ -118,12 +140,76 @@ public class TPB_Character_Controller : MonoBehaviour
         }
     }
 
-    void FlipCharacter() {
+    void WallSlideCheck()
+    {
+        float movement = Input.GetAxisRaw("Horizontal");
+        isTouchingWall = Physics2D.OverlapCircle(wallCheck.position, 0.1f, environmentLayer);
+        
+        // Check if character is trying to interact with a phase shift wall
+        isTouchingWall = isTouchingWall ? isTouchingWall : Physics2D.OverlapCircle(wallCheck.position, 0.1f, phaseShiftWallLayer);
+
+        if (isTouchingWall && !isGrounded && movement != 0) {
+            isWallSliding = true;
+        } else {
+            isWallSliding = false;
+        }
+
+        if(isWallSliding) {
+            rb2D.velocity = new Vector2(rb2D.velocity.x, Mathf.Clamp(rb2D.velocity.y, -wallSlideSpeed, float.MaxValue));
+            Debug.Log("This is what that clamped thing is doing: " + Mathf.Clamp(rb2D.velocity.y, -wallSlideSpeed, float.MaxValue));
+        }        
+    }
+
+    void WallJump()
+    {
+        float movement = Input.GetAxisRaw("Horizontal");
+        if (Input.GetKeyDown("space") && isWallSliding) {
+            isWallJumping = true;
+            StartCoroutine("WallJumpCoroutine");
+        }
+
+        if (isWallJumping) {
+            rb2D.velocity = new Vector2(horizontalWallForce * -movement, verticalWallForce);
+        }
+    }
+
+    IEnumerator WallJumpCoroutine() 
+    {
+        yield return new WaitForSeconds(wallJumpDuration);
+        isWallJumping = false;
+    }
+
+    void FlipCharacter() 
+    {
         // Flip character direction and apply transform
         isFacingRight = !isFacingRight;
         Vector3 flippedScale = this.transform.localScale;
         flippedScale.x *= -1;
         this.transform.localScale = flippedScale;
     }
+
+    //  bool isWallSliding = (m_wallSensorR1.State() && m_wallSensorR2.State()) || (m_wallSensorL1.State() && m_wallSensorL2.State());
+    // //Wall Slide
+    // if (isWallSliding)
+    // {
+    //     m_animator.SetBool("WallSlide", true);
+    //     m_body2d.velocity = new Vector2(m_body2d.velocity.x, Mathf.Clamp(m_body2d.velocity.y, -wallSlidingSpeed, float.MaxValue));
+    //     //jump from wall
+    //     if (Input.GetKeyDown("space"))
+    //     {
+    //         m_wallJumping = true;
+    //         Invoke("SetWallJumpingToFalse", wallJumpTime);
+    //     }
+    // }
+    // else
+    // {
+    //     m_animator.SetBool("WallSlide", false);
+    // }
+
+
+    // else if (m_wallJumping)
+    // {
+    //     m_body2d.velocity = new Vector2(xWallForce * -inputX, yWallForce);
+    // }
 
 }

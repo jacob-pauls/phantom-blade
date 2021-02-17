@@ -139,6 +139,7 @@ Transform:
   - {fileID: 2711993750100028576}
   - {fileID: 5962377842105118530}
   - {fileID: 4859867085393351679}
+  - {fileID: 6536861679876305156}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -173,19 +174,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5280260a60bdfb4da4fa2440c76942f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 9
-  _jumpForce: 7.5
-  _crouchResistance: 0.1
-  _groundLayerMask:
+  speed: 9
+  jumpForce: 7.5
+  crouchResistance: 0.1
+  wallSlideSpeed: 5
+  xWallForce: 100
+  yWallForce: 100
+  wallJumpDuration: 0.05
+  disabledColliderOnCrouch: {fileID: 8873628933695393135}
+  environmentLayer:
     serializedVersion: 2
     m_Bits: 1024
-  _disabledColliderOnCrouch: {fileID: 8873628933695393135}
-  _groundCheck: {fileID: 2711993750100028576}
-  _ceilingCheck: {fileID: 4859867085393351679}
-  _OnGroundEvent:
+  phaseShiftWallLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  groundCheck: {fileID: 2711993750100028576}
+  ceilingCheck: {fileID: 4859867085393351679}
+  wallCheck: {fileID: 6536861679876305156}
+  ON_GROUND_EVENT:
     m_PersistentCalls:
       m_Calls: []
-  _OnCrouchEvent:
+  ON_CROUCH_EVENT:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &9028486028714300615
@@ -348,4 +357,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8745874501345789247}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8162568361851084869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6536861679876305156}
+  m_Layer: 0
+  m_Name: WallCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6536861679876305156
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8162568361851084869}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.323, y: -0.091, z: -0.6306544}
+  m_LocalScale: {x: 1.2509252, y: 1.2509252, z: 1.2509252}
+  m_Children: []
+  m_Father: {fileID: 8745874501345789247}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
