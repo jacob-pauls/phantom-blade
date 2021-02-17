@@ -10,10 +10,12 @@ using UnityEngine.Events;
 
 public class TPB_Character_Controller : MonoBehaviour
 {
-    [Header ("Movement Metrics")]
+    [Header ("Basic Movement")]
     [SerializeField] private float speed = 1f;
     [SerializeField] private float jumpForce = 1f;
     [SerializeField] private float crouchResistance = 0.1f;
+
+    [Header ("Wall Movement")]
     [SerializeField] private float wallSlideSpeed = 0.1f;
     [SerializeField] private float horizontalWallForce = 0f;
     [SerializeField] private float verticalWallForce = 0f;
@@ -27,21 +29,22 @@ public class TPB_Character_Controller : MonoBehaviour
     [SerializeField] private Transform ceilingCheck;
     [SerializeField] private Transform wallCheck;
 
-    Rigidbody2D rb2D;
-    BoxCollider2D bc2D;
-    CircleCollider2D cc2D;
-    SpriteRenderer spriteRenderer;
-    
+    private Rigidbody2D rb2D;
+    private BoxCollider2D bc2D;
+    private CircleCollider2D cc2D;
+    private SpriteRenderer spriteRenderer;
+
+    private bool isGrounded;
+    private bool isCrouching;
+    private bool isTouchingWall;
+    private bool isWallSliding;
+    private bool isWallJumping;
+    private bool canStandUp = true;
+    private bool isFacingRight = true;    
+
     public UnityEvent ON_GROUND_EVENT;
     public UnityEvent ON_CROUCH_EVENT;
-
-    bool isGrounded;
-    bool isCrouching;
-    bool isTouchingWall;
-    bool isWallSliding;
-    bool isWallJumping;
-    bool canStandUp = true;
-    bool isFacingRight = true;    
+    public UnityEvent ON_WALL_EVENT;
     
     void Awake() 
     {
@@ -50,20 +53,16 @@ public class TPB_Character_Controller : MonoBehaviour
         cc2D = GetComponent<CircleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        // Initialize necessary events
-        if (ON_GROUND_EVENT == null)        
-            ON_GROUND_EVENT = new UnityEvent();
-        if (ON_CROUCH_EVENT == null)
-            ON_CROUCH_EVENT = new UnityEvent();
+        InitializeCharacterControllerEvents();
     }
 
     void FixedUpdate() 
     {
         MovementCheck();
         GroundCheck();
-        JumpCheck();
-        CrouchCheck();
-        WallSlideCheck();
+        Jump();
+        Crouch();
+        WallSlide();
         WallJump();
     }
 
@@ -98,14 +97,14 @@ public class TPB_Character_Controller : MonoBehaviour
         }
     }
 
-    void JumpCheck() 
+    void Jump() 
     {
         if ((Input.GetKey("space")) && isGrounded) {
             rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
         }
     }
 
-    void CrouchCheck() 
+    void Crouch() 
     {
         if ((Input.GetKey("s") && isGrounded) || !canStandUp) {
             rb2D.velocity = new Vector2(rb2D.velocity.x * crouchResistance, 0f);
@@ -140,7 +139,7 @@ public class TPB_Character_Controller : MonoBehaviour
         }
     }
 
-    void WallSlideCheck()
+    void WallSlide()
     {
         float movement = Input.GetAxisRaw("Horizontal");
         isTouchingWall = Physics2D.OverlapCircle(wallCheck.position, 0.1f, environmentLayer);
@@ -150,12 +149,13 @@ public class TPB_Character_Controller : MonoBehaviour
 
         if (isTouchingWall && !isGrounded && movement != 0) {
             isWallSliding = true;
+            ON_WALL_EVENT.Invoke();
         } else {
             isWallSliding = false;
         }
 
         if(isWallSliding) {
-            rb2D.velocity = new Vector2(rb2D.velocity.x, Mathf.Clamp(rb2D.velocity.y, -wallSlideSpeed, float.MaxValue));
+            rb2D.velocity = new Vector2(rb2D.velocity.x, Mathf.Clamp(rb2D.velocity.y, -wallSlideSpeed/10, float.MaxValue));
             Debug.Log("This is what that clamped thing is doing: " + Mathf.Clamp(rb2D.velocity.y, -wallSlideSpeed, float.MaxValue));
         }        
     }
@@ -188,28 +188,13 @@ public class TPB_Character_Controller : MonoBehaviour
         this.transform.localScale = flippedScale;
     }
 
-    //  bool isWallSliding = (m_wallSensorR1.State() && m_wallSensorR2.State()) || (m_wallSensorL1.State() && m_wallSensorL2.State());
-    // //Wall Slide
-    // if (isWallSliding)
-    // {
-    //     m_animator.SetBool("WallSlide", true);
-    //     m_body2d.velocity = new Vector2(m_body2d.velocity.x, Mathf.Clamp(m_body2d.velocity.y, -wallSlidingSpeed, float.MaxValue));
-    //     //jump from wall
-    //     if (Input.GetKeyDown("space"))
-    //     {
-    //         m_wallJumping = true;
-    //         Invoke("SetWallJumpingToFalse", wallJumpTime);
-    //     }
-    // }
-    // else
-    // {
-    //     m_animator.SetBool("WallSlide", false);
-    // }
-
-
-    // else if (m_wallJumping)
-    // {
-    //     m_body2d.velocity = new Vector2(xWallForce * -inputX, yWallForce);
-    // }
-
+    void InitializeCharacterControllerEvents() 
+    {
+        if (ON_GROUND_EVENT == null)        
+            ON_GROUND_EVENT = new UnityEvent();
+        if (ON_CROUCH_EVENT == null)
+            ON_CROUCH_EVENT = new UnityEvent();
+        if (ON_WALL_EVENT == null)
+            ON_WALL_EVENT = new UnityEvent();
+    }
 }
