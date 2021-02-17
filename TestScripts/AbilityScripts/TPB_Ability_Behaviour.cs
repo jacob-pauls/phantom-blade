@@ -1,19 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 /**
  * Jake Pauls
- * TPB_Ability_Controller.cs
- * Controls the player daya, including health/soul totals, and ability progression
+ * TPB_Ability_Behaviour.cs
+ * Controls mono behaviour for ability casting
  */
 
-public class TPB_Player_Data : MonoBehaviour
+public class TPB_Ability_Behaviour : MonoBehaviour
 {   
-    [Header("Health and Soul Settings")]
-    public int currentHealth = 50; // WIP
-    public int maxHealth = 100;
-    public int currentEssence = 50;
-    public int maxEssence = 50;
-
     [Header("Reference Data")]
     [SerializeField] private GameObject player;
 
@@ -26,6 +21,9 @@ public class TPB_Player_Data : MonoBehaviour
     [SerializeField] private WallJump wallJump;
 
     private TPB_Ability_Controller abilities;
+
+    // Create ONHEALTHCHANGE function to subscribe
+    public UnityEvent ON_HEALTH_CHANGE;
     
     void Awake()
     {        
@@ -37,11 +35,6 @@ public class TPB_Player_Data : MonoBehaviour
     }
 
     void Update()
-    {
-        CheckIfAbilitiesAreCasted();
-    }
-
-    void CheckIfAbilitiesAreCasted() 
     {
         PhaseShift();
         WallJump();

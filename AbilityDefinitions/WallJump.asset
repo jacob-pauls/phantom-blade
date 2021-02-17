@@ -19,7 +19,7 @@ MonoBehaviour:
   targetingType: 0
   buttonAssignment: 32
   wallSlideSpeed: 10
-  horizontalWallForce: 9
-  verticalWallForce: 7
+  horizontalWallForce: 8
+  verticalWallForce: 5
   wallJumpDurationInMilliseconds: 50
   isWallSliding: 0

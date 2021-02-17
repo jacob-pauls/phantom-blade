@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 /**
  * Jake Pauls
- * TPB_Character_Controller
+ * TPB_Character_Controller.cs
  * Controls character actions, movements, and performs checks for various collision types
  */
 
