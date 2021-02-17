@@ -1,17 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class TPB_Character_Controller : MonoBehaviour {
+/**
+ * Note: I have deprecated this boilerplate in exchange for my custom character controller
+ * Please create a copy and/or use 'TPB_Character_Controller' instead
+ */
 
-    /**
-     * TODO/Considerations:
-     * - Refactor velocity methods to FixedUpdate?
-     * - Deprecate rolling, slide dust, unnecessary animations, and anything else unneeded in final product
-     * 
-     * What I've modified:
-     * - Abstracted as much movement logic as I could...
-     * - Added m_IsFacingRight and a FlipCharacter() method, this flips the entire transform as opposed to just the sprite
-     */
+public class TPB_Character_Controller_Deprecated : MonoBehaviour {
 
     [SerializeField] float      m_speed = 4.0f;
     [SerializeField] float      m_jumpForce = 7.5f;
@@ -21,11 +15,11 @@ public class TPB_Character_Controller : MonoBehaviour {
 
     private Animator            m_animator;
     private Rigidbody2D         m_body2d;
-    private TPB_Character_Sensor   m_groundSensor;
-    private TPB_Character_Sensor   m_wallSensorR1;
-    private TPB_Character_Sensor   m_wallSensorR2;
-    private TPB_Character_Sensor   m_wallSensorL1;
-    private TPB_Character_Sensor   m_wallSensorL2;
+    private TPB_Character_Sensor_Deprecated   m_groundSensor;
+    private TPB_Character_Sensor_Deprecated   m_wallSensorR1;
+    private TPB_Character_Sensor_Deprecated   m_wallSensorR2;
+    private TPB_Character_Sensor_Deprecated   m_wallSensorL1;
+    private TPB_Character_Sensor_Deprecated   m_wallSensorL2;
     private bool                m_grounded = false;
     private bool                m_rolling = false;
     private int                 m_facingDirection = 1;
@@ -42,11 +36,11 @@ public class TPB_Character_Controller : MonoBehaviour {
     {
         m_animator = GetComponent<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
-        m_groundSensor = transform.Find("GroundSensor").GetComponent<TPB_Character_Sensor>();
-        m_wallSensorR1 = transform.Find("WallSensor_R1").GetComponent<TPB_Character_Sensor>();
-        m_wallSensorR2 = transform.Find("WallSensor_R2").GetComponent<TPB_Character_Sensor>();
-        m_wallSensorL1 = transform.Find("WallSensor_L1").GetComponent<TPB_Character_Sensor>();
-        m_wallSensorL2 = transform.Find("WallSensor_L2").GetComponent<TPB_Character_Sensor>();
+        m_groundSensor = transform.Find("GroundSensor").GetComponent<TPB_Character_Sensor_Deprecated>();
+        m_wallSensorR1 = transform.Find("WallSensor_R1").GetComponent<TPB_Character_Sensor_Deprecated>();
+        m_wallSensorR2 = transform.Find("WallSensor_R2").GetComponent<TPB_Character_Sensor_Deprecated>();
+        m_wallSensorL1 = transform.Find("WallSensor_L1").GetComponent<TPB_Character_Sensor_Deprecated>();
+        m_wallSensorL2 = transform.Find("WallSensor_L2").GetComponent<TPB_Character_Sensor_Deprecated>();
     }
 
     void Update()

@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class TPB_Character_Sensor : MonoBehaviour {
+/**
+ * Note: This character sensor is deprecated
+ * Please refer to 'TPB_Character_Controller' for the logic behind floor/ceiling detection
+ */
+
+public class TPB_Character_Sensor_Deprecated : MonoBehaviour {
 
     private int m_ColCount = 0;
 
