@@ -1,2 +1,30 @@
+# Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+
+# Unity3D generated file on crash reports
+sysinfo.txt
+
+# Builds
+*.apk
+*.unitypackage
+
+# Visual Studio cache directory
+.vs/
+.vscode/
+
 # Unncessary README meta
 README.md.meta
+
+# Third party assets in project for testing
+Assets/Third\ Party\ Assets
+Assets/FantasyIconsPackFree
+Assets/TextMesh\ Pro
+
+# Will remove
+musictest/
