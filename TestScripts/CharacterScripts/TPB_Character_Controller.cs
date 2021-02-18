@@ -42,10 +42,10 @@ public class TPB_Character_Controller : MonoBehaviour
     private bool canStandUp = true;
     private bool isFacingRight = true;    
 
-    public UnityEvent ON_GROUND_EVENT;
-    public UnityEvent ON_CROUCH_EVENT;
-    public UnityEvent ON_WALL_EVENT;
-    public UnityEvent OFF_WALL_EVENT;
+    public UnityEvent OnGroundEvent;
+    public UnityEvent OnCrouchEvent;
+    public UnityEvent OnWallEvent;
+    public UnityEvent OffWallEvent;
     
     void Awake() 
     {
@@ -53,8 +53,6 @@ public class TPB_Character_Controller : MonoBehaviour
         bc2D = GetComponent<BoxCollider2D>();
         cc2D = GetComponent<CircleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
-        InitializeCharacterControllerEvents();
     }
 
     void FixedUpdate() 
@@ -64,7 +62,6 @@ public class TPB_Character_Controller : MonoBehaviour
         Jump();
         Crouch();
         WallSlide();
-        // WallJump();
     }
 
     void MovementCheck() 
@@ -92,7 +89,7 @@ public class TPB_Character_Controller : MonoBehaviour
         // Perform a linecast to the ground in reference to the "ground" layer mask
         if (Physics2D.Linecast(transform.position, groundCheck.position, environmentLayer)) {
             isGrounded = true;
-            ON_GROUND_EVENT.Invoke();
+            OnGroundEvent?.Invoke();
         } else {
             isGrounded = false;
         }
@@ -110,7 +107,7 @@ public class TPB_Character_Controller : MonoBehaviour
         if ((Input.GetKey("s") && isGrounded) || !canStandUp) {
             rb2D.velocity = new Vector2(rb2D.velocity.x * crouchResistance, 0f);
             isCrouching = true;
-            ON_CROUCH_EVENT.Invoke();
+            OnCrouchEvent?.Invoke();
         } else {
             rb2D.velocity = new Vector2(rb2D.velocity.x, rb2D.velocity.y);
             isCrouching = false;
@@ -150,10 +147,10 @@ public class TPB_Character_Controller : MonoBehaviour
 
         if (isTouchingWall && !isGrounded && movement != 0) {
             isWallSliding = true;
-            ON_WALL_EVENT.Invoke();
+            OnWallEvent?.Invoke();
         } else {
             isWallSliding = false;
-            OFF_WALL_EVENT.Invoke();
+            OffWallEvent?.Invoke();
         }
 
         if(isWallSliding) {
@@ -161,25 +158,25 @@ public class TPB_Character_Controller : MonoBehaviour
         }        
     }
 
-    void WallJump()
-    {
-        float movement = Input.GetAxisRaw("Horizontal");
-        if (Input.GetKeyDown("space") && isWallSliding) {
-            isWallJumping = true;
-            StartCoroutine("WallJumpCoroutine");
-        }
+    // void WallJump()
+    // {
+    //     float movement = Input.GetAxisRaw("Horizontal");
+    //     if (Input.GetKeyDown("space") && isWallSliding) {
+    //         isWallJumping = true;
+    //         StartCoroutine("WallJumpCoroutine");
+    //     }
 
-        if (isWallJumping) {
-                        Debug.Log("Horizontal Value -> " + (horizontalWallForce * -movement));
-            rb2D.velocity = new Vector2(horizontalWallForce * -movement, verticalWallForce);
-        }
-    }
+    //     if (isWallJumping) {
+    //                     Debug.Log("Horizontal Value -> " + (horizontalWallForce * -movement));
+    //         rb2D.velocity = new Vector2(horizontalWallForce * -movement, verticalWallForce);
+    //     }
+    // }
 
-    IEnumerator WallJumpCoroutine() 
-    {
-        yield return new WaitForSeconds(wallJumpDuration);
-        isWallJumping = false;
-    }
+    // IEnumerator WallJumpCoroutine() 
+    // {
+    //     yield return new WaitForSeconds(wallJumpDuration);
+    //     isWallJumping = false;
+    // }
 
     void FlipCharacter() 
     {
@@ -188,17 +185,5 @@ public class TPB_Character_Controller : MonoBehaviour
         Vector3 flippedScale = this.transform.localScale;
         flippedScale.x *= -1;
         this.transform.localScale = flippedScale;
-    }
-
-    void InitializeCharacterControllerEvents() 
-    {
-        if (ON_GROUND_EVENT == null)        
-            ON_GROUND_EVENT = new UnityEvent();
-        if (ON_CROUCH_EVENT == null)
-            ON_CROUCH_EVENT = new UnityEvent();
-        if (ON_WALL_EVENT == null)
-            ON_WALL_EVENT = new UnityEvent();
-        if (OFF_WALL_EVENT == null)
-            OFF_WALL_EVENT = new UnityEvent();
     }
 }

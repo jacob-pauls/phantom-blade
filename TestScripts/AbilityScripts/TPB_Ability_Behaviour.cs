@@ -4,7 +4,7 @@ using UnityEngine.Events;
 /**
  * Jake Pauls
  * TPB_Ability_Behaviour.cs
- * Controls mono behaviour for ability casting
+ * Controls monobehaviour for ability casting
  */
 
 public class TPB_Ability_Behaviour : MonoBehaviour
@@ -60,8 +60,8 @@ public class TPB_Ability_Behaviour : MonoBehaviour
         if (abilities.IsAbilityUnlocked(TPB_Ability_Controller.AbilityTypes.WallJump)) {
             if (Input.GetKeyDown(wallJump.buttonAssignment) && wallJump.isWallSliding) {
                 wallJump.Cast();
-                wallJump.AssertWallJumpDirection();
             }
+            wallJump.AddForceIfWallJumping();
         }
     }
 }

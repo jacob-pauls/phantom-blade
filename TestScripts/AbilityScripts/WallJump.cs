@@ -32,22 +32,19 @@ public class WallJump : TPB_Ability
         isWallJumping = true;
         Task.Delay(wallJumpDurationInMilliseconds).ContinueWith(task => SetWallJumpToFalse());
     }
-
-    public void AssertWallJumpDirection() 
+    private void SetWallJumpToFalse() 
     {
+        Debug.Log("isWallJumping set to false");
+        isWallJumping = false;
+    }
+
+    public void AddForceIfWallJumping() {
         if (isWallJumping) {
             float movement = Input.GetAxisRaw("Horizontal");
-            playerRigidBody.velocity = new Vector2(horizontalWallForce * -movement, verticalWallForce);
-            Debug.Log("Horizontal Value -> " + (horizontalWallForce * -movement));
+            playerRigidBody.AddForce(new Vector2(horizontalWallForce * -movement, verticalWallForce));
         }
     }
 
     public void CatchOnWallEvent() { isWallSliding = true; }
     public void CatchOffWallEvent() { isWallSliding = false; }
-
-    private void SetWallJumpToFalse() 
-    {
-        isWallJumping = false;
-    }
-
 }

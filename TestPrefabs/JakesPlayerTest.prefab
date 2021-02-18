@@ -191,12 +191,40 @@ MonoBehaviour:
   groundCheck: {fileID: 2711993750100028576}
   ceilingCheck: {fileID: 4859867085393351679}
   wallCheck: {fileID: 6536861679876305156}
-  ON_GROUND_EVENT:
+  OnGroundEvent:
     m_PersistentCalls:
       m_Calls: []
-  ON_CROUCH_EVENT:
+  OnCrouchEvent:
     m_PersistentCalls:
       m_Calls: []
+  OnWallEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 249f7dc88f88f3348acf292dceee7f02, type: 2}
+        m_MethodName: CatchOnWallEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OffWallEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 249f7dc88f88f3348acf292dceee7f02, type: 2}
+        m_MethodName: CatchOffWallEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &9028486028714300615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,15 +234,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6511949467834894696}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0a5c1ceac2f0094eb239ee7f930c6aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b31695fd24d6c94eac3e16a01921072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 50
-  maxHealth: 100
-  currentEssence: 50
-  maxEssence: 50
   player: {fileID: 6511949467834894696}
   phaseShift: {fileID: 11400000, guid: 8e91470aed6d7864bbf95349aa1e9a8a, type: 2}
+  wallJump: {fileID: 11400000, guid: 249f7dc88f88f3348acf292dceee7f02, type: 2}
+  ON_HEALTH_CHANGE:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!212 &2693739746446979799
 SpriteRenderer:
   m_ObjectHideFlags: 0
