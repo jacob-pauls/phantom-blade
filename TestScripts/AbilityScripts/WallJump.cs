@@ -34,7 +34,6 @@ public class WallJump : TPB_Ability
     }
     private void SetWallJumpToFalse() 
     {
-        Debug.Log("isWallJumping set to false");
         isWallJumping = false;
     }
 

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 
 /**
  * Jake Pauls
@@ -21,9 +20,6 @@ public class TPB_Ability_Behaviour : MonoBehaviour
     [SerializeField] private WallJump wallJump;
 
     private TPB_Ability_Controller abilities;
-
-    // Create ONHEALTHCHANGE function to subscribe
-    public UnityEvent ON_HEALTH_CHANGE;
     
     void Awake()
     {        
@@ -34,7 +30,7 @@ public class TPB_Ability_Behaviour : MonoBehaviour
         wallJump.Initialize(player);
     }
 
-    void Update()
+    void FixedUpdate()
     {
         PhaseShift();
         WallJump();

@@ -14,12 +14,7 @@ public class TPB_Character_Controller : MonoBehaviour
     [SerializeField] private float speed = 1f;
     [SerializeField] private float jumpForce = 1f;
     [SerializeField] private float crouchResistance = 0.1f;
-
-    [Header ("Wall Movement")]
     [SerializeField] private float wallSlideSpeed = 0.1f;
-    [SerializeField] private float horizontalWallForce = 0f;
-    [SerializeField] private float verticalWallForce = 0f;
-    [SerializeField] private float wallJumpDuration = 0f;
 
     [Header ("Collision Detection")]
     [SerializeField] private Collider2D disabledColliderOnCrouch;
@@ -157,26 +152,6 @@ public class TPB_Character_Controller : MonoBehaviour
             rb2D.velocity = new Vector2(rb2D.velocity.x, Mathf.Clamp(rb2D.velocity.y, -wallSlideSpeed/10, float.MaxValue));
         }        
     }
-
-    // void WallJump()
-    // {
-    //     float movement = Input.GetAxisRaw("Horizontal");
-    //     if (Input.GetKeyDown("space") && isWallSliding) {
-    //         isWallJumping = true;
-    //         StartCoroutine("WallJumpCoroutine");
-    //     }
-
-    //     if (isWallJumping) {
-    //                     Debug.Log("Horizontal Value -> " + (horizontalWallForce * -movement));
-    //         rb2D.velocity = new Vector2(horizontalWallForce * -movement, verticalWallForce);
-    //     }
-    // }
-
-    // IEnumerator WallJumpCoroutine() 
-    // {
-    //     yield return new WaitForSeconds(wallJumpDuration);
-    //     isWallJumping = false;
-    // }
 
     void FlipCharacter() 
     {
