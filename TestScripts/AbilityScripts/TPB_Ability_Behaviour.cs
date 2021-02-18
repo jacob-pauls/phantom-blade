@@ -25,15 +25,25 @@ public class TPB_Ability_Behaviour : MonoBehaviour
     {        
         abilities = new TPB_Ability_Controller();
 
-        // TODO: Clean up ability initialization logic
-        phaseShift.Initialize(player);
-        wallJump.Initialize(player);
+        InitializeCurrentAbilities();
     }
 
     void Update()
     {
         PhaseShift();
         WallJump();
+    }
+
+    void InitializeCurrentAbilities()
+    {
+        // Only initialize the abilities that are unlocked
+        foreach(TPB_Ability_Controller.AbilityTypes ability in abilities.unlockedAbilities) {
+            if (ability == TPB_Ability_Controller.AbilityTypes.PhaseShift) {
+                phaseShift.Initialize(player);
+            } else if (ability == TPB_Ability_Controller.AbilityTypes.WallJump) {
+                wallJump.Initialize(player);
+            }
+        }
     }
 
     /**

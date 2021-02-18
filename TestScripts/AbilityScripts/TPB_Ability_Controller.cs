@@ -19,7 +19,7 @@ public class TPB_Ability_Controller
         WallJump,
     }
 
-    private List<AbilityTypes> unlockedAbilities;
+    public List<AbilityTypes> unlockedAbilities;
     
     public TPB_Ability_Controller()
     {
