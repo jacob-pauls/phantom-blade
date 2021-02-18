@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 9
-  jumpForce: 7.5
+  jumpForce: 9
   fallMultiplier: 1.5
   shortHopMultiplier: 3
   crouchResistance: 0.1

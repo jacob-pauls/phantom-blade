@@ -9,17 +9,24 @@ using UnityEngine.Events;
 
 public class TPB_Character
 {
-    [Header("Health and Essence Settings")]
-    public int currentHealth = 100; 
+    [Header ("Health and Essence Settings")]
     public int maxHealth = 100;
-    public int currentEssence = 50;
     public int maxEssence = 50;
+    public int currentHealth { get; set; }
+    public int currentEssence { get; set; }
 
     public UnityEvent OnHealthChange;
+    public UnityEvent OnEssenceChange;
 
     public void ChangeHealthAmount(int amount)
     {
-        currentHealth = Mathf.Clamp(amount, 0, maxHealth);
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         OnHealthChange?.Invoke();
+    }
+
+    public void ChangeEssenceAmount(int amount)
+    {
+        currentEssence = Mathf.Clamp(currentEssence + amount, 0, maxEssence);
+        OnEssenceChange?.Invoke();
     }
 }
