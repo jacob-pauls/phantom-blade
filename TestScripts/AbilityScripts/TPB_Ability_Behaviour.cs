@@ -30,7 +30,7 @@ public class TPB_Ability_Behaviour : MonoBehaviour
         wallJump.Initialize(player);
     }
 
-    void FixedUpdate()
+    void Update()
     {
         PhaseShift();
         WallJump();

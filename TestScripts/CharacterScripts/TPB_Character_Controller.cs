@@ -13,6 +13,8 @@ public class TPB_Character_Controller : MonoBehaviour
     [Header ("Basic Movement")]
     [SerializeField] private float speed = 1f;
     [SerializeField] private float jumpForce = 1f;
+    [SerializeField] private float fallMultiplier = 1.5f;
+    [SerializeField] private float shortHopMultiplier = 3f;
     [SerializeField] private float crouchResistance = 0.1f;
     [SerializeField] private float wallSlideSpeed = 0.1f;
 
@@ -50,7 +52,7 @@ public class TPB_Character_Controller : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    void FixedUpdate() 
+    void Update() 
     {
         MovementCheck();
         GroundCheck();
@@ -92,8 +94,14 @@ public class TPB_Character_Controller : MonoBehaviour
 
     void Jump() 
     {
-        if ((Input.GetKey("space")) && isGrounded) {
+        if ((Input.GetKeyDown(KeyCode.Space)) && isGrounded) {
             rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
+        }
+        if (rb2D.velocity.y < 0) {
+            rb2D.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        } else if (rb2D.velocity.y > 0 && !Input.GetKey("space")) {
+            // Apply more gravty if the jump button is released (short hop)
+            rb2D.velocity += Vector2.up * Physics2D.gravity.y * (shortHopMultiplier - 1) * Time.deltaTime;
         }
     }
 

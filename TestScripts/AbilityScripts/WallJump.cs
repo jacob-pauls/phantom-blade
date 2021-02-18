@@ -11,7 +11,6 @@ using UnityEngine;
 public class WallJump : TPB_Ability
 {
     [Header ("Wall Movement")]
-    [SerializeField] private float wallSlideSpeed = 0.1f;
     [SerializeField] private float horizontalWallForce = 0f;
     [SerializeField] private float verticalWallForce = 0f;
     [SerializeField] private int wallJumpDurationInMilliseconds = 0;

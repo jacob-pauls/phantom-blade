@@ -176,11 +176,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 9
   jumpForce: 7.5
+  fallMultiplier: 1.5
+  shortHopMultiplier: 3
   crouchResistance: 0.1
   wallSlideSpeed: 10
-  horizontalWallForce: 8
-  verticalWallForce: 7
-  wallJumpDuration: 0.05
   disabledColliderOnCrouch: {fileID: 8873628933695393135}
   environmentLayer:
     serializedVersion: 2
@@ -240,9 +239,6 @@ MonoBehaviour:
   player: {fileID: 6511949467834894696}
   phaseShift: {fileID: 11400000, guid: 8e91470aed6d7864bbf95349aa1e9a8a, type: 2}
   wallJump: {fileID: 11400000, guid: 249f7dc88f88f3348acf292dceee7f02, type: 2}
-  ON_HEALTH_CHANGE:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!212 &2693739746446979799
 SpriteRenderer:
   m_ObjectHideFlags: 0
