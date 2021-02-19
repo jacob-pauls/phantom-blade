@@ -632,7 +632,7 @@ PlayerSettings:
     Collab: 1
     ErrorHub: 0
     Hub: 0
-    UNet: 0
+    UNet: 1
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -645,10 +645,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 1ccf7172-8107-4535-b8b0-bc00a8a2e11f
+  cloudProjectId: 0c3e442a-556f-4feb-91cf-3bca988220d7
   framebufferDepthMemorylessMode: 0
-  projectName: metroidvania
-  organizationId: john-foster-2348702
+  projectName: mvm
+  organizationId: mvmjam
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

@@ -9,12 +9,16 @@ public class HoverHealthBar : MonoBehaviour
     [SerializeField] private TPB_Character target;
     [SerializeField] private Slider slider;
 
+    private Animator animator;
+
     private void Start()
     {
         target.onHealthChange?.AddListener(UpdateBar);
 
         slider.maxValue = target.maxHealth;
         slider.value = target.currentHealth;
+
+        animator = GetComponent<Animator>();
     }
 
     [ContextMenu("Update Health Bar Test")]
@@ -24,12 +28,13 @@ public class HoverHealthBar : MonoBehaviour
         {
             Debug.Log("Please attach a slider component to " + name);
         }
-        //else if() // If character script is not attached
-        //{
-
-        //}
+        else if (target == null) // If character script is not attached
+        {
+            Debug.Log("Please attach a character component to " + name);
+        }
         else
         {
+            animator?.SetTrigger("Play");
             StopCoroutine(UpdateBarRoutine());
             StartCoroutine(UpdateBarRoutine());
         }
@@ -52,6 +57,5 @@ public class HoverHealthBar : MonoBehaviour
         }
 
         slider.value = characterHealth;
-
     }
 }

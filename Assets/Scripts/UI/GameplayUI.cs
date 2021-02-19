@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -14,12 +15,11 @@ public class GameplayUI : MonoBehaviour
     [SerializeField] private Slider playerEssenceBar;
 
     private bool isPlayerInitialized;
-
-    [Space]
     //[SerializeField] private PlayerComboUI playerComboUI;
 
     [Header("Boss")]
     [SerializeField] private TPB_Character boss;
+    [SerializeField] private TextMeshProUGUI bossNameTextUI;
     [SerializeField] private Slider bossHealthBar;
 
     // Private Properties
@@ -28,6 +28,11 @@ public class GameplayUI : MonoBehaviour
     private void Start()
     {
         instance = this;
+
+        if (player != null) { SetPlayer(player); }
+        if (boss == null) { bossHealthBar.gameObject.SetActive(false); }
+
+        //boss.onDeath?.AddListener();
     }
 
     #region Player Methods
@@ -46,8 +51,8 @@ public class GameplayUI : MonoBehaviour
         instance.playerHealthBar.maxValue = player.maxHealth;
         instance.playerHealthBar.value = player.currentHealth;
 
-        instance.playerHealthBar.maxValue = player.maxEssence;
-        instance.playerHealthBar.value = player.currentEssence;
+        instance.playerEssenceBar.maxValue = player.maxEssence;
+        instance.playerEssenceBar.value = player.currentEssence;
     }
 
     // The reason I use similar methods is for the StopCoroutine. It only stops the first one which can cause issues.
@@ -112,6 +117,57 @@ public class GameplayUI : MonoBehaviour
         }
 
         playerEssenceBar.value = characterEssence;
+        yield return null;
+    }
+
+    #endregion
+
+    #region Boss Methods
+    public void SetBoss(TPB_Character boss)
+    {
+        instance.boss = boss;
+
+        if (!instance.isPlayerInitialized)
+        {
+            instance.boss.onHealthChange?.AddListener(UpdateBossHealthBar);
+            //player.onComboUpdate?.AddListener(UpdatePlayerHealthBar());
+            instance.isPlayerInitialized = true;
+        }
+
+        bossNameTextUI.text = boss.name;
+
+        instance.bossHealthBar.maxValue = player.maxHealth;
+        instance.bossHealthBar.value = player.currentHealth;
+    }
+
+    public void UpdateBossHealthBar()
+    {
+        if (instance.playerHealthBar == null)
+        {
+            Debug.LogWarning("Please attach a slider for the player's health");
+        }
+        else
+        {
+            StopCoroutine(UpdateBossHealthBarRoutine());
+            StartCoroutine(UpdateBossHealthBarRoutine());
+        }
+    }
+
+    private IEnumerator UpdateBossHealthBarRoutine()
+    {
+        float characterHealth = boss.currentHealth; // Need to replace this with the Character.Health
+        float currentHealth = bossHealthBar.value;
+        float progress = 0;
+
+        while (progress < 1)
+        {
+            // Changing the displayed
+            bossHealthBar.value = Mathf.Lerp(currentHealth, characterHealth, progress);
+            progress += Time.deltaTime * barAdjustmentSpeed;
+            yield return null;
+        }
+
+        bossHealthBar.value = characterHealth;
         yield return null;
     }
 

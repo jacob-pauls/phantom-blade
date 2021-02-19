@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 8122685998352831593}
   - component: {fileID: 4541622016467900464}
   - component: {fileID: 8048828909860225532}
+  - component: {fileID: -2052187293208994932}
   - component: {fileID: 4158200469052949077}
   - component: {fileID: 5836536908116357735}
+  - component: {fileID: 4590631489487034825}
   m_Layer: 5
   m_Name: Hover Health Bar
   m_TagString: Untagged
@@ -83,6 +85,18 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!225 &-2052187293208994932
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720745992408252593}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!114 &4158200469052949077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,8 +126,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae223608d7ff96c4a93513411f94cd1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
   slider: {fileID: 1287487460885942618}
-  characterHealthTest: 100
+--- !u!95 &4590631489487034825
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720745992408252593}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7c85104cc378b5848992f4a63d4b1b33, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1746078644348954942
 GameObject:
   m_ObjectHideFlags: 0
