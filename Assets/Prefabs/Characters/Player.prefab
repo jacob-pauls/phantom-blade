@@ -176,9 +176,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 9
-  jumpForce: 9
-  fallMultiplier: 1.5
-  shortHopMultiplier: 3
+  jumpForce: 11
+  fallMultiplier: 9
+  shortHopMultiplier: 8
   crouchResistance: 0.1
   wallSlideSpeed: 10
   disabledColliderOnCrouch: {fileID: 8873628933695393135}
@@ -191,6 +191,7 @@ MonoBehaviour:
   groundCheck: {fileID: 2711993750100028576}
   ceilingCheck: {fileID: 4859867085393351679}
   wallCheck: {fileID: 6536861679876305156}
+  ledgeCheck: {fileID: 0}
   OnGroundEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -243,6 +244,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onEssenceChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeath:
     m_PersistentCalls:
       m_Calls: []
   player: {fileID: 6511949467834894696}

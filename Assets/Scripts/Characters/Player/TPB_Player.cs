@@ -2,7 +2,7 @@
 
 /**
  * Jake Pauls
- * TPB_Ability_Behaviour.cs
+ * TPB_Player.cs
  * Controls monobehaviour for ability casting
  */
 

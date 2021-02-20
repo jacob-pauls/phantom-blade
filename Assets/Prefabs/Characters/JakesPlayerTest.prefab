@@ -176,9 +176,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 9
-  jumpForce: 9
-  fallMultiplier: 1.5
-  shortHopMultiplier: 3
+  jumpForce: 11
+  fallMultiplier: 9
+  shortHopMultiplier: 8
   crouchResistance: 0.1
   wallSlideSpeed: 10
   disabledColliderOnCrouch: {fileID: 8873628933695393135}

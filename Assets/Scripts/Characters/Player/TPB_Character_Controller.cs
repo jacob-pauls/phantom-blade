@@ -25,6 +25,7 @@ public class TPB_Character_Controller : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform ceilingCheck;
     [SerializeField] private Transform wallCheck;
+    [SerializeField] private Transform ledgeCheck;
 
     private Rigidbody2D rb2D;
     private BoxCollider2D bc2D;
@@ -148,7 +149,7 @@ public class TPB_Character_Controller : MonoBehaviour
         // Check if character is trying to interact with a phase shift wall
         isTouchingWall = isTouchingWall ? isTouchingWall : Physics2D.OverlapCircle(wallCheck.position, 0.1f, phaseShiftWallLayer);
 
-        if (isTouchingWall && !isGrounded && movement != 0) {
+        if (isTouchingWall && !isGrounded) {
             isWallSliding = true;
             OnWallEvent?.Invoke();
         } else {
@@ -156,7 +157,11 @@ public class TPB_Character_Controller : MonoBehaviour
             OffWallEvent?.Invoke();
         }
 
-        if(isWallSliding) {
+        // Modifying the material friction in order to 'latch' onto the wall
+        if (isWallSliding && Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) {
+            rb2D.sharedMaterial.friction = 0.4f;
+        } else if (isWallSliding) {
+            rb2D.sharedMaterial.friction = 0.0f;
             rb2D.velocity = new Vector2(rb2D.velocity.x, Mathf.Clamp(rb2D.velocity.y, -wallSlideSpeed/10, float.MaxValue));
         }        
     }

@@ -17,16 +17,20 @@ public class TPB_Character : MonoBehaviour
 
     public UnityEvent onHealthChange;
     public UnityEvent onEssenceChange;
+    public UnityEvent onDeath;
 
     protected virtual void Awake() 
     {
         currentHealth = maxHealth;
+        currentEssence = maxEssence;
     }
 
     public void ChangeHealthAmount(int amount)
     {
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         onHealthChange?.Invoke();
+        if (currentHealth <= 0)
+            onDeath?.Invoke();
     }
 
     public void ChangeEssenceAmount(int amount)
