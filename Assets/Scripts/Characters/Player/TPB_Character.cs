@@ -25,6 +25,11 @@ public class TPB_Character : MonoBehaviour
         currentEssence = maxEssence;
     }
 
+    protected virtual void Move(float input) 
+    {
+        //float movement = moveSpeed * input;
+    }
+
     public void ChangeHealthAmount(int amount)
     {
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);

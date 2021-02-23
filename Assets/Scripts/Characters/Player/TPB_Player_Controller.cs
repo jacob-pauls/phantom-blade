@@ -4,11 +4,11 @@ using UnityEngine.Events;
 
 /**
  * Jake Pauls
- * TPB_Character_Controller.cs
+ * TPB_Player_Controller.cs
  * Controls character actions, movements, and performs checks for various collision types
  */
 
-public class TPB_Character_Controller : MonoBehaviour
+public class TPB_Player_Controller : MonoBehaviour
 {
     [Header ("Basic Movement")]
     [SerializeField] private float speed = 1f;
@@ -46,7 +46,6 @@ public class TPB_Character_Controller : MonoBehaviour
     public UnityEvent OffWallEvent;
     
     private Animator anim;  
-
 
     void Awake() 
     {
@@ -115,7 +114,6 @@ public class TPB_Character_Controller : MonoBehaviour
         }
         if (rb2D.velocity.y < 0) {
             rb2D.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-            
         } else if (rb2D.velocity.y > 0 && !Input.GetKey("space")) {
             // Apply more gravty if the jump button is released (short hop)
             rb2D.velocity += Vector2.up * Physics2D.gravity.y * (shortHopMultiplier - 1) * Time.deltaTime;
