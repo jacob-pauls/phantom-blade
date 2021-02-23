@@ -922,12 +922,16 @@ MonoBehaviour:
   comboMilestones:
   - comboName: Bloody!
     comboHitsRequired: 2
+    comboDisplayImage: {fileID: 0}
   - comboName: Deadly!
     comboHitsRequired: 4
+    comboDisplayImage: {fileID: 0}
   - comboName: Gruesome!
     comboHitsRequired: 6
+    comboDisplayImage: {fileID: 0}
   - comboName: Murderous!
     comboHitsRequired: 8
+    comboDisplayImage: {fileID: 0}
 --- !u!1 &6724711083011480843
 GameObject:
   m_ObjectHideFlags: 0

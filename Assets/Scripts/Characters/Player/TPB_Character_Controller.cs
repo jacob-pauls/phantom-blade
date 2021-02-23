@@ -45,8 +45,12 @@ public class TPB_Character_Controller : MonoBehaviour
     public UnityEvent OnWallEvent;
     public UnityEvent OffWallEvent;
     
+    private Animator anim;  
+
+
     void Awake() 
     {
+        anim = GetComponent<Animator>();
         rb2D = GetComponent<Rigidbody2D>();
         bc2D = GetComponent<BoxCollider2D>();
         cc2D = GetComponent<CircleCollider2D>();
@@ -67,19 +71,27 @@ public class TPB_Character_Controller : MonoBehaviour
         float movement = Input.GetAxisRaw("Horizontal");
 
         // Check player input, apply velocity
-        if (movement > 0) {
-            rb2D.velocity = new Vector2(speed, rb2D.velocity.y);
-        } else if (movement < 0) {
-            rb2D.velocity = new Vector2(-speed, rb2D.velocity.y);
-        } else {
-            rb2D.velocity = new Vector2(0f, rb2D.velocity.y);
-        }
+        //if (movement > 0) {
+        //rb2D.velocity = new Vector2(speed, rb2D.velocity.y);
+        //anim.SetBool("isRunning", true);
+        //} else if (movement < 0) {
+        //rb2D.velocity = new Vector2(-speed, rb2D.velocity.y);
+        //anim.SetBool("isRunning", true);
+        //} else {
+        //rb2D.velocity = new Vector2(0f, rb2D.velocity.y);
+        //anim.SetBool("isRunning", false);
+        //}
+        rb2D.velocity = new Vector2(speed * movement, rb2D.velocity.y);
+        anim.SetBool("isRunning", Mathf.Abs(movement) > 0);
 
         if (movement > 0 && !isFacingRight) {
             FlipCharacter();
         } else if (movement < 0 && isFacingRight) {
             FlipCharacter();
         }
+
+        anim.SetFloat("runningSpeed", Mathf.Abs(movement));
+        anim.SetFloat("yVel", rb2D.velocity.y);
     }
 
     void GroundCheck() 
@@ -91,18 +103,23 @@ public class TPB_Character_Controller : MonoBehaviour
         } else {
             isGrounded = false;
         }
+
+        anim.SetBool("isGrounded", isGrounded);
     }
 
     void Jump() 
     {
         if ((Input.GetKeyDown(KeyCode.Space)) && isGrounded) {
             rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
+            
         }
         if (rb2D.velocity.y < 0) {
             rb2D.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            
         } else if (rb2D.velocity.y > 0 && !Input.GetKey("space")) {
             // Apply more gravty if the jump button is released (short hop)
             rb2D.velocity += Vector2.up * Physics2D.gravity.y * (shortHopMultiplier - 1) * Time.deltaTime;
+            
         }
     }
 

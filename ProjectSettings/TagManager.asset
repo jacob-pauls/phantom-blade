@@ -59,6 +59,12 @@ TagManager:
   - name: text
     uniqueID: 3296963153
     locked: 0
+  - name: SHRINES
+    uniqueID: 2303897027
+    locked: 0
+  - name: Chest
+    uniqueID: 2544939003
+    locked: 0
   - name: enemy
     uniqueID: 318081315
     locked: 0
@@ -73,6 +79,9 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 1918997913
+    locked: 0
+  - name: Pickup
+    uniqueID: 1262832869
     locked: 0
   - name: UI
     uniqueID: 3862268391

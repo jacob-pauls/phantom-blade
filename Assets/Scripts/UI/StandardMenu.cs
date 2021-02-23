@@ -8,6 +8,10 @@ public class StandardMenu : MonoBehaviour
     public UnityEvent onShow, onClose;
 
     private Animator animator;
+
+    public bool isMenuOpen { get; protected set; }
+
+
     private bool isInitialized;
 
     public virtual void Initialize()
@@ -19,6 +23,11 @@ public class StandardMenu : MonoBehaviour
         }
     }
 
+    protected void Start()
+    {
+        Initialize();
+    }
+
     public virtual void Show()
     {
         Initialize();
@@ -27,6 +36,8 @@ public class StandardMenu : MonoBehaviour
 
         gameObject.SetActive(true);
         if (animator != null) { animator.SetTrigger("Show"); }
+
+        isMenuOpen = true;
     }
 
     public virtual void Close()
@@ -44,6 +55,8 @@ public class StandardMenu : MonoBehaviour
             float animationDuration = animator.GetCurrentAnimatorStateInfo(0).length;
             Invoke(nameof(Deactivate), animationDuration);
         }
+
+        isMenuOpen = false;
     }
 
     private void Deactivate()

@@ -20,16 +20,20 @@ public class TPB_Player : TPB_Character
     [SerializeField] private WallJump wallJump;
 
     private TPB_Ability_Controller abilities;
-    
+    private Animator anim;
+    private Rigidbody2D rb2D;
+
     protected override void Awake()
     {
         base.Awake();        
         abilities = new TPB_Ability_Controller();
         InitializeCurrentAbilities();
+        rb2D = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
+        anim = GetComponent<Animator>();
         PhaseShift();
         WallJump();
     }
@@ -55,8 +59,13 @@ public class TPB_Player : TPB_Character
             // Check if the character is mid-phaseshift, casting continues if shift is not complete
             if (Input.GetKeyDown(phaseShift.buttonAssignment) && !phaseShift.isPhaseShifting) {
                 phaseShift.Cast();
+                anim.SetBool("phaseShift", true);
+
             } else if (phaseShift.isPhaseShifting) {
                 phaseShift.Cast();
+                anim.SetBool("phaseShift", false);
+
+
             }
         }
     }

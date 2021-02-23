@@ -134,7 +134,7 @@ public class GameplayUI : MonoBehaviour
             instance.isPlayerInitialized = true;
         }
 
-        bossNameTextUI.text = boss.name;
+        if (bossNameTextUI != null) { bossNameTextUI.text = boss.name; }
 
         instance.bossHealthBar.maxValue = player.maxHealth;
         instance.bossHealthBar.value = player.currentHealth;

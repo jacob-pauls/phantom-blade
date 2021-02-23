@@ -11,12 +11,16 @@ public class PlayerComboUI : MonoBehaviour
     {
         [SerializeField] private string comboName;
         public string ComboName { get { return comboName; } }
+
         [SerializeField] private int comboHitsRequired;
         public int ComboHitsRequired { get { return comboHitsRequired; } }
+
+        [SerializeField] private Sprite comboDisplayImage;
+        public Sprite ComboDisplayImage { get { return comboDisplayImage; } }
     }
 
     public TPB_Character player;
-    private int currentCombo; // Should be grabbed from the player character
+    private int testCurrentCombo; // Should be grabbed from the player character
     [Space]
     [SerializeField] private TextMeshProUGUI comboNameTextUI;
     [SerializeField] private TextMeshProUGUI comboHitsRequiredTextUI;
@@ -49,11 +53,11 @@ public class PlayerComboUI : MonoBehaviour
     public void UpdateComboUI()
     {
         // Deciding if there should be a combo name appearing.
-        comboNameTextUI.gameObject.SetActive(currentCombo < LowestCombo ? false : true);
+        comboNameTextUI.gameObject.SetActive(testCurrentCombo < LowestCombo ? false : true);
 
         // Updating combo values to UI
-        comboNameTextUI.text = GetCurrentComboMilestone.ComboName;
-        comboHitsRequiredTextUI.text = currentCombo + " Hits";
+        comboNameTextUI.text = GetCurrentComboMilestone?.ComboName;
+        comboHitsRequiredTextUI.text = testCurrentCombo + " Hits";
 
         animator.SetTrigger("Play");
     }
@@ -61,7 +65,7 @@ public class PlayerComboUI : MonoBehaviour
     [ContextMenu("Test Combo By Increasing 1")]
     private void TestUpdateComboIncrease()
     {
-        currentCombo++;
+        testCurrentCombo++;
         UpdateComboUI();
     }
 
@@ -70,15 +74,15 @@ public class PlayerComboUI : MonoBehaviour
         get
         {
             int lowest = 0;
+
             for (int i = 0; i < comboMilestones.Count; i++)
             {
-                if (i == 0 || lowest > comboMilestones[0].ComboHitsRequired)
+                if (i == 0 || comboMilestones[0].ComboHitsRequired < lowest)
                 {
                     lowest = comboMilestones[i].ComboHitsRequired;
-                    Debug.Log("Hits " + comboMilestones[i].ComboHitsRequired);
                 }
             }
-            Debug.Log("Lowest Required Combo: " + lowest);
+
             return lowest;
         }
     }
@@ -91,11 +95,13 @@ public class PlayerComboUI : MonoBehaviour
 
             for (int i = 0; i < comboMilestones.Count; i++)
             {
-                if (currentCombo < comboMilestones[i].ComboHitsRequired)
+
+                if (testCurrentCombo >= comboMilestones[i].ComboHitsRequired)
                 {
+                    Debug.Log(testCurrentCombo);
                     combo = comboMilestones[i];
-                    break;
                 }
+
             }
 
             return combo;
