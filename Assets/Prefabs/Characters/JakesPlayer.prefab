@@ -142,14 +142,13 @@ GameObject:
   m_Component:
   - component: {fileID: 905146092168702400}
   - component: {fileID: 6671901012953727280}
-  - component: {fileID: 2393389038385087013}
-  - component: {fileID: 620246754218440760}
+  - component: {fileID: 5724803563137680301}
   - component: {fileID: 5814772815324388904}
   - component: {fileID: 312650587084758178}
   - component: {fileID: 489747470935763073}
   - component: {fileID: 1077866188330656144}
   m_Layer: 0
-  m_Name: PlayerTest3
+  m_Name: JakesPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -193,7 +192,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2393389038385087013
+--- !u!114 &5724803563137680301
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -205,30 +204,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5280260a60bdfb4da4fa2440c76942f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
+  maxEssence: 50
   speed: 10
   jumpForce: 10
   fallMultiplier: 8
   shortHopMultiplier: 4
   crouchResistance: 0.1
   wallSlideSpeed: 10
-  disabledColliderOnCrouch: {fileID: 1077866188330656144}
+  groundCheck: {fileID: 5796907756411289695}
   environmentLayer:
     serializedVersion: 2
     m_Bits: 1024
+  ceilingCheck: {fileID: 3936595000865554176}
+  disabledColliderOnCrouch: {fileID: 1077866188330656144}
+  wallCheck: {fileID: 3415898980036599291}
   phaseShiftWallLayer:
     serializedVersion: 2
     m_Bits: 256
-  groundCheck: {fileID: 5796907756411289695}
-  ceilingCheck: {fileID: 3936595000865554176}
-  wallCheck: {fileID: 3415898980036599291}
-  ledgeCheck: {fileID: 0}
-  OnGroundEvent:
+  onHealthChange:
     m_PersistentCalls:
       m_Calls: []
-  OnCrouchEvent:
+  onEssenceChange:
     m_PersistentCalls:
       m_Calls: []
-  OnWallEvent:
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  onGroundEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onCrouchEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onWallEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: 5407b2e7d8c85ae41b13fdbae7d3ceb4, type: 2}
@@ -242,7 +251,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OffWallEvent:
+  offWallEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: 5407b2e7d8c85ae41b13fdbae7d3ceb4, type: 2}
@@ -256,29 +265,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &620246754218440760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3427020085238654359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b31695fd24d6c94eac3e16a01921072, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  maxEssence: 50
-  onHealthChange:
-    m_PersistentCalls:
-      m_Calls: []
-  onEssenceChange:
-    m_PersistentCalls:
-      m_Calls: []
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
   player: {fileID: 3427020085238654359}
   phaseShift: {fileID: 11400000, guid: 84b2699f2b18a5740b924130dc732db1, type: 2}
   wallJump: {fileID: 11400000, guid: 5407b2e7d8c85ae41b13fdbae7d3ceb4, type: 2}
@@ -451,7 +437,7 @@ PrefabInstance:
         type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 620246754218440760}
+      objectReference: {fileID: 0}
     - target: {fileID: 8122685998352831593, guid: 3b12171efd42c504a907b37ff6b02395,
         type: 3}
       propertyPath: m_LocalPosition.x
