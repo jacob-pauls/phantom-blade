@@ -38,7 +38,6 @@ public class TPB_Player_Controller : MonoBehaviour
     void CrouchController() 
     {
         float input = Input.GetAxisRaw("Vertical");
-        Debug.Log("Crouch Input -> " + input);
         player.Crouch(input);
     }
 

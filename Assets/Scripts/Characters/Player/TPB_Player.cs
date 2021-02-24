@@ -90,7 +90,7 @@ public class TPB_Player : TPB_Character
 
     public void Crouch(float input)
     {
-        if ((input < 0 && isGrounded) || !canStandUp) {
+        if (((input < -0.75 && input >= -1) && isGrounded) || !canStandUp) {
             rb2D.velocity = new Vector2(rb2D.velocity.x * crouchResistance, 0f);
             isCrouching = true;
             onCrouchEvent?.Invoke();
@@ -103,6 +103,7 @@ public class TPB_Player : TPB_Character
         if (cc2D != null) 
             DisableCrouchColliderCheck();
     }
+    
     private void DisableCrouchColliderCheck() 
     {
         RaycastHit2D ceilingRaycast = Physics2D.Raycast(ceilingCheck.position, Vector2.up, 0.1f);

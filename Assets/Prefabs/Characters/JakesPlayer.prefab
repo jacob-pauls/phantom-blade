@@ -211,18 +211,10 @@ MonoBehaviour:
   jumpForce: 10
   fallMultiplier: 15
   shortHopMultiplier: 4
-  crouchResistance: 0.1
-  wallSlideSpeed: 10
-  disabledColliderOnCrouch: {fileID: 1077866188330656144}
   groundCheck: {fileID: 5796907756411289695}
-  ceilingCheck: {fileID: 3936595000865554176}
-  wallCheck: {fileID: 3415898980036599291}
   environmentLayer:
     serializedVersion: 2
     m_Bits: 1024
-  phaseShiftWallLayer:
-    serializedVersion: 2
-    m_Bits: 256
   onHealthChange:
     m_PersistentCalls:
       m_Calls: []
@@ -235,9 +227,17 @@ MonoBehaviour:
   onGroundEvent:
     m_PersistentCalls:
       m_Calls: []
-  onCrouchEvent:
-    m_PersistentCalls:
-      m_Calls: []
+  wallSlideSpeed: 10
+  crouchResistance: 1.5
+  wallCheck: {fileID: 3415898980036599291}
+  ceilingCheck: {fileID: 3936595000865554176}
+  phaseShiftWallLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  disabledColliderOnCrouch: {fileID: 1077866188330656144}
+  player: {fileID: 3427020085238654359}
+  phaseShift: {fileID: 11400000, guid: 84b2699f2b18a5740b924130dc732db1, type: 2}
+  wallJump: {fileID: 11400000, guid: 5407b2e7d8c85ae41b13fdbae7d3ceb4, type: 2}
   onWallEvent:
     m_PersistentCalls:
       m_Calls:
@@ -266,9 +266,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  player: {fileID: 3427020085238654359}
-  phaseShift: {fileID: 11400000, guid: 84b2699f2b18a5740b924130dc732db1, type: 2}
-  wallJump: {fileID: 11400000, guid: 5407b2e7d8c85ae41b13fdbae7d3ceb4, type: 2}
+  onCrouchEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4171346240624892545
 MonoBehaviour:
   m_ObjectHideFlags: 0

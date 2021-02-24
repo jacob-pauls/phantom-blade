@@ -18,7 +18,7 @@ MonoBehaviour:
   cooldown: 0
   targetingType: 0
   buttonAssignment: 0
-  horizontalWallForce: 775
-  verticalWallForce: 100
+  horizontalWallForce: 1000
+  verticalWallForce: 80
   wallJumpDurationInMilliseconds: 100
   isWallSliding: 0
