@@ -65,7 +65,12 @@ public class TPB_Character : MonoBehaviour
         currentEssence = maxEssence;
     }
 
-    protected void Move(float input) 
+    protected virtual void Update()
+    {
+        GroundCheck();
+    }
+
+    public void Move(float input) 
     {
         rb2D.velocity = new Vector2(speed * input, rb2D.velocity.y);
         anim.SetBool("isRunning", Mathf.Abs(input) > 0);
@@ -93,7 +98,7 @@ public class TPB_Character : MonoBehaviour
         anim.SetBool("isGrounded", isGrounded);
     }
 
-    protected void Jump(float input)
+    public void Jump(float input)
     {
         if ((input > 0) && isGrounded) {
             rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
@@ -107,7 +112,7 @@ public class TPB_Character : MonoBehaviour
         }
     }
 
-    protected void Crouch(float input)
+    public void Crouch(float input)
     {
         if ((input < 0 && isGrounded) || !canStandUp) {
             rb2D.velocity = new Vector2(rb2D.velocity.x * crouchResistance, 0f);
@@ -122,7 +127,7 @@ public class TPB_Character : MonoBehaviour
         if (cc2D != null) 
             DisableCrouchColliderCheck();
     }
-    protected void WallSlide(float input)
+    public void WallSlide(float input)
     {
         isTouchingWall = Physics2D.OverlapCircle(wallCheck.position, 0.1f, environmentLayer);
         

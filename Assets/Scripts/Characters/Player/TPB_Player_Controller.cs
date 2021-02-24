@@ -6,13 +6,17 @@
  * Controls character inputs and input mapping for player movement mechanics
  */
 
-public class TPB_Player_Controller : TPB_Player
+public class TPB_Player_Controller : MonoBehaviour
 {
-    protected override void Update() 
+    private TPB_Player player;
+
+    void Awake()
     {
-        base.Update();
-        base.GroundCheck();
-        
+        player = GetComponent<TPB_Player>();
+    }
+
+    void Update() 
+    {
         MovementController();
         JumpController();
         CrouchController();
@@ -22,25 +26,25 @@ public class TPB_Player_Controller : TPB_Player
     void MovementController() 
     {
         float input = Input.GetAxisRaw("Horizontal");
-        base.Move(input);
+        player.Move(input);
     }
 
     void JumpController() 
     {
         float input = Input.GetAxisRaw("Jump");
-        base.Jump(input);
+        player.Jump(input);
     }
 
     void CrouchController() 
     {
         float input = Input.GetAxisRaw("Vertical");
         Debug.Log("Crouch Input -> " + input);
-        base.Crouch(input);
+        player.Crouch(input);
     }
 
     void WallSlideController()
     {
         float input = Input.GetAxisRaw("Horizontal");
-        base.WallSlide(input);
+        player.WallSlide(input);
     }
 }

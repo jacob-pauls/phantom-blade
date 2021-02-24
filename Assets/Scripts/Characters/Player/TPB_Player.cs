@@ -27,8 +27,9 @@ public class TPB_Player : TPB_Character
         InitializeCurrentAbilities();
     }
 
-    protected virtual void Update()
+    protected override void Update()
     {
+        base.Update();
         base.anim = GetComponent<Animator>();
 
         MeleeAttack();
