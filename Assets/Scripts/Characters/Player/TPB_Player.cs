@@ -19,7 +19,7 @@ public class TPB_Player : TPB_Character
     [SerializeField] private LayerMask phaseShiftWallLayer;
     [SerializeField] private Collider2D disabledColliderOnCrouch;
 
-     /**
+    /**
      * Ability References
      * Each ability is containerized by a particular TPB_Ability ScriptableObject
      */
@@ -48,17 +48,6 @@ public class TPB_Player : TPB_Character
 
         abilities = new TPB_Ability_Controller();
         InitializeCurrentAbilities();
-    }
-
-    protected override void Update()
-    {
-        base.Update();
-
-        MeleeAttack();
-        RangedAttack();
-
-        PhaseShift();
-        WallJump();
     }
 
     /**
@@ -128,16 +117,16 @@ public class TPB_Player : TPB_Character
     /**
      * Attacking Definitions/Logic
      */
-     void MeleeAttack()
+     void MeleeAttack(bool isAttack)
      {
-        // TODO: Implement Melee Attack Logic
+        // TODO: Abstract Imput, Implement Melee Attack Logic
         if (Input.GetButton("Melee"))
             Debug.Log("Melee Attack!");
      }
 
-     void RangedAttack()
+     void RangedAttack(bool isAttack)
      {
-        // TODO: Implement Ranged Attack Logic
+        // TODO: Abstract Imput, Implement Ranged Attack Logic
         if (Input.GetButton("Range"))
             Debug.Log("Ranged Attack!");
      }
@@ -157,11 +146,11 @@ public class TPB_Player : TPB_Character
         }
     }
 
-    void PhaseShift()
+    public void PhaseShift(bool isPhaseShiftKeyPressed)
     {
         if (abilities.IsAbilityUnlocked(TPB_Ability_Controller.AbilityTypes.PhaseShift)) {
             // Check if the character is mid-phaseshift, casting continues if shift is not complete
-            if (Input.GetButton("Phase Shift") && !phaseShift.isPhaseShifting) {
+            if (isPhaseShiftKeyPressed && !phaseShift.isPhaseShifting) {
                 phaseShift.Cast();
                 base.anim.SetBool("phaseShift", true);
 
@@ -172,10 +161,10 @@ public class TPB_Player : TPB_Character
         }
     }
 
-    void WallJump() 
+    public void WallJump(bool isWallJumpKeyPressed) 
     {
         if (abilities.IsAbilityUnlocked(TPB_Ability_Controller.AbilityTypes.WallJump)) {
-            if (Input.GetButton("Jump") && wallJump.isWallSliding) {
+            if (isWallJumpKeyPressed && wallJump.isWallSliding) {
                 wallJump.Cast();
             }
             wallJump.AddForceIfWallJumping();

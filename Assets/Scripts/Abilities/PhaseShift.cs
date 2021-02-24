@@ -14,7 +14,8 @@ public class PhaseShift : TPB_Ability
     [SerializeField] private float phaseShiftDistance = 0f;
     private float phaseShiftTime;
 
-    private GameObject player;
+    private TPB_Player player;
+    private GameObject gameObject;
     private Rigidbody2D playerRigidBody;
     private SpriteRenderer playerSpriteRenderer;    
 
@@ -22,9 +23,10 @@ public class PhaseShift : TPB_Ability
 
     public override void Initialize(GameObject obj) 
     {
-        player = obj;
+        gameObject = obj;
         playerRigidBody = obj.GetComponent<Rigidbody2D>();
         playerSpriteRenderer = obj.GetComponent<SpriteRenderer>();
+        player = obj.GetComponent<TPB_Player>();
 
         // Initialize phase shift time to be decremented as FixedUpdate() calls are made
         phaseShiftTime = phaseShiftDistance;
@@ -37,20 +39,31 @@ public class PhaseShift : TPB_Ability
             phaseShiftTime = phaseShiftDistance;
             playerRigidBody.velocity = Vector2.zero;
             
-            player.layer = LayerMask.NameToLayer("Default");
+            gameObject.layer = LayerMask.NameToLayer("Default");
             playerSpriteRenderer.color = new Color(1,1,1,1);
         } else {
             isPhaseShifting = true;
             phaseShiftTime -= Time.deltaTime;
-                        
-            // At 0, player idles
-            if (playerRigidBody.velocity.x  > 0) {
+            
+            /*
+             * If the player is holding 'up', then vertical phase shift
+             * At 0, the last faced direction is phase shifted
+             */
+            if (Input.GetAxisRaw("Vertical") == 1) {
+                playerRigidBody.AddRelativeForce(Vector2.up * phaseShiftSpeed/5);
+            } else if (playerRigidBody.velocity.x  > 0) {
                 playerRigidBody.AddRelativeForce(Vector2.right * phaseShiftSpeed);
             } else if (playerRigidBody.velocity.x  < 0) {
                 playerRigidBody.AddRelativeForce(Vector2.left * phaseShiftSpeed);
+            } else if (playerRigidBody.velocity.x == 0) {
+                if(player.isFacingRight) {
+                    playerRigidBody.AddRelativeForce(Vector2.right * phaseShiftSpeed);
+                } else {
+                    playerRigidBody.AddRelativeForce(Vector2.left * phaseShiftSpeed);
+                }
             }
 
-            player.layer = LayerMask.NameToLayer("PlayerIgnoreWall");
+            gameObject.layer = LayerMask.NameToLayer("PlayerIgnoreWall");
             playerSpriteRenderer.color = new Color(1,1,1,.5f);
         }
     }

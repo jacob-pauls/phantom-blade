@@ -37,7 +37,7 @@ public class TPB_Character : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     
     protected bool isGrounded;
-    private bool isFacingRight = true;    
+    public bool isFacingRight = true;    
 
     protected virtual void Awake() 
     {
@@ -50,7 +50,7 @@ public class TPB_Character : MonoBehaviour
         currentEssence = maxEssence;
     }
 
-    protected virtual void Update()
+    void Update()
     {
         GroundCheck();
     }

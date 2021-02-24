@@ -21,6 +21,9 @@ public class TPB_Player_Controller : MonoBehaviour
         JumpController();
         CrouchController();
         WallSlideController();
+
+        PhaseShiftController();
+        WallJumpController();
     }
 
     void MovementController() 
@@ -45,5 +48,20 @@ public class TPB_Player_Controller : MonoBehaviour
     {
         float input = Input.GetAxisRaw("Horizontal");
         player.WallSlide(input);
+    }
+
+    /*
+     * Abilities
+     */
+    void PhaseShiftController()
+    {
+        bool isPhaseShiftKeyPressed = Input.GetButton("Phase Shift");
+        player.PhaseShift(isPhaseShiftKeyPressed);
+    }
+
+    void WallJumpController()
+    {
+        bool isWallJumpKeyPressed = Input.GetButton("Jump");
+        player.WallJump(isWallJumpKeyPressed);
     }
 }
