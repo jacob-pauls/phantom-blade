@@ -12,6 +12,7 @@ public class TPB_Player_Controller : TPB_Player
     {
         base.Update();
         base.GroundCheck();
+        
         MovementController();
         JumpController();
         CrouchController();
@@ -26,20 +27,20 @@ public class TPB_Player_Controller : TPB_Player
 
     void JumpController() 
     {
-        bool input = Input.GetKey(KeyCode.Space);
+        float input = Input.GetAxisRaw("Jump");
         base.Jump(input);
     }
 
     void CrouchController() 
     {
-        bool input = Input.GetKey(KeyCode.S);
+        float input = Input.GetAxisRaw("Vertical");
+        Debug.Log("Crouch Input -> " + input);
         base.Crouch(input);
     }
 
     void WallSlideController()
     {
-        bool onPressKey1 = Input.GetKey(KeyCode.A);
-        bool onPressKey2 = Input.GetKey(KeyCode.D);
-        base.WallSlide(onPressKey1, onPressKey2);
+        float input = Input.GetAxisRaw("Horizontal");
+        base.WallSlide(input);
     }
 }

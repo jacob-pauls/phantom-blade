@@ -19482,6 +19482,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: JakesPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 5724803563137680301, guid: 9cef380600c1e5645a9415b43798e261,
+        type: 3}
+      propertyPath: fallMultiplier
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 7134867002066762118, guid: 9cef380600c1e5645a9415b43798e261,
         type: 3}
       propertyPath: m_AnchorMax.x

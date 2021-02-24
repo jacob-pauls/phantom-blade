@@ -93,23 +93,23 @@ public class TPB_Character : MonoBehaviour
         anim.SetBool("isGrounded", isGrounded);
     }
 
-    protected void Jump(bool onPress)
+    protected void Jump(float input)
     {
-        if (onPress && isGrounded) {
+        if ((input > 0) && isGrounded) {
             rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
         }
 
         if (rb2D.velocity.y < 0) {
             rb2D.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-        } else if (rb2D.velocity.y > 0 && !onPress) {
+        } else if (rb2D.velocity.y > 0 && (input == 0)) {
             // Apply more gravty if the jump button is released (short hop)
             rb2D.velocity += Vector2.up * Physics2D.gravity.y * (shortHopMultiplier - 1) * Time.deltaTime;
         }
     }
 
-    protected void Crouch(bool onPress)
+    protected void Crouch(float input)
     {
-        if ((onPress && isGrounded) || !canStandUp) {
+        if ((input < 0 && isGrounded) || !canStandUp) {
             rb2D.velocity = new Vector2(rb2D.velocity.x * crouchResistance, 0f);
             isCrouching = true;
             onCrouchEvent?.Invoke();
@@ -122,7 +122,7 @@ public class TPB_Character : MonoBehaviour
         if (cc2D != null) 
             DisableCrouchColliderCheck();
     }
-    protected void WallSlide(bool onPressKey1, bool onPressKey2)
+    protected void WallSlide(float input)
     {
         isTouchingWall = Physics2D.OverlapCircle(wallCheck.position, 0.1f, environmentLayer);
         
@@ -138,7 +138,7 @@ public class TPB_Character : MonoBehaviour
         }
 
         // Modifying the material friction in order to 'latch' onto the wall
-        if (isWallSliding && onPressKey1 || onPressKey2) {
+        if (isWallSliding && (input == 1) || (input == -1)) {
             rb2D.sharedMaterial.friction = 0.4f;
         } else if (isWallSliding) {
             rb2D.sharedMaterial.friction = 0.0f;

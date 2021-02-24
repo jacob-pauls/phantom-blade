@@ -30,10 +30,34 @@ public class TPB_Player : TPB_Character
     protected virtual void Update()
     {
         base.anim = GetComponent<Animator>();
+
+        MeleeAttack();
+        RangedAttack();
+
         PhaseShift();
         WallJump();
     }
 
+    /**
+     * Attacking Definitions/Logic
+     */
+     void MeleeAttack()
+     {
+        // TODO: Implement Melee Attack Logic
+        if (Input.GetButton("Melee"))
+            Debug.Log("Melee Attack!");
+     }
+
+     void RangedAttack()
+     {
+        // TODO: Implement Ranged Attack Logic
+        if (Input.GetButton("Range"))
+            Debug.Log("Ranged Attack!");
+     }
+
+    /**
+     *  Ability Definitions/Casting Logic
+     */
     void InitializeCurrentAbilities()
     {
         // Only initialize the abilities that are unlocked
@@ -46,22 +70,17 @@ public class TPB_Player : TPB_Character
         }
     }
 
-    /**
-     *  Ability Definitions/Casting Logic
-     */
     void PhaseShift()
     {
         if (abilities.IsAbilityUnlocked(TPB_Ability_Controller.AbilityTypes.PhaseShift)) {
             // Check if the character is mid-phaseshift, casting continues if shift is not complete
-            if (Input.GetKeyDown(phaseShift.buttonAssignment) && !phaseShift.isPhaseShifting) {
+            if (Input.GetButton("Phase Shift") && !phaseShift.isPhaseShifting) {
                 phaseShift.Cast();
                 base.anim.SetBool("phaseShift", true);
 
             } else if (phaseShift.isPhaseShifting) {
                 phaseShift.Cast();
                 base.anim.SetBool("phaseShift", false);
-
-
             }
         }
     }
@@ -69,7 +88,7 @@ public class TPB_Player : TPB_Character
     void WallJump() 
     {
         if (abilities.IsAbilityUnlocked(TPB_Ability_Controller.AbilityTypes.WallJump)) {
-            if (Input.GetKeyDown(wallJump.buttonAssignment) && wallJump.isWallSliding) {
+            if (Input.GetButton("Jump") && wallJump.isWallSliding) {
                 wallJump.Cast();
             }
             wallJump.AddForceIfWallJumping();
