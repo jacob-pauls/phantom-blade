@@ -9,56 +9,41 @@ using UnityEngine.Events;
 
 public class TPB_Character : MonoBehaviour
 {
-    [Header ("Health and Essence")]
+    [Header ("Character Health and Essence")]
     public int maxHealth = 100;
     public int maxEssence = 50;
     public int currentHealth { get; private set; }
     public int currentEssence { get; private set; }
 
-    [Header ("Movement")]
+    [Header ("General Character Movement")]
     [SerializeField] private float speed = 1f;
     [SerializeField] private float jumpForce = 1f;
     [SerializeField] private float fallMultiplier = 1.5f;
     [SerializeField] private float shortHopMultiplier = 3f;
-    [SerializeField] private float crouchResistance = 0.1f;
-    [SerializeField] private float wallSlideSpeed = 0.1f;
 
-    [Header ("Collision Detection")]
-    [SerializeField] private Collider2D disabledColliderOnCrouch;
+    [Header ("General Character Collision Detection")]
     [SerializeField] private Transform groundCheck;
-    [SerializeField] private Transform ceilingCheck;
-    [SerializeField] private Transform wallCheck;
-    [SerializeField] private LayerMask environmentLayer;
-    [SerializeField] private LayerMask phaseShiftWallLayer;
+    [SerializeField] protected LayerMask environmentLayer;
 
-    [Header ("Character Events")]
+    [Header ("General Character Events")]
     public UnityEvent onHealthChange;
     public UnityEvent onEssenceChange;
     public UnityEvent onDeath;
     public UnityEvent onGroundEvent;
-    public UnityEvent onCrouchEvent;
-    public UnityEvent onWallEvent;
-    public UnityEvent offWallEvent;
 
     protected Animator anim;  
     protected Rigidbody2D rb2D;
     private BoxCollider2D bc2D;
-    private CircleCollider2D cc2D;
     private SpriteRenderer spriteRenderer;
     
-    private bool isGrounded;
+    protected bool isGrounded;
     private bool isFacingRight = true;    
-    private bool canStandUp = true;
-    private bool isCrouching;
-    private bool isTouchingWall;
-    private bool isWallSliding;
 
     protected virtual void Awake() 
     {
         anim = GetComponent<Animator>();
         rb2D = GetComponent<Rigidbody2D>();
         bc2D = GetComponent<BoxCollider2D>();
-        cc2D = GetComponent<CircleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         currentHealth = maxHealth;
@@ -85,19 +70,6 @@ public class TPB_Character : MonoBehaviour
         anim.SetFloat("yVel", rb2D.velocity.y);
     }
 
-    protected void GroundCheck() 
-    {
-        // Perform a linecast to the ground in reference to the "Environment" layer mask
-        if (Physics2D.Linecast(transform.position, groundCheck.position, environmentLayer)) {
-            isGrounded = true;
-            onGroundEvent?.Invoke();
-        } else {
-            isGrounded = false;
-        }
-
-        anim.SetBool("isGrounded", isGrounded);
-    }
-
     public void Jump(float input)
     {
         if ((input > 0) && isGrounded) {
@@ -112,64 +84,17 @@ public class TPB_Character : MonoBehaviour
         }
     }
 
-    public void Crouch(float input)
+    private void GroundCheck() 
     {
-        if ((input < 0 && isGrounded) || !canStandUp) {
-            rb2D.velocity = new Vector2(rb2D.velocity.x * crouchResistance, 0f);
-            isCrouching = true;
-            onCrouchEvent?.Invoke();
+        // Perform a linecast to the ground in reference to the "Environment" layer mask
+        if (Physics2D.Linecast(transform.position, groundCheck.position, environmentLayer)) {
+            isGrounded = true;
+            onGroundEvent?.Invoke();
         } else {
-            rb2D.velocity = new Vector2(rb2D.velocity.x, rb2D.velocity.y);
-            isCrouching = false;
-        }
-        
-        // TODO: Revise logic for removing colliders on crouch (per enemy basis?)
-        if (cc2D != null) 
-            DisableCrouchColliderCheck();
-    }
-    public void WallSlide(float input)
-    {
-        isTouchingWall = Physics2D.OverlapCircle(wallCheck.position, 0.1f, environmentLayer);
-        
-        // Check if character is trying to interact with a phase shift wall
-        isTouchingWall = isTouchingWall ? isTouchingWall : Physics2D.OverlapCircle(wallCheck.position, 0.1f, phaseShiftWallLayer);
-
-        if (isTouchingWall && !isGrounded) {
-            isWallSliding = true;
-            onWallEvent?.Invoke();
-        } else {
-            isWallSliding = false;
-            offWallEvent?.Invoke();
+            isGrounded = false;
         }
 
-        // Modifying the material friction in order to 'latch' onto the wall
-        if (isWallSliding && (input == 1) || (input == -1)) {
-            rb2D.sharedMaterial.friction = 0.4f;
-        } else if (isWallSliding) {
-            rb2D.sharedMaterial.friction = 0.0f;
-            rb2D.velocity = new Vector2(rb2D.velocity.x, Mathf.Clamp(rb2D.velocity.y, -wallSlideSpeed/10, float.MaxValue));
-        }        
-    }
-
-    private void DisableCrouchColliderCheck() 
-    {
-        RaycastHit2D ceilingRaycast = Physics2D.Raycast(ceilingCheck.position, Vector2.up, 0.1f);
-
-        // If we're not crouching, check if we can stand up
-        if (!isCrouching) {
-            if (ceilingRaycast.collider != null) 
-                canStandUp = false;
-        } else {
-            if (ceilingRaycast.collider == null) 
-                canStandUp = true;
-        }
-
-        // Disable the top collider if we're crouching under an object
-        if (isCrouching && disabledColliderOnCrouch != null) {
-            disabledColliderOnCrouch.enabled = false;
-        } else {
-            disabledColliderOnCrouch.enabled = true;
-        }
+        anim.SetBool("isGrounded", isGrounded);
     }
 
     private void FlipCharacter() 

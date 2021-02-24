@@ -17,7 +17,7 @@ MonoBehaviour:
   essenceCost: 10
   cooldown: 1
   targetingType: 0
-  buttonAssignment: 122
+  buttonAssignment: 0
   phaseShiftSpeed: 1000
   phaseShiftDistance: 0.1
   isPhaseShifting: 0

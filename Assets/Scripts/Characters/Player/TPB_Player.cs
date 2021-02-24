@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 /**
  * Jake Pauls
@@ -8,7 +9,17 @@
 
 public class TPB_Player : TPB_Character
 {   
-    /**
+    [Header ("Player Specific Movement")]
+    [SerializeField] private float wallSlideSpeed = 0.1f;
+    [SerializeField] private float crouchResistance = 0.1f;
+
+    [Header ("Player Specific Collision Detection")]
+    [SerializeField] private Transform wallCheck;
+    [SerializeField] private Transform ceilingCheck;
+    [SerializeField] private LayerMask phaseShiftWallLayer;
+    [SerializeField] private Collider2D disabledColliderOnCrouch;
+
+     /**
      * Ability References
      * Each ability is containerized by a particular TPB_Ability ScriptableObject
      */
@@ -17,12 +28,24 @@ public class TPB_Player : TPB_Character
     [SerializeField] private PhaseShift phaseShift;
     [SerializeField] private WallJump wallJump;
 
+    [Header ("Player Specific Events")]
+    public UnityEvent onWallEvent;
+    public UnityEvent offWallEvent;
+    public UnityEvent onCrouchEvent;
+
     private TPB_Ability_Controller abilities;
-    
+    private CircleCollider2D cc2D;
+
+    private bool isTouchingWall;
+    private bool isWallSliding;
+    private bool isCrouching;
+    private bool canStandUp = true;
+
     protected override void Awake()
     {
         base.Awake();        
-        base.rb2D = GetComponent<Rigidbody2D>();
+        cc2D = GetComponent<CircleCollider2D>();
+
         abilities = new TPB_Ability_Controller();
         InitializeCurrentAbilities();
     }
@@ -30,13 +53,75 @@ public class TPB_Player : TPB_Character
     protected override void Update()
     {
         base.Update();
-        base.anim = GetComponent<Animator>();
 
         MeleeAttack();
         RangedAttack();
 
         PhaseShift();
         WallJump();
+    }
+
+    /**
+     * Player Specific Movement Logic
+     */
+    public void WallSlide(float input)
+    {
+        isTouchingWall = Physics2D.OverlapCircle(wallCheck.position, 0.1f, environmentLayer);
+        
+        // Check if character is trying to interact with a phase shift wall
+        isTouchingWall = isTouchingWall ? isTouchingWall : Physics2D.OverlapCircle(wallCheck.position, 0.1f, phaseShiftWallLayer);
+
+        if (isTouchingWall && !base.isGrounded) {
+            isWallSliding = true;
+            onWallEvent?.Invoke();
+        } else {
+            isWallSliding = false;
+            offWallEvent?.Invoke();
+        }
+
+        // Modifying the material friction in order to 'latch' onto the wall
+        if (isWallSliding && (input == 1) || (input == -1)) {
+            rb2D.sharedMaterial.friction = 0.4f;
+        } else if (isWallSliding) {
+            rb2D.sharedMaterial.friction = 0.0f;
+            rb2D.velocity = new Vector2(rb2D.velocity.x, Mathf.Clamp(rb2D.velocity.y, -wallSlideSpeed/10, float.MaxValue));
+        }        
+    }
+
+    public void Crouch(float input)
+    {
+        if ((input < 0 && isGrounded) || !canStandUp) {
+            rb2D.velocity = new Vector2(rb2D.velocity.x * crouchResistance, 0f);
+            isCrouching = true;
+            onCrouchEvent?.Invoke();
+        } else {
+            rb2D.velocity = new Vector2(rb2D.velocity.x, rb2D.velocity.y);
+            isCrouching = false;
+        }
+        
+        // TODO: Revise logic for removing colliders on crouch (per enemy basis?)
+        if (cc2D != null) 
+            DisableCrouchColliderCheck();
+    }
+    private void DisableCrouchColliderCheck() 
+    {
+        RaycastHit2D ceilingRaycast = Physics2D.Raycast(ceilingCheck.position, Vector2.up, 0.1f);
+
+        // If we're not crouching, check if we can stand up
+        if (!isCrouching) {
+            if (ceilingRaycast.collider != null) 
+                canStandUp = false;
+        } else {
+            if (ceilingRaycast.collider == null) 
+                canStandUp = true;
+        }
+
+        // Disable the top collider if we're crouching under an object
+        if (isCrouching && disabledColliderOnCrouch != null) {
+            disabledColliderOnCrouch.enabled = false;
+        } else {
+            disabledColliderOnCrouch.enabled = true;
+        }
     }
 
     /**
