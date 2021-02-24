@@ -3,7 +3,7 @@
 /**
  * Jake Pauls
  * TPB_Player.cs
- * Controls monobehaviour for ability casting
+ * Definition for player specifics in TPB
  */
 
 public class TPB_Player : TPB_Character

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 
 /**
  * Jake Pauls
@@ -14,32 +12,31 @@ public class TPB_Player_Controller : TPB_Player
     {
         base.Update();
         base.GroundCheck();
-        MovementCheck();
-        Jump();
-        Crouch();
-        WallSlide();
+        MovementController();
+        JumpController();
+        CrouchController();
+        WallSlideController();
     }
 
-    void MovementCheck() 
+    void MovementController() 
     {
         float input = Input.GetAxisRaw("Horizontal");
         base.Move(input);
     }
 
-    void Jump() 
+    void JumpController() 
     {
-        bool input = Input.GetKeyDown(KeyCode.Space);
-        Debug.Log("Sending Jump Condition -> " + input);
+        bool input = Input.GetKey(KeyCode.Space);
         base.Jump(input);
     }
 
-    void Crouch() 
+    void CrouchController() 
     {
         bool input = Input.GetKey(KeyCode.S);
         base.Crouch(input);
     }
 
-    void WallSlide()
+    void WallSlideController()
     {
         bool onPressKey1 = Input.GetKey(KeyCode.A);
         bool onPressKey2 = Input.GetKey(KeyCode.D);
