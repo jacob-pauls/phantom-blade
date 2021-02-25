@@ -16,9 +16,7 @@ MonoBehaviour:
   damage: 0
   essenceCost: 10
   cooldown: 0
-  targetingType: 0
-  buttonAssignment: 0
-  horizontalWallForce: 1000
-  verticalWallForce: 80
-  wallJumpDurationInMilliseconds: 100
+  horizontalWallForce: 500
+  verticalWallForce: 50
+  wallJumpDurationInMilliseconds: 300
   isWallSliding: 0

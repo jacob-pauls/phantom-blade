@@ -15,9 +15,7 @@ MonoBehaviour:
   abilityName: PhaseShift
   damage: 0
   essenceCost: 10
-  cooldown: 1
-  targetingType: 0
-  buttonAssignment: 0
+  cooldown: 1.5
   phaseShiftSpeed: 1000
-  phaseShiftDistance: 0.45
+  phaseShiftDistance: 0.3
   isPhaseShifting: 0

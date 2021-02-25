@@ -71,7 +71,7 @@ public class TPB_Player : TPB_Character
         }
 
         // Modifying the material friction in order to 'latch' onto the wall
-        if (isWallSliding && (input == 1) || (input == -1)) {
+        if (isWallSliding && ((input == 1) || (input == -1))) {
             rb2D.sharedMaterial.friction = 0.4f;
         } else if (isWallSliding) {
             rb2D.sharedMaterial.friction = 0.0f;
