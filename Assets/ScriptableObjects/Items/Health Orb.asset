@@ -19,7 +19,7 @@ MonoBehaviour:
   currentStackAmount: 1
   maximumStackAmount: 1
   displayImage: {fileID: 21300000, guid: e030cedfecbc78245bb3d527a5315055, type: 3}
-  prefab: {fileID: 0}
+  prefab: {fileID: 7984324706785848398, guid: 38c3e0f07126b2b4cadb794441a7edc0, type: 3}
   attributes:
   - name: Health
     value: 5

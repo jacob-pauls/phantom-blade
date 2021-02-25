@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+[System.Serializable]
+public class Inventory
 {
     [SerializeField] private List<Item> items = new List<Item>();
 
@@ -14,7 +15,7 @@ public class Inventory : MonoBehaviour
         {
             if (item.Id == items[i].Id)
             {
-                items[i].ChangeStackAmount(amount);
+                items[i].ChangeStackAmount(Mathf.Abs(amount));
                 isInList = true;
                 return;
             }
@@ -35,7 +36,7 @@ public class Inventory : MonoBehaviour
         {
             if (id == items[i].Id)
             {
-
+                items[i].ChangeStackAmount(-Mathf.Abs(amount));
                 break;
             }
         }

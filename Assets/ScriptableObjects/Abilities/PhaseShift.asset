@@ -16,6 +16,6 @@ MonoBehaviour:
   damage: 0
   essenceCost: 10
   cooldown: 1.5
-  phaseShiftSpeed: 1000
+  phaseShiftSpeed: 1250
   phaseShiftDistance: 0.3
   isPhaseShifting: 0

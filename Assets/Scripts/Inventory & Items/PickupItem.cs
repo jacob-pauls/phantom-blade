@@ -17,7 +17,6 @@ public class PickupItem : MonoBehaviour
     public Item Collect()
     {
         onCollect?.Invoke();
-        Destroy(gameObject);
         return storedItem;
     }
 }

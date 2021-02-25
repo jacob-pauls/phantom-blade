@@ -31,6 +31,9 @@ public class TPB_Character : MonoBehaviour
     public UnityEvent onDeath;
     public UnityEvent onGroundEvent;
 
+    [Header("Inventory")]
+    [SerializeField] protected Inventory inventory;
+
     protected Animator anim;  
     protected Rigidbody2D rb2D;
     private BoxCollider2D bc2D;
@@ -108,6 +111,8 @@ public class TPB_Character : MonoBehaviour
 
     public void ChangeHealthAmount(int amount)
     {
+        if (amount == 0) { return; }
+
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         onHealthChange?.Invoke();
         if (currentHealth <= 0)
@@ -116,6 +121,8 @@ public class TPB_Character : MonoBehaviour
 
     public void ChangeEssenceAmount(int amount)
     {
+        if (amount == 0) { return; }
+
         currentEssence = Mathf.Clamp(currentEssence + amount, 0, maxEssence);
         onEssenceChange?.Invoke();
     }

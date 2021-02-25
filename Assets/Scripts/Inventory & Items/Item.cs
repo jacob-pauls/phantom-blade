@@ -7,6 +7,7 @@ public class Item : ScriptableObject
 {
     public enum ItemType
     {
+        InstantConsumable,
         Consumable,
         Quest,
     }
@@ -98,7 +99,7 @@ public class Item : ScriptableObject
         currentStackAmount = Mathf.Clamp(amount, 0, maximumStackAmount);
     }
 
-    public Attribute GetAttribute(string name)
+    public Attribute GetAttribute(string name, bool showWarning = true)
     {
         Attribute attribute = null;
 
@@ -111,7 +112,7 @@ public class Item : ScriptableObject
             }
         }
 
-        if (attribute == null)
+        if (showWarning && attribute == null)
         {
             Debug.LogWarning(name + " does not exist as an attribute. Check for spelling or see if it needs to be added.");
         }

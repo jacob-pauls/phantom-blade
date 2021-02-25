@@ -31,6 +31,7 @@ public class Chest : MonoBehaviour
     [SerializeField] private float yShootAmount = 10;
     [Space]
     public UnityEvent onOpen;
+    public UnityEvent onDrop;
     public UnityEvent onLocked;
 
     private bool isOpenedOnce;
@@ -42,8 +43,10 @@ public class Chest : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public void Open(bool isKeyAvailable = false)
+    [ContextMenu("Open Chest")]
+    public void Open()
     {
+        bool isKeyAvailable = false;
         if (doesRequiresKey && !isKeyAvailable)
         {
             onLocked?.Invoke();
@@ -61,9 +64,7 @@ public class Chest : MonoBehaviour
                 Drop(randomIndex);
                 break;
             case DropType.DropAllItems:
-
-                break;
-            default:
+                DropAll();
                 break;
         }
 

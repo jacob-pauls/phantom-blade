@@ -19,6 +19,8 @@ public class TPB_Player : TPB_Character
     [SerializeField] private LayerMask phaseShiftWallLayer;
     [SerializeField] private Collider2D disabledColliderOnCrouch;
 
+
+
     /**
      * Ability References
      * Each ability is containerized by a particular TPB_Ability ScriptableObject
@@ -50,6 +52,39 @@ public class TPB_Player : TPB_Character
         abilities = new TPB_Ability_Controller();
         abilityCooldownManager = new TPB_Ability_Cooldown();
         InitializeCurrentAbilities();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        PickupItem pickup = collision.gameObject.GetComponent<PickupItem>();
+        if (pickup != null)
+        {
+            Item item = pickup.Collect();
+
+            // Health Orb
+            //if (item.Id == "consume_the_living")
+            if (item.Type == Item.ItemType.InstantConsumable)
+            {
+                // Finding Health
+                Item.Attribute attribute = item.GetAttribute("Health");
+                int health = attribute != null ? attribute.GetValueAsInt : 0;
+                ChangeHealthAmount(health);
+
+                // Finding Essence
+                attribute = item.GetAttribute("Essence");
+                int essence = attribute != null ? attribute.GetValueAsInt : 0;
+                ChangeHealthAmount(essence);
+            }
+            else
+            {
+                inventory.Add(item);
+            }
+
+
+
+            // Destroy the object
+            Destroy(collision.gameObject);
+        }
     }
 
     /**
