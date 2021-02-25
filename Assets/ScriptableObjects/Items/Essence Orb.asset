@@ -10,10 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d454c6177f2717441b301c7617c4faee, type: 3}
-  m_Name: Gorge
+  m_Name: Essence Orb
   m_EditorClassIdentifier: 
-  name: Gorge
-  description: A device that stores excessive health orbs in order to be used for
-    later.
-  displayImage: {fileID: 21300000, guid: 9a8f615aa852fcb4f9557c6550ebd454, type: 3}
+  name: Essence Orb
+  id: i_must_have_energy
+  type: 0
+  description: A white orb used to regenerate essence.
+  currentStackAmount: 1
+  maximumStackAmount: 1
+  displayImage: {fileID: 21300000, guid: 155490138c52ef443b3776ca6597d904, type: 3}
   prefab: {fileID: 0}
+  attributes:
+  - name: Essence
+    value: 5

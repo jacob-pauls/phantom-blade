@@ -17,7 +17,8 @@ public class PhaseShift : TPB_Ability
     private TPB_Player player;
     private GameObject gameObject;
     private Rigidbody2D playerRigidBody;
-    private SpriteRenderer playerSpriteRenderer;    
+    private SpriteRenderer playerSpriteRenderer;
+    private Animator anim;
 
     [HideInInspector] public bool isPhaseShifting = false;
 
@@ -27,6 +28,7 @@ public class PhaseShift : TPB_Ability
         playerRigidBody = obj.GetComponent<Rigidbody2D>();
         playerSpriteRenderer = obj.GetComponent<SpriteRenderer>();
         player = obj.GetComponent<TPB_Player>();
+        anim = obj.GetComponent<Animator>();
 
         // Initialize phase shift time to be decremented as FixedUpdate() calls are made
         phaseShiftTime = phaseShiftDistance;
@@ -51,10 +53,13 @@ public class PhaseShift : TPB_Ability
              */
             if (Input.GetAxisRaw("Vertical") == 1) {
                 playerRigidBody.AddRelativeForce(Vector2.up * phaseShiftSpeed/5);
+                anim.SetBool("phaseShiftUp",true);
             } else if (playerRigidBody.velocity.x  > 0) {
                 playerRigidBody.AddRelativeForce(Vector2.right * phaseShiftSpeed);
+              
             } else if (playerRigidBody.velocity.x  < 0) {
                 playerRigidBody.AddRelativeForce(Vector2.left * phaseShiftSpeed);
+                
             } else if (playerRigidBody.velocity.x == 0) {
                 if(player.isFacingRight) {
                     playerRigidBody.AddRelativeForce(Vector2.right * phaseShiftSpeed);

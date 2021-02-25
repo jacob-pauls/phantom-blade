@@ -13,6 +13,7 @@ public class GameplayUI : MonoBehaviour
     [SerializeField] private TPB_Character player;
     [SerializeField] private Slider playerHealthBar;
     [SerializeField] private Slider playerEssenceBar;
+    [SerializeField] private TextMeshProUGUI keyAmountTextUI;
 
     private bool isPlayerInitialized;
     //[SerializeField] private PlayerComboUI playerComboUI;
@@ -118,6 +119,12 @@ public class GameplayUI : MonoBehaviour
 
         playerEssenceBar.value = characterEssence;
         yield return null;
+    }
+
+    public void UpdateKeyUI()
+    {
+        // Get save data
+        keyAmountTextUI.text = "0";
     }
 
     #endregion

@@ -157,6 +157,7 @@ public class TPB_Player : TPB_Character
             } else if (phaseShift.isPhaseShifting) {
                 phaseShift.Cast();
                 base.anim.SetBool("phaseShift", false);
+                base.anim.SetBool("phaseShiftUp", false);
             }
         }
     }

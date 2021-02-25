@@ -101,12 +101,10 @@ public class GameplayCamera : MonoBehaviour
     {
         if (useBoundaries)
         {
-            float radius = 0.5f;
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(new Vector2(minX, minY), radius);
-            Gizmos.DrawWireSphere(new Vector2(minX, maxY), radius);
-            Gizmos.DrawWireSphere(new Vector2(maxX, minY), radius);
-            Gizmos.DrawWireSphere(new Vector2(maxX, maxY), radius);
+            Vector3 center = new Vector3((minX + maxX) / 2, (minY + maxY) / 2);
+            Vector3 size = new Vector3(Mathf.Abs(minX - maxX), Mathf.Abs(minY - maxY));
+            Gizmos.DrawWireCube(center, size);
         }
     }
 

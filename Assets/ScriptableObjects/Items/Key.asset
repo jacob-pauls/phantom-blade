@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d454c6177f2717441b301c7617c4faee, type: 3}
+  m_Name: Key
+  m_EditorClassIdentifier: 
+  name: Key
+  id: new_opportunities
+  type: 0
+  description: An old key that can unlock almost anything but breaks when used.
+  currentStackAmount: 1
+  maximumStackAmount: 1
+  displayImage: {fileID: 21300000, guid: 1eef36d1305e37b46a9377c8d12cdac6, type: 3}
+  prefab: {fileID: 0}
+  attributes: []

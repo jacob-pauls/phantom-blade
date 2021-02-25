@@ -13,6 +13,13 @@ public class HoverHealthBar : MonoBehaviour
 
     private void Start()
     {
+        if (target == null)
+        {
+            Debug.LogWarning(name + " does not have a TPB_Character related script attached.");
+            gameObject.SetActive(false);
+            return;
+        }
+
         target.onHealthChange?.AddListener(UpdateBar);
 
         slider.maxValue = target.maxHealth;
