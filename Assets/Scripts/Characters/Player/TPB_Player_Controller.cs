@@ -21,7 +21,6 @@ public class TPB_Player_Controller : MonoBehaviour
         JumpController();
         CrouchController();
         WallSlideController();
-
         PhaseShiftController();
         WallJumpController();
     }

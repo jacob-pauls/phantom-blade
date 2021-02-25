@@ -34,6 +34,7 @@ public class TPB_Player : TPB_Character
     public UnityEvent onCrouchEvent;
 
     private TPB_Ability_Controller abilities;
+    private TPB_Ability_Cooldown abilityCooldownManager;
     private CircleCollider2D cc2D;
 
     private bool isTouchingWall;
@@ -47,6 +48,7 @@ public class TPB_Player : TPB_Character
         cc2D = GetComponent<CircleCollider2D>();
 
         abilities = new TPB_Ability_Controller();
+        abilityCooldownManager = new TPB_Ability_Cooldown();
         InitializeCurrentAbilities();
     }
 
@@ -150,12 +152,16 @@ public class TPB_Player : TPB_Character
     {
         if (abilities.IsAbilityUnlocked(TPB_Ability_Controller.AbilityTypes.PhaseShift)) {
             // Check if the character is mid-phaseshift, casting continues if shift is not complete
-            if (isPhaseShiftKeyPressed && !phaseShift.isPhaseShifting) {
+            if (isPhaseShiftKeyPressed && !abilityCooldownManager.isAbilityOnCooldown(phaseShift) && !phaseShift.isPhaseShifting) {
                 phaseShift.Cast();
-                base.anim.SetBool("phaseShift", true);
+                
+                // Start the phase shift cooldown, lock player input
+                abilityCooldownManager.StartCooldown(phaseShift);
 
+                base.anim.SetBool("phaseShift", true);
             } else if (phaseShift.isPhaseShifting) {
                 phaseShift.Cast();
+            } else {
                 base.anim.SetBool("phaseShift", false);
                 base.anim.SetBool("phaseShiftUp", false);
             }

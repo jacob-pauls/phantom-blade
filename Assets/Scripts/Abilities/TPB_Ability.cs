@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System;
 
 /**
  * Jake Pauls
@@ -18,9 +17,7 @@ public abstract class TPB_Ability : ScriptableObject
     [SerializeField] protected string abilityName;
     [SerializeField] protected int damage;
     [SerializeField] protected int essenceCost = 10; 
-    [SerializeField] protected float cooldown = 0f;
-    [SerializeField] protected Targeting targetingType;
-    [SerializeField] public KeyCode buttonAssignment;
+    [SerializeField] public float cooldown = 0f;
 
     public abstract void Initialize(GameObject obj);
     public abstract void Cast();

@@ -48,15 +48,15 @@ public class PhaseShift : TPB_Ability
             phaseShiftTime -= Time.deltaTime;
             
             /*
-             * If the player is holding 'up', then vertical phase shift
-             * At 0, the last faced direction is phase shifted
-             */
+            * If the player is holding 'up', then vertical phase shift
+            * At 0, the last faced direction is phase shifted
+            */
             if (Input.GetAxisRaw("Vertical") == 1) {
                 playerRigidBody.AddRelativeForce(Vector2.up * phaseShiftSpeed/5);
                 anim.SetBool("phaseShiftUp",true);
             } else if (playerRigidBody.velocity.x  > 0) {
                 playerRigidBody.AddRelativeForce(Vector2.right * phaseShiftSpeed);
-              
+            
             } else if (playerRigidBody.velocity.x  < 0) {
                 playerRigidBody.AddRelativeForce(Vector2.left * phaseShiftSpeed);
                 
