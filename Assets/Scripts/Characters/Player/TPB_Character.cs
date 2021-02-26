@@ -16,7 +16,7 @@ public class TPB_Character : MonoBehaviour
     public int currentEssence { get; private set; }
 
     [Header ("General Character Movement")]
-    [SerializeField] private float speed = 1f;
+    [SerializeField] public float speed = 1f;
     [SerializeField] private float jumpForce = 1f;
     [SerializeField] private float fallMultiplier = 1.5f;
     [SerializeField] private float shortHopMultiplier = 3f;
@@ -40,7 +40,7 @@ public class TPB_Character : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     
     protected bool isGrounded;
-    public bool isFacingRight = true;    
+    [HideInInspector] public bool isFacingRight = true;    
 
     protected virtual void Awake() 
     {

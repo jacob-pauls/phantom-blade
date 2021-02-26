@@ -19,8 +19,6 @@ public class TPB_Player : TPB_Character
     [SerializeField] private LayerMask phaseShiftWallLayer;
     [SerializeField] private Collider2D disabledColliderOnCrouch;
 
-
-
     /**
      * Ability References
      * Each ability is containerized by a particular TPB_Ability ScriptableObject

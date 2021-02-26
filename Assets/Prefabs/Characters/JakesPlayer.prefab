@@ -227,8 +227,11 @@ MonoBehaviour:
   onGroundEvent:
     m_PersistentCalls:
       m_Calls: []
+  inventory:
+    items: []
+  isFacingRight: 1
   wallSlideSpeed: 10
-  crouchResistance: 1.5
+  crouchResistance: 0.25
   wallCheck: {fileID: 3415898980036599291}
   ceilingCheck: {fileID: 3936595000865554176}
   phaseShiftWallLayer:
@@ -365,7 +368,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.22862697, y: -0.8270551}
+  m_Offset: {x: 0.16885716, y: -0.8270551}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -376,7 +379,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7153637, y: 2.0470967}
+  m_Size: {x: 1.2046028, y: 2.0470967}
   m_EdgeRadius: 0
 --- !u!58 &1077866188330656144
 CircleCollider2D:
