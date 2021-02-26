@@ -17,18 +17,25 @@ public class TPB_Enemy_Controller : MonoBehaviour
 
     void Update()
     {
-        MoveTowardsTarget();
+        Patrol();
+        MoveToTarget();
     }
 
-    void MoveTowardsTarget()
+    void Patrol()
     {
-        float distanceToTarget = Vector2.Distance(enemy.transform.position, enemy.target.position);
-        if (distanceToTarget < enemy.aggroRange) {
+        if (!enemy.CanMoveToTarget()) {
+            enemy.Move(-1);
+        }
+    }
+
+    void MoveToTarget()
+    {
+        if (enemy.CanMoveToTarget()) {
             if (enemy.transform.position.x < enemy.target.position.x) {
                 enemy.Move(1);
             } else {
                 enemy.Move(-1);
-            }
+            }        
         }
     }
 }

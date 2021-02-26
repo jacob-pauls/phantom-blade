@@ -14,11 +14,11 @@ TagManager:
   - 
   - 
   - Wall
-  - PlayerIgnoreWall
+  - PlayerPhaseShift
   - Environment
   - Item
-  - 
-  - 
+  - Enemy
+  - EnemyInterest
   - 
   - 
   - 

@@ -68,7 +68,7 @@ public class PhaseShift : TPB_Ability
                 }
             }
 
-            gameObject.layer = LayerMask.NameToLayer("PlayerIgnoreWall");
+            gameObject.layer = LayerMask.NameToLayer("PlayerPhaseShift");
             playerSpriteRenderer.color = new Color(1,1,1,.5f);
         }
     }
