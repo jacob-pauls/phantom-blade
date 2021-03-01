@@ -17,6 +17,19 @@ public class PickupItem : MonoBehaviour
     public Item Collect()
     {
         onCollect?.Invoke();
-        return storedItem;
+
+        Item newItem = ScriptableObject.CreateInstance<Item>();
+        newItem.name = storedItem.name;
+        newItem.SetValues(storedItem.name,
+            storedItem.Id,
+            storedItem.Type,
+            storedItem.Description,
+            storedItem.CurrentStackAmount,
+            storedItem.MaximumStackAmount,
+            storedItem.DisplayImage,
+            storedItem.Prefab,
+            storedItem.Attributes);
+
+        return newItem;
     }
 }

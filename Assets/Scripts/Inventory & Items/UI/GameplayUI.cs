@@ -44,8 +44,10 @@ public class GameplayUI : MonoBehaviour
         if (!instance.isPlayerInitialized)
         {
             instance.player.onHealthChange?.AddListener(UpdatePlayerHealthBar);
-            instance.player.onEssenceChange?.AddListener(UpdatePlayerHealthBar);
+            instance.player.onEssenceChange?.AddListener(UpdatePlayerEssenceBar);
             //player.onComboUpdate?.AddListener(UpdatePlayerHealthBar());
+            instance.player.onItemCollected?.AddListener(UpdateKeyUI);
+            instance.player.onItemUsed?.AddListener(UpdateKeyUI);
             instance.isPlayerInitialized = true;
         }
 
@@ -54,6 +56,9 @@ public class GameplayUI : MonoBehaviour
 
         instance.playerEssenceBar.maxValue = player.maxEssence;
         instance.playerEssenceBar.value = player.currentEssence;
+
+        UpdatePlayerHealthBar();
+        UpdateKeyUI();
     }
 
     // The reason I use similar methods is for the StopCoroutine. It only stops the first one which can cause issues.
@@ -124,7 +129,8 @@ public class GameplayUI : MonoBehaviour
     public void UpdateKeyUI()
     {
         // Get save data
-        keyAmountTextUI.text = "0";
+        Item key = player.inventory.Get("new_opportunities");
+        keyAmountTextUI.text = key != null ? key.CurrentStackAmount.ToString() : "0";
     }
 
     #endregion

@@ -16,7 +16,7 @@ public class TPB_Character : MonoBehaviour
     public int currentEssence { get; private set; }
 
     [Header ("General Character Movement")]
-    [SerializeField] public float speed = 1f;
+    [SerializeField] private float speed = 1f;
     [SerializeField] private float jumpForce = 1f;
     [SerializeField] private float fallMultiplier = 1.5f;
     [SerializeField] private float shortHopMultiplier = 3f;
@@ -30,9 +30,11 @@ public class TPB_Character : MonoBehaviour
     public UnityEvent onEssenceChange;
     public UnityEvent onDeath;
     public UnityEvent onGroundEvent;
+    public UnityEvent onItemCollected;
+    public UnityEvent onItemUsed;
 
     [Header("Inventory")]
-    [SerializeField] protected Inventory inventory;
+    [SerializeField] public Inventory inventory;
 
     protected Animator anim;  
     protected Rigidbody2D rb2D;

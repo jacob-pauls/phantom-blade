@@ -41,4 +41,20 @@ public class Inventory
             }
         }
     }
+
+    public Item Get(string id)
+    {
+        Item item = null;
+
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (id == items[i].Id)
+            {
+                item = items[i];
+                break;
+            }
+        }
+
+        return item;
+    }
 }

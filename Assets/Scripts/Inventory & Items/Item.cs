@@ -87,6 +87,7 @@ public class Item : ScriptableObject
     [Space]
 
     [SerializeField] private List<Attribute> attributes = new List<Attribute>();
+    public List<Attribute> Attributes { get { return attributes; } }
 
     public void ChangeStackAmount(int amount)
     {
@@ -118,5 +119,31 @@ public class Item : ScriptableObject
         }
 
         return attribute;
+    }
+
+    public Item(Item item)
+    {
+        name = item.name;
+        id = item.id;
+        type = item.type;
+        description = item.description;
+        currentStackAmount = item.currentStackAmount;
+        maximumStackAmount = item.maximumStackAmount;
+        displayImage = item.displayImage;
+        prefab = item.prefab;
+        attributes = item.attributes;
+    }
+
+    public void SetValues(string name, string id, ItemType type, string description, int currentStackAmount, int maximumStackAmount, Sprite displayImage, GameObject prefab, List<Attribute> attributes)
+    {
+        this.name = name;
+        this.id = id;
+        this.type = type;
+        this.description = description;
+        this.currentStackAmount = currentStackAmount;
+        this.maximumStackAmount = maximumStackAmount;
+        this.displayImage = displayImage;
+        this.prefab = prefab;
+        this.attributes = attributes;
     }
 }

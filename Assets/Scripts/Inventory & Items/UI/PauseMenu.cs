@@ -21,9 +21,9 @@ public class PauseMenu : StandardMenu
         Time.timeScale = 0;
     }
 
-    public override void Close()
+    public override void Hide()
     {
-        base.Close();
+        base.Hide();
         Time.timeScale = 1;
     }
 

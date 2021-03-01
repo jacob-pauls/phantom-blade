@@ -43,10 +43,8 @@ public class Chest : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    [ContextMenu("Open Chest")]
-    public void Open()
+    public void Open(bool isKeyAvailable = false)
     {
-        bool isKeyAvailable = false;
         if (doesRequiresKey && !isKeyAvailable)
         {
             onLocked?.Invoke();
@@ -61,10 +59,10 @@ public class Chest : MonoBehaviour
         {
             case DropType.DropOneItemAtRandom:
                 int randomIndex = Random.Range(0, items.Count);
-                Drop(randomIndex);
+                StartCoroutine(DropRoutine(randomIndex));
                 break;
             case DropType.DropAllItems:
-                DropAll();
+                StartCoroutine(DropAllRoutine());
                 break;
         }
 
@@ -114,16 +112,21 @@ public class Chest : MonoBehaviour
             pickup.GetComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Impulse);
 
             items.RemoveAt(index);
+
+            animator.SetTrigger("Drop");
         }
     }
 
-    public void DropAll()
+    private IEnumerator DropRoutine(int index)
     {
-        StartCoroutine(DropAllRoutine());
+        yield return new WaitForSeconds(dropStartDelay);
+        Drop(index);
     }
 
     private IEnumerator DropAllRoutine()
     {
+        yield return new WaitForSeconds(dropStartDelay);
+
         while (items.Count > 0)
         {
             Drop();

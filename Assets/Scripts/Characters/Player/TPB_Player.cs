@@ -64,12 +64,12 @@ public class TPB_Player : TPB_Character
             if (item.Type == Item.ItemType.InstantConsumable)
             {
                 // Finding Health
-                Item.Attribute attribute = item.GetAttribute("Health");
+                Item.Attribute attribute = item.GetAttribute("Health", false);
                 int health = attribute != null ? attribute.GetValueAsInt : 0;
                 ChangeHealthAmount(health);
 
                 // Finding Essence
-                attribute = item.GetAttribute("Essence");
+                attribute = item.GetAttribute("Essence", false);
                 int essence = attribute != null ? attribute.GetValueAsInt : 0;
                 ChangeHealthAmount(essence);
             }
@@ -78,10 +78,32 @@ public class TPB_Player : TPB_Character
                 inventory.Add(item);
             }
 
-
+            onItemCollected?.Invoke();
 
             // Destroy the object
             Destroy(collision.gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Chest chest = collision.GetComponent<Chest>();
+        if (chest != null)
+        {
+            Item key = inventory.Get("new_opportunities");
+            bool isKeyAvailable = false;
+            if (key != null)
+            {
+                if (key.CurrentStackAmount > 0)
+                {
+                    key.ChangeStackAmount(-1);
+                    isKeyAvailable = true;
+                }
+            }
+
+            onItemUsed?.Invoke();
+
+            chest.Open(isKeyAvailable);
         }
     }
 

@@ -40,7 +40,7 @@ public class StandardMenu : MonoBehaviour
         isMenuOpen = true;
     }
 
-    public virtual void Close()
+    public virtual void Hide()
     {
         onClose?.Invoke();
 
@@ -52,15 +52,20 @@ public class StandardMenu : MonoBehaviour
         {
             animator.SetTrigger("Close");
 
-            float animationDuration = animator.GetCurrentAnimatorStateInfo(0).length;
-            Invoke(nameof(Deactivate), animationDuration);
+            //float animationDuration = animator.GetCurrentAnimatorStateInfo(0).length;
+            //Invoke(nameof(Deactivate), animationDuration);
         }
 
         isMenuOpen = false;
     }
 
-    private void Deactivate()
+    public void ShowOrHide()
     {
-        gameObject.SetActive(false);
+        if (isMenuOpen) { Hide(); } else { Show(); }
     }
+
+    //private void Deactivate()
+    //{
+    //    gameObject.SetActive(false);
+    //}
 }

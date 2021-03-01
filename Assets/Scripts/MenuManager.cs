@@ -24,7 +24,7 @@ public class MenuManager : MonoBehaviour
 
             if (Input.GetKeyDown(menus[i].KeyCode))
             {
-                if (menus[i].StandardMenu.isMenuOpen) { menus[i].StandardMenu.Close(); } else { menus[i].StandardMenu.Show(); }
+                if (menus[i].StandardMenu.isMenuOpen) { menus[i].StandardMenu.Hide(); } else { menus[i].StandardMenu.Show(); }
             }
         }
     }
