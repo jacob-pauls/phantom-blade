@@ -7,6 +7,15 @@ public class Inventory
 {
     [SerializeField] private List<Item> items = new List<Item>();
 
+    public int ItemCount
+    {
+        get
+        {
+            int count = items.Count;
+            return count;
+        }
+    }
+
     public void Add(Item item, int amount = 1)
     {
         bool isInList = false;
@@ -42,6 +51,24 @@ public class Inventory
         }
     }
 
+    public void RemoveAt(int index)
+    {
+        items.RemoveAt(index);
+    }
+
+    public void Drop(string id, Vector2 position, int amount = 1)
+    {
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (id == items[i].Id)
+            {
+                GameObject drop = Object.Instantiate(items[i].Prefab, position, Quaternion.identity);
+                drop.GetComponent<PickupItem>().SetStoredItem(items[i]);
+                break;
+            }
+        }
+    }
+
     public Item Get(string id)
     {
         Item item = null;
@@ -55,6 +82,12 @@ public class Inventory
             }
         }
 
+        return item;
+    }
+
+    public Item Get(int index)
+    {
+        Item item = items[index];
         return item;
     }
 }

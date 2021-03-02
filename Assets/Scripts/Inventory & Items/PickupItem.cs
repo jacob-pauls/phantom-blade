@@ -14,6 +14,11 @@ public class PickupItem : MonoBehaviour
 
     public UnityEvent onCollect;
 
+    public void SetStoredItem(Item item)
+    {
+        storedItem = item;
+    }
+
     public Item Collect()
     {
         onCollect?.Invoke();

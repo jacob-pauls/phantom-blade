@@ -11,12 +11,16 @@ using UnityEngine;
  */
 public class PauseMenu : StandardMenu
 {
+    [SerializeField] private List<ItemSlotUI> itemSlots = new List<ItemSlotUI>();
+
     public override void Show()
     {
         base.Show();
 
         // Load player data
+
         // Use the data to update the information
+        UpdateUI();
 
         Time.timeScale = 0;
     }
@@ -27,5 +31,11 @@ public class PauseMenu : StandardMenu
         Time.timeScale = 1;
     }
 
-
+    public void UpdateUI()
+    {
+        for (int i = 0; i < itemSlots.Count; i++)
+        {
+            itemSlots[i].UpdateItemSlot();
+        }
+    }
 }

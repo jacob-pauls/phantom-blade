@@ -13,27 +13,30 @@ public class TPB_Enemy : TPB_Character
     public bool isFlyingUnit = false;
     public float aggroRange;
     public float stoppingDistance;
-    public Transform target;
+    [HideInInspector] public Transform target;
 
     [Header ("Enemy Stats")]
     [Space]
-    [SerializeField] private float damage;
+    [SerializeField] private float attackDamage;
     
-    private LayerMask layerEnemyInterest;
+    [Header ("Enemy Collision Detection")]
+    [SerializeField] float collisionHitBoxHeight;
+    [SerializeField] float collisionHitBoxWidth;
+    private LayerMask playerLayer;
 
     protected override void Awake()
     {
         base.Awake();
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        layerEnemyInterest = LayerMask.GetMask("EnemyInterest");
+        playerLayer = LayerMask.GetMask("Player");
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        TPB_Player player = collision.gameObject.GetComponent<TPB_Player>();
-        if (player)
-            Debug.Log("Collided with the player");
-    }
+    // void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     TPB_Player player = collision.gameObject.GetComponent<TPB_Player>();
+    //     if (player)
+    //         Debug.Log("Collided with the player");
+    // }
 
     /*
      * Helper Functions
@@ -46,11 +49,22 @@ public class TPB_Enemy : TPB_Character
         return false;
     }
 
-    // void CheckForCollisionsWithPlayer() 
-    // {
-    //     Collider2D hitCollider = Physics2D.OverlapBox(transform.position, transform.localScale / 2, 0f, layerEnemyInterest);
-    //     if (hitCollider != null) {
-    //         Debug.Log("Collider: " + hitCollider.name);
-    //     }
-    // }
+    public void CheckForCollisionsWithPlayer() 
+    {
+        Collider2D[] hitColliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(collisionHitBoxWidth, collisionHitBoxHeight), playerLayer);
+        if (hitColliders.Length > 0) {
+            for (int i = 0; i < hitColliders.Length; i++) {
+                TPB_Player player = hitColliders[i].GetComponent<TPB_Player>();
+                if (player) {
+                    Debug.Log("Player was hit!");
+                }
+            }
+        }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(transform.position, new Vector3(collisionHitBoxWidth, collisionHitBoxHeight, 1));
+    }
 }

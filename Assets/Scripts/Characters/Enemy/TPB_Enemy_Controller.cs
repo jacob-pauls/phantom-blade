@@ -19,6 +19,7 @@ public class TPB_Enemy_Controller : MonoBehaviour
     {
         // Patrol();
         MoveToTarget();
+        enemy.CheckForCollisionsWithPlayer();
     }
 
     void Patrol()

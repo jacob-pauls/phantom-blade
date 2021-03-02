@@ -11,6 +11,7 @@ public class GameplayUI : MonoBehaviour
 
     [Header("Player")]
     [SerializeField] private TPB_Character player;
+    [SerializeField] private bool findPlayer = true;
     [SerializeField] private Slider playerHealthBar;
     [SerializeField] private Slider playerEssenceBar;
     [SerializeField] private TextMeshProUGUI keyAmountTextUI;
@@ -29,6 +30,11 @@ public class GameplayUI : MonoBehaviour
     private void Start()
     {
         instance = this;
+
+        if (findPlayer)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<TPB_Character>();
+        }
 
         if (player != null) { SetPlayer(player); }
         if (boss == null) { bossHealthBar.gameObject.SetActive(false); }
@@ -129,7 +135,7 @@ public class GameplayUI : MonoBehaviour
     public void UpdateKeyUI()
     {
         // Get save data
-        Item key = player.inventory.Get("new_opportunities");
+        Item key = GameManager.Load().Inventory.Get("new_opportunities"); //player.inventory.Get("new_opportunities");
         keyAmountTextUI.text = key != null ? key.CurrentStackAmount.ToString() : "0";
     }
 

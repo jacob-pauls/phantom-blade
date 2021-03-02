@@ -27,6 +27,7 @@ public class TPB_Player : TPB_Character
     [SerializeField] float attackHitBoxWidth;
     [SerializeField] Transform attackCollider;
     [SerializeField] LayerMask enemyLayer;
+    [HideInInspector] public int comboCounter = 0;
 
     /**
      * Ability References
@@ -41,6 +42,7 @@ public class TPB_Player : TPB_Character
     public UnityEvent onWallEvent;
     public UnityEvent offWallEvent;
     public UnityEvent onCrouchEvent;
+    public UnityEvent onEnemyHit;
 
     private TPB_Ability_Controller abilities;
     private TPB_Ability_Cooldown abilityCooldownManager;
@@ -89,7 +91,8 @@ public class TPB_Player : TPB_Character
             }
             else
             {
-                inventory.Add(item);
+                GameManager.Load().Inventory.Add(item);
+                //inventory.Add(item);
             }
 
             onItemCollected?.Invoke();
@@ -104,7 +107,7 @@ public class TPB_Player : TPB_Character
         Chest chest = collision.GetComponent<Chest>();
         if (chest != null)
         {
-            Item key = inventory.Get("new_opportunities");
+            Item key = GameManager.Load().Inventory.Get("new_opportunities");
             bool isKeyAvailable = false;
             if (key != null)
             {
@@ -151,7 +154,7 @@ public class TPB_Player : TPB_Character
     public void Crouch(float input)
     {
         if (((input < -0.75 && input >= -1) && isGrounded) || !canStandUp) {
-            rb2D.velocity = new Vector2(rb2D.velocity.x * crouchResistance, 0f);
+            rb2D.velocity = new Vector2(rb2D.velocity.x * crouchResistance, rb2D.velocity.y);
             isCrouching = true;
             onCrouchEvent?.Invoke();
         } else {
@@ -188,8 +191,8 @@ public class TPB_Player : TPB_Character
     /**
      * Attacking Definitions/Logic
      */
-     public void MeleeAttack(bool isAttackKeyPressed)
-     {
+    public void MeleeAttack(bool isAttackKeyPressed)
+    {
         if(delayBetweenAttacks <= 0) {
             if (isAttackKeyPressed) {
                 Collider2D[] enemyColliders = Physics2D.OverlapBoxAll(attackCollider.position, new Vector2(attackHitBoxWidth, attackHitBoxHeight), enemyLayer);
@@ -198,6 +201,7 @@ public class TPB_Player : TPB_Character
                     if (enemy) {
                         // TODO: The logic is here to hit ONE enemy, abstract this to multiple?
                         enemy.ChangeHealthAmount(-attackDamage);
+                        onEnemyHit?.Invoke();
                         break;
                     }
                 }
@@ -206,14 +210,14 @@ public class TPB_Player : TPB_Character
         } else {
             delayBetweenAttacks -= Time.deltaTime;
         }
-     }
+    }
 
-     public void RangedAttack(bool isAttack)
-     {
+    public void RangedAttack(bool isAttack)
+    {
         // TODO: Abstract Imput, Implement Ranged Attack Logic
         if (Input.GetButton("Range"))
             Debug.Log("Ranged Attack!");
-     }
+    }
 
     /**
      *  Ability Definitions/Casting Logic

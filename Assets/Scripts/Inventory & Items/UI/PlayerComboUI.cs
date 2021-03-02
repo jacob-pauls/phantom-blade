@@ -19,7 +19,7 @@ public class PlayerComboUI : MonoBehaviour
         public Sprite ComboDisplayImage { get { return comboDisplayImage; } }
     }
 
-    public TPB_Character player;
+    public TPB_Player player;
     private int testCurrentCombo; // Should be grabbed from the player character
     [Space]
     [SerializeField] private TextMeshProUGUI comboNameTextUI;
@@ -38,7 +38,7 @@ public class PlayerComboUI : MonoBehaviour
         {
             animator = GetComponent<Animator>();
 
-            //player.onComboHit?.AddListener(Combo)
+            player.onEnemyHit?.AddListener(UpdateComboUI);
 
             isInitialized = true;
         }

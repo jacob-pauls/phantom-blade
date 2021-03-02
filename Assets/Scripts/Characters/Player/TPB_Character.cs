@@ -115,7 +115,6 @@ public class TPB_Character : MonoBehaviour
     {
         if (amount == 0) { return; }
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-        Debug.Log("Damage Taken! Current Health -> " + this.currentHealth);
         onHealthChange?.Invoke();
         if (currentHealth <= 0)
             onDeath?.Invoke();

@@ -13,6 +13,7 @@ public class GameplayCamera : MonoBehaviour
     public static GameplayCamera instance;
 
     public Transform target;
+    [SerializeField] private bool findPlayerAsTarget = true;
     [Space]
     [SerializeField] private Transform pivot;
     [SerializeField] private new Transform camera;
@@ -33,6 +34,10 @@ public class GameplayCamera : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        if (findPlayerAsTarget)
+        {
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+        }
     }
 
     private void OnDestroy()

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d454c6177f2717441b301c7617c4faee, type: 3}
+  m_Name: Mizu Scroll
+  m_EditorClassIdentifier: 
+  name: Mizu Scroll
+  id: water_scroll
+  type: 1
+  description: "Flowing like everlasting change the words in the scroll\r tell a
+    tale of adaptability and fluidity. "
+  currentStackAmount: 1
+  maximumStackAmount: 2
+  displayImage: {fileID: 21300000, guid: 647fee102da160f46b103996f2c0d3a1, type: 3}
+  prefab: {fileID: 3801774017423572106, guid: 0440e9876eedbc647805f13280bc0f6f, type: 3}
+  attributes: []

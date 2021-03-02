@@ -14,7 +14,7 @@ public class Chest : MonoBehaviour
         DropAllItems,
     }
 
-    [SerializeField] private List<GameObject> items = new List<GameObject>();
+    [SerializeField] private Inventory inventory;
 
     [Header("Conditions")]
     [SerializeField] private bool doesRequiresKey;
@@ -58,7 +58,7 @@ public class Chest : MonoBehaviour
         switch (dropType)
         {
             case DropType.DropOneItemAtRandom:
-                int randomIndex = Random.Range(0, items.Count);
+                int randomIndex = Random.Range(0, inventory.ItemCount);
                 StartCoroutine(DropRoutine(randomIndex));
                 break;
             case DropType.DropAllItems:
@@ -76,9 +76,9 @@ public class Chest : MonoBehaviour
     /// </summary>
     private void Drop(int index = 0)
     {
-        if (index > items.Count)
+        if (index > inventory.ItemCount)
         {
-            Debug.LogWarning("The index (" + index + ") is bigger than the list count (" + items.Count + "). Stopping Drop() method.");
+            Debug.LogWarning("The index (" + index + ") is bigger than the list count (" + inventory.ItemCount + "). Stopping Drop() method.");
             return;
         }
         else if (dropPosition == null)
@@ -86,24 +86,9 @@ public class Chest : MonoBehaviour
             Debug.LogWarning("The index (" + index + ") does not have a dropPosition attached. Stopping Drop() method.");
             return;
         }
-        else if (items[index] == null)
-        {
-            Debug.LogWarning("The index (" + index + ") does not have a gameObject attached. Stopping Drop() method.");
-            return;
-        }
-        else if (items[index] == GetComponent<PickupItem>())
-        {
-            Debug.LogWarning("The index (" + index + ") does not have a PickupItem component. Stopping Drop() method.");
-            return;
-        }
-        else if (items[index] == GetComponent<Rigidbody2D>())
-        {
-            Debug.LogWarning("The index (" + index + ") does not have a Rigidbody2D component. Stopping Drop() method.");
-            return;
-        }
         else
         {
-            GameObject pickup = Instantiate(items[index], dropPosition.position, Quaternion.identity);
+            GameObject pickup = Instantiate(inventory.Get(index).Prefab, dropPosition.position, Quaternion.identity);
 
             float x = Random.Range(-xShootRange, xShootRange);
             float y = yShootAmount;
@@ -111,7 +96,7 @@ public class Chest : MonoBehaviour
 
             pickup.GetComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Impulse);
 
-            items.RemoveAt(index);
+            inventory.RemoveAt(index);
 
             animator.SetTrigger("Drop");
         }
@@ -127,7 +112,7 @@ public class Chest : MonoBehaviour
     {
         yield return new WaitForSeconds(dropStartDelay);
 
-        while (items.Count > 0)
+        while (inventory.ItemCount > 0)
         {
             Drop();
             yield return new WaitForSeconds(dropDelayBetweenItems);
