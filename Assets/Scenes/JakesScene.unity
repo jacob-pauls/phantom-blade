@@ -1237,11 +1237,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 150
       objectReference: {fileID: 0}
-    - target: {fileID: 6724711082993962300, guid: 7c4663a2ff2ade346a847f3912b80640,
-        type: 3}
-      propertyPath: comboMilestones.Array.data[1].comboDisplayImage
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6724711082993962303, guid: 7c4663a2ff2ade346a847f3912b80640,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1767,7 +1762,7 @@ GameObject:
   - component: {fileID: 328780125}
   - component: {fileID: 328780127}
   - component: {fileID: 328780126}
-  m_Layer: 12
+  m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3275,7 +3270,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 534577025}
-  m_Layer: 12
+  m_Layer: 5
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3399,7 +3394,7 @@ GameObject:
   m_Component:
   - component: {fileID: 540938356}
   - component: {fileID: 540938357}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9882,7 +9877,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 891337159}
-  m_Layer: 12
+  m_Layer: 5
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10011,7 +10006,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 918054198}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: CeilingCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10042,7 +10037,7 @@ GameObject:
   m_Component:
   - component: {fileID: 918634778}
   - component: {fileID: 918634779}
-  m_Layer: 12
+  m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15807,7 +15802,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1564536611}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16335,7 +16330,7 @@ GameObject:
   - component: {fileID: 1662231664}
   - component: {fileID: 1662231663}
   - component: {fileID: 1662231662}
-  m_Layer: 12
+  m_Layer: 5
   m_Name: Hover Health Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16393,7 +16388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae223608d7ff96c4a93513411f94cd1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 1178469591}
   slider: {fileID: 918634779}
 --- !u!114 &1662231664
 MonoBehaviour:
@@ -17543,7 +17538,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1836447815}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18108,7 +18103,7 @@ GameObject:
   - component: {fileID: 1967724487}
   - component: {fileID: 1967724489}
   - component: {fileID: 1967724488}
-  m_Layer: 12
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20122,7 +20117,7 @@ GameObject:
   - component: {fileID: 1993067421}
   - component: {fileID: 1993067423}
   - component: {fileID: 1993067422}
-  m_Layer: 12
+  m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20530,6 +20525,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8680866281344516790, guid: 9cef380600c1e5645a9415b43798e261,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cef380600c1e5645a9415b43798e261, type: 3}

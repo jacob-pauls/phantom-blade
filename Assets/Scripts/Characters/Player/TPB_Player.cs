@@ -23,7 +23,8 @@ public class TPB_Player : TPB_Character
     [SerializeField] int attackDamage;
     private float delayBetweenAttacks;
     [SerializeField] float attackDelay = 1f;
-    [SerializeField] float attackRange;
+    [SerializeField] float attackHitBoxHeight;
+    [SerializeField] float attackHitBoxWidth;
     [SerializeField] Transform attackCollider;
     [SerializeField] LayerMask enemyLayer;
 
@@ -186,12 +187,10 @@ public class TPB_Player : TPB_Character
      {
         if(delayBetweenAttacks <= 0) {
             if (isAttackKeyPresed) {
-                Collider2D[] enemyColliders = Physics2D.OverlapCircleAll(attackCollider.position, attackRange, enemyLayer);
+                Collider2D[] enemyColliders = Physics2D.OverlapBoxAll(attackCollider.position, new Vector2(attackHitBoxWidth, attackHitBoxHeight), enemyLayer);
+                // Retrieves the first enemy collider hit
                 if (enemyColliders != null) {
-                    for (int i = 0; i < enemyColliders.Length; i++) {
-                        Debug.Log("Enemy Collider: " + enemyColliders.Length);
-                        enemyColliders[i].GetComponent<TPB_Enemy>().ChangeHealthAmount(-attackDamage);
-                    }
+                    enemyColliders[0].GetComponent<TPB_Enemy>().ChangeHealthAmount(-attackDamage);
                 }
             }
             delayBetweenAttacks = attackDelay;
@@ -267,7 +266,7 @@ public class TPB_Player : TPB_Character
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackCollider.position, attackRange);
+        Gizmos.DrawWireCube(attackCollider.position, new Vector3(attackHitBoxWidth, attackHitBoxHeight, 1));
     }
 
 }
