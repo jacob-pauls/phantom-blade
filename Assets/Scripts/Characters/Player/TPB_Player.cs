@@ -21,7 +21,7 @@ public class TPB_Player : TPB_Character
 
     [Header ("Attack Data")]
     [SerializeField] int attackDamage;
-    private float delayBetweenAttacks;
+    private float delayBetweenAttacks = 0f;
     [SerializeField] float attackDelay = 1f;
     [SerializeField] float attackHitBoxHeight;
     [SerializeField] float attackHitBoxWidth;
@@ -50,6 +50,11 @@ public class TPB_Player : TPB_Character
     private bool isWallSliding;
     private bool isCrouching;
     private bool canStandUp = true;
+
+    //void Start()
+   // {
+       // DontDestroyOnLoad(gameObject);
+    //}
 
     protected override void Awake()
     {
@@ -183,17 +188,21 @@ public class TPB_Player : TPB_Character
     /**
      * Attacking Definitions/Logic
      */
-     public void MeleeAttack(bool isAttackKeyPresed)
+     public void MeleeAttack(bool isAttackKeyPressed)
      {
         if(delayBetweenAttacks <= 0) {
-            if (isAttackKeyPresed) {
+            if (isAttackKeyPressed) {
                 Collider2D[] enemyColliders = Physics2D.OverlapBoxAll(attackCollider.position, new Vector2(attackHitBoxWidth, attackHitBoxHeight), enemyLayer);
-                // Retrieves the first enemy collider hit
-                if (enemyColliders != null) {
-                    enemyColliders[0].GetComponent<TPB_Enemy>().ChangeHealthAmount(-attackDamage);
+                for (int i = 0; i < enemyColliders.Length; i++) {
+                    TPB_Enemy enemy = enemyColliders[i].GetComponent<TPB_Enemy>();
+                    if (enemy) {
+                        // TODO: The logic is here to hit ONE enemy, abstract this to multiple?
+                        enemy.ChangeHealthAmount(-attackDamage);
+                        break;
+                    }
                 }
+                delayBetweenAttacks = attackDelay;
             }
-            delayBetweenAttacks = attackDelay;
         } else {
             delayBetweenAttacks -= Time.deltaTime;
         }

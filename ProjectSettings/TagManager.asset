@@ -19,6 +19,7 @@ TagManager:
   - Item
   - Enemy
   - EnemyInterest
+  - Player
   - 
   - 
   - 

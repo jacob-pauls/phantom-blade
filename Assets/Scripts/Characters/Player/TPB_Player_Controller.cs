@@ -55,8 +55,8 @@ public class TPB_Player_Controller : MonoBehaviour
      */
     void MeleeAttackController()
     {
-        bool isAttackKeyPresed = Input.GetButton("Melee");
-        player.MeleeAttack(isAttackKeyPresed);
+        bool isAttackKeyPressed = Input.GetButton("Melee");
+        player.MeleeAttack(isAttackKeyPressed);
     }
 
     /*

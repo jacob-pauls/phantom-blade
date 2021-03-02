@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/animationTestScene.unity
     guid: c22e5a87566f17c4693de22b8e6f17ab
+  - enabled: 1
+    path: Assets/Scenes/DEADwoodsTest.unity
+    guid: 526f526690814cf47a210c60ad341302
+  - enabled: 1
+    path: Assets/Scenes/deadwoodRoom2.unity
+    guid: ffed30d2c2f2fb64699f3b884ff61624
   m_configObjects: {}
