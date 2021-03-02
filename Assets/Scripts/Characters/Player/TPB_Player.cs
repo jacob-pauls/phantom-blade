@@ -19,6 +19,14 @@ public class TPB_Player : TPB_Character
     [SerializeField] private LayerMask phaseShiftWallLayer;
     [SerializeField] private Collider2D disabledColliderOnCrouch;
 
+    [Header ("Attack Data")]
+    [SerializeField] int attackDamage;
+    private float delayBetweenAttacks;
+    [SerializeField] float attackDelay = 1f;
+    [SerializeField] float attackRange;
+    [SerializeField] Transform attackCollider;
+    [SerializeField] LayerMask enemyLayer;
+
     /**
      * Ability References
      * Each ability is containerized by a particular TPB_Ability ScriptableObject
@@ -174,14 +182,25 @@ public class TPB_Player : TPB_Character
     /**
      * Attacking Definitions/Logic
      */
-     void MeleeAttack(bool isAttack)
+     public void MeleeAttack(bool isAttackKeyPresed)
      {
-        // TODO: Abstract Imput, Implement Melee Attack Logic
-        if (Input.GetButton("Melee"))
-            Debug.Log("Melee Attack!");
+        if(delayBetweenAttacks <= 0) {
+            if (isAttackKeyPresed) {
+                Collider2D[] enemyColliders = Physics2D.OverlapCircleAll(attackCollider.position, attackRange, enemyLayer);
+                if (enemyColliders != null) {
+                    for (int i = 0; i < enemyColliders.Length; i++) {
+                        Debug.Log("Enemy Collider: " + enemyColliders.Length);
+                        enemyColliders[i].GetComponent<TPB_Enemy>().ChangeHealthAmount(-attackDamage);
+                    }
+                }
+            }
+            delayBetweenAttacks = attackDelay;
+        } else {
+            delayBetweenAttacks -= Time.deltaTime;
+        }
      }
 
-     void RangedAttack(bool isAttack)
+     public void RangedAttack(bool isAttack)
      {
         // TODO: Abstract Imput, Implement Ranged Attack Logic
         if (Input.GetButton("Range"))
@@ -243,6 +262,12 @@ public class TPB_Player : TPB_Character
     void TestHeal()
     {
         ChangeHealthAmount(10);
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackCollider.position, attackRange);
     }
 
 }

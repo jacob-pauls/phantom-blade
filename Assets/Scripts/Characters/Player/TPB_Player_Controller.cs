@@ -21,6 +21,9 @@ public class TPB_Player_Controller : MonoBehaviour
         JumpController();
         CrouchController();
         WallSlideController();
+
+        MeleeAttackController();
+
         PhaseShiftController();
         WallJumpController();
     }
@@ -47,6 +50,15 @@ public class TPB_Player_Controller : MonoBehaviour
     {
         float input = Input.GetAxisRaw("Horizontal");
         player.WallSlide(input);
+    }
+
+    /*
+     * Attacks
+     */
+    void MeleeAttackController()
+    {
+        bool isAttackKeyPresed = Input.GetButton("Melee");
+        player.MeleeAttack(isAttackKeyPresed);
     }
 
     /*

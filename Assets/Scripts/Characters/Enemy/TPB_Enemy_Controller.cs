@@ -17,7 +17,7 @@ public class TPB_Enemy_Controller : MonoBehaviour
 
     void Update()
     {
-        Patrol();
+        // Patrol();
         MoveToTarget();
     }
 
