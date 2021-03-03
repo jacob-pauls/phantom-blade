@@ -2,11 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private string startSceneName;
+    [SerializeField] private Button continueButton;
 
+    private void Awake()
+    {
+        PlayerData data = GameManager.Load();
+
+        if (data.lastStageName == null || data.lastStageName == string.Empty)
+        {
+            continueButton.gameObject.SetActive(false);
+        }
+    }
 
     public void NewGame()
     {
@@ -19,6 +30,8 @@ public class MainMenu : MonoBehaviour
     public void Continue()
     {
         PlayerData data = GameManager.Load();
+
+        SceneManager.LoadScene(data.lastStageName);
     }
 
     public void Quit()

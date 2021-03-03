@@ -9,8 +9,6 @@ public class PlayerData : GameSaveFile
     //----------------------------------
 
     #region Variables
-    // Currency -- Do not remove variables
-    //public int coins;
 
     // Inventory -- Do not change or add variables to the Inventory class
     private Inventory inventory;
@@ -24,7 +22,7 @@ public class PlayerData : GameSaveFile
     }
 
     // Stages -- Only add new stages, do not remove stages
-    //public List<StageInfo> stages = new List<StageInfo>();
+    public string lastStageName;
     #endregion
 
     public PlayerData()

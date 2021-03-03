@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -204,9 +204,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
-        m_Mode: 6
+      - m_Target: {fileID: 1284056085}
+        m_MethodName: NewGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -387,7 +387,7 @@ GameObject:
   - component: {fileID: 1178120798}
   - component: {fileID: 1178120797}
   m_Layer: 5
-  m_Name: Button - New Game (1)
+  m_Name: Button - Continue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -475,9 +475,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
-        m_Mode: 6
+      - m_Target: {fileID: 1284056085}
+        m_MethodName: Continue
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -808,7 +808,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7123d281a6f818408142078fd0d2f1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSceneName: 
+  startSceneName: graveYard
+  continueButton: {fileID: 1178120798}
 --- !u!114 &1284056086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1262,9 +1263,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
-        m_Mode: 6
+      - m_Target: {fileID: 1284056085}
+        m_MethodName: Quit
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1407,6 +1408,7 @@ GameObject:
   - component: {fileID: 214246917415833840}
   - component: {fileID: 5499042602807737232}
   - component: {fileID: 840718656206885695}
+  - component: {fileID: 3623204530633560794}
   m_Layer: 5
   m_Name: Button - Exit
   m_TagString: Untagged
@@ -1414,6 +1416,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!95 &3623204530633560794
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3623204530633560793}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d9b16290a5c8a9b4da9890f9e01708fc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &5499042602807737232
 MonoBehaviour:
   m_ObjectHideFlags: 0
