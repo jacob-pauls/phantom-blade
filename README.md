@@ -1,8 +1,7 @@
-<div class="logo">
-    <p align="center">
-        <img src="demo/tpb_animated_logo.gif" alt="The Phantom Blade" width="40" height ="40"/>
-    </p>
-</div>
+<p align="center">
+    <img src="demo/tpb_logo_animated.gif" alt="The Phantom Blade"/>
+</p>
+    
 
 ---
 
