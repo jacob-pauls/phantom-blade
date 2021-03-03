@@ -41,7 +41,7 @@ public class PhaseShift : TPB_Ability
             phaseShiftTime = phaseShiftDistance;
             playerRigidBody.velocity = Vector2.zero;
             
-            gameObject.layer = LayerMask.NameToLayer("Default");
+            gameObject.layer = LayerMask.NameToLayer("Player");
             playerSpriteRenderer.color = new Color(1,1,1,1);
         } else {
             isPhaseShifting = true;

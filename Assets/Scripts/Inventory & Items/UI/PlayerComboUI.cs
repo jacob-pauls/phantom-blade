@@ -38,7 +38,7 @@ public class PlayerComboUI : MonoBehaviour
         {
             animator = GetComponent<Animator>();
 
-            player.onEnemyHit?.AddListener(UpdateComboUI);
+            //player.onEnemyHit?.AddListener(UpdateComboUI);
 
             isInitialized = true;
         }

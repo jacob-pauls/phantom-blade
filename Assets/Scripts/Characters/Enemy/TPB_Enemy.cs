@@ -17,7 +17,9 @@ public class TPB_Enemy : TPB_Character
 
     [Header ("Enemy Stats")]
     [Space]
-    [SerializeField] private float attackDamage;
+    [SerializeField] private int attackDamage;
+    private float delayBetweenCollisions = 0f;
+    [SerializeField] float collisionDelay = 0.3f;
     
     [Header ("Enemy Collision Detection")]
     [SerializeField] float collisionHitBoxHeight;
@@ -30,13 +32,6 @@ public class TPB_Enemy : TPB_Character
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         playerLayer = LayerMask.GetMask("Player");
     }
-
-    // void OnCollisionEnter2D(Collision2D collision)
-    // {
-    //     TPB_Player player = collision.gameObject.GetComponent<TPB_Player>();
-    //     if (player)
-    //         Debug.Log("Collided with the player");
-    // }
 
     /*
      * Helper Functions
@@ -51,15 +46,23 @@ public class TPB_Enemy : TPB_Character
 
     public void CheckForCollisionsWithPlayer() 
     {
-        Collider2D[] hitColliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(collisionHitBoxWidth, collisionHitBoxHeight), playerLayer);
-        if (hitColliders.Length > 0) {
-            for (int i = 0; i < hitColliders.Length; i++) {
-                TPB_Player player = hitColliders[i].GetComponent<TPB_Player>();
-                if (player) {
-                    Debug.Log("Player was hit!");
+        // Collide with the player, start a delay so that subsequent collisions are spaced out
+        if (delayBetweenCollisions <= 0) {
+            Collider2D[] hitColliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(collisionHitBoxWidth, collisionHitBoxHeight), playerLayer);
+            if (hitColliders.Length > 0) {
+                for (int i = 0; i < hitColliders.Length; i++) {
+                    TPB_Player player = hitColliders[i].GetComponent<TPB_Player>();
+                    // Collide with player, apply damage, reset collision timer
+                    if (player) {
+                        player.ChangeHealthAmount(-attackDamage);
+                        delayBetweenCollisions = collisionDelay;
+                        break;
+                    }
                 }
             }
         }
+        if (delayBetweenCollisions > 0)
+            delayBetweenCollisions -= Time.deltaTime;
     }
 
     void OnDrawGizmosSelected()

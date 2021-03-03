@@ -370,6 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  findPlayer: 1
   playerHealthBar: {fileID: 6724711083011480841}
   playerEssenceBar: {fileID: 6724711083326294474}
   keyAmountTextUI: {fileID: 6265396657693259952}

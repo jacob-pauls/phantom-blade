@@ -17,8 +17,8 @@ MonoBehaviour:
   type: 1
   description: "Flowing like everlasting change the words in the scroll\r tell a
     tale of adaptability and fluidity. "
-  currentStackAmount: 1
+  currentStackAmount: 0
   maximumStackAmount: 2
-  displayImage: {fileID: 21300000, guid: 647fee102da160f46b103996f2c0d3a1, type: 3}
+  displayImage: {fileID: 21300000, guid: 9adffeb724650c745b56ee714f33e924, type: 3}
   prefab: {fileID: 3801774017423572106, guid: 0440e9876eedbc647805f13280bc0f6f, type: 3}
   attributes: []

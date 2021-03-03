@@ -17,8 +17,6 @@ public class PauseMenu : StandardMenu
     {
         base.Show();
 
-        // Load player data
-
         // Use the data to update the information
         UpdateUI();
 

@@ -22,7 +22,7 @@ public class TPB_Player : TPB_Character
     [Header ("Attack Data")]
     [SerializeField] int attackDamage;
     private float delayBetweenAttacks = 0f;
-    [SerializeField] float attackDelay = 1f;
+    [SerializeField] float attackDelay = 0.3f;
     [SerializeField] float attackHitBoxHeight;
     [SerializeField] float attackHitBoxWidth;
     [SerializeField] Transform attackCollider;
@@ -52,11 +52,6 @@ public class TPB_Player : TPB_Character
     private bool isWallSliding;
     private bool isCrouching;
     private bool canStandUp = true;
-
-    //void Start()
-   // {
-       // DontDestroyOnLoad(gameObject);
-    //}
 
     protected override void Awake()
     {
@@ -199,7 +194,7 @@ public class TPB_Player : TPB_Character
                 for (int i = 0; i < enemyColliders.Length; i++) {
                     TPB_Enemy enemy = enemyColliders[i].GetComponent<TPB_Enemy>();
                     if (enemy) {
-                        // TODO: The logic is here to hit ONE enemy, abstract this to multiple?
+                        // TODO: The logic is here to hit ONE enemy, modify this to multiple?
                         enemy.ChangeHealthAmount(-attackDamage);
                         onEnemyHit?.Invoke();
                         break;
