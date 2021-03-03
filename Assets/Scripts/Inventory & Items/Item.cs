@@ -89,6 +89,11 @@ public class Item : ScriptableObject
     [SerializeField] private List<Attribute> attributes = new List<Attribute>();
     public List<Attribute> Attributes { get { return attributes; } }
 
+    public virtual void Use()
+    {
+
+    }
+
     public void ChangeStackAmount(int amount)
     {
         if (currentStackAmount == maximumStackAmount) { return; }
@@ -146,4 +151,5 @@ public class Item : ScriptableObject
         this.prefab = prefab;
         this.attributes = attributes;
     }
+
 }

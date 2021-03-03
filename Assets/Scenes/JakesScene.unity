@@ -11860,8 +11860,8 @@ MonoBehaviour:
   target: {fileID: 0}
   attackDamage: 10
   collisionDelay: 1
-  collisionHitBoxHeight: 2.2
-  collisionHitBoxWidth: 2.4
+  collisionHitBoxHeight: 2.12
+  collisionHitBoxWidth: 2.46
 --- !u!58 &1178469592
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -18020,8 +18020,8 @@ MonoBehaviour:
   target: {fileID: 0}
   attackDamage: 10
   collisionDelay: 0.3
-  collisionHitBoxHeight: 2.4
-  collisionHitBoxWidth: 2.2
+  collisionHitBoxHeight: 2.16
+  collisionHitBoxWidth: 2.4
 --- !u!58 &1816327493
 CircleCollider2D:
   m_ObjectHideFlags: 0
