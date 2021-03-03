@@ -38,7 +38,7 @@ public class TPB_Character : MonoBehaviour
 
     protected Animator anim;  
     protected Rigidbody2D rb2D;
-    private BoxCollider2D bc2D;
+    protected BoxCollider2D bc2D;
     private SpriteRenderer spriteRenderer;
     
     protected bool isGrounded;

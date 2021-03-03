@@ -53,7 +53,7 @@ public class TPB_Enemy : TPB_Character
                 for (int i = 0; i < hitColliders.Length; i++) {
                     TPB_Player player = hitColliders[i].GetComponent<TPB_Player>();
                     // Collide with player, apply damage, reset collision timer
-                    if (player) {
+                    if (player && !player.isPhaseShifting) {
                         player.ChangeHealthAmount(-attackDamage);
                         delayBetweenCollisions = collisionDelay;
                         break;

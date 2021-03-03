@@ -52,6 +52,7 @@ public class TPB_Player : TPB_Character
     private bool isWallSliding;
     private bool isCrouching;
     private bool canStandUp = true;
+    [HideInInspector] public bool isPhaseShifting { get; private set; }
 
     protected override void Awake()
     {
@@ -197,6 +198,7 @@ public class TPB_Player : TPB_Character
                         // TODO: The logic is here to hit ONE enemy, modify this to multiple?
                         enemy.ChangeHealthAmount(-attackDamage);
                         onEnemyHit?.Invoke();
+                        // gameObject.SetActive(false);
                         break;
                     }
                 }
@@ -232,8 +234,9 @@ public class TPB_Player : TPB_Character
     public void PhaseShift(bool isPhaseShiftKeyPressed)
     {
         if (abilities.IsAbilityUnlocked(TPB_Ability_Controller.AbilityTypes.PhaseShift)) {
+            isPhaseShifting = phaseShift.isPhaseShifting;
             // Check if the character is mid-phaseshift, casting continues if shift is not complete
-            if (isPhaseShiftKeyPressed && !abilityCooldownManager.isAbilityOnCooldown(phaseShift) && !phaseShift.isPhaseShifting) {
+            if (isPhaseShiftKeyPressed && !abilityCooldownManager.isAbilityOnCooldown(phaseShift) && !isPhaseShifting) {
                 phaseShift.Cast();
                 
                 // Start the phase shift cooldown, lock player input
