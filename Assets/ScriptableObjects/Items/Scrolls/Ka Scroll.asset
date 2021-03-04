@@ -17,8 +17,8 @@ MonoBehaviour:
   type: 1
   description: "The ink in this scroll burns with the passion of those who\r inspired
     the world with the strongest of determinations."
-  currentStackAmount: 1
+  currentStackAmount: 0
   maximumStackAmount: 2
   displayImage: {fileID: 21300000, guid: 3b6e251149b401e468c215e0fe2f665a, type: 3}
-  prefab: {fileID: 1790437381543434779, guid: 4770ac74c38cab542a1345c147a0d98e, type: 3}
+  prefab: {fileID: 7708472181286515682, guid: cecdf1d9ce4a32b4689b03e4a4116c44, type: 3}
   attributes: []
