@@ -144,6 +144,7 @@ GameObject:
   - component: {fileID: 6671901012953727280}
   - component: {fileID: 1685422410332198185}
   - component: {fileID: 4171346240624892545}
+  - component: {fileID: 6929011654092703451}
   - component: {fileID: 5814772815324388904}
   - component: {fileID: 312650587084758178}
   - component: {fileID: 489747470935763073}
@@ -247,12 +248,14 @@ MonoBehaviour:
   disabledColliderOnCrouch: {fileID: 1077866188330656144}
   attackDamage: 10
   attackDelay: 0.3
+  comboAttackTime: 0
   attackHitBoxHeight: 1.75
   attackHitBoxWidth: 3
   attackCollider: {fileID: 8680866281344516790}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 4096
+  comboCounter: 0
   player: {fileID: 3427020085238654359}
   phaseShift: {fileID: 11400000, guid: 84b2699f2b18a5740b924130dc732db1, type: 2}
   wallJump: {fileID: 11400000, guid: 5407b2e7d8c85ae41b13fdbae7d3ceb4, type: 2}
@@ -287,6 +290,9 @@ MonoBehaviour:
   onCrouchEvent:
     m_PersistentCalls:
       m_Calls: []
+  onEnemyHit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4171346240624892545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,6 +305,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5280260a60bdfb4da4fa2440c76942f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6929011654092703451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3427020085238654359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56afc675295c9ba4689c368011c36f9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackHitBoxHeight: 1.75
+  attackHitBoxWidth: 3
+  attackCollider: {fileID: 8680866281344516790}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 4096
+  attackDelay: 0.3
+  onEnemyHit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!212 &5814772815324388904
 SpriteRenderer:
   m_ObjectHideFlags: 0

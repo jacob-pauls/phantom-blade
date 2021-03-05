@@ -9,10 +9,12 @@
 public class TPB_Player_Controller : MonoBehaviour
 {
     private TPB_Player player;
+    private TPB_Player_Attack_Manager attackManager;
 
     void Awake()
     {
         player = GetComponent<TPB_Player>();
+        attackManager = GetComponent<TPB_Player_Attack_Manager>();
     }
 
     void Update() 
@@ -22,6 +24,7 @@ public class TPB_Player_Controller : MonoBehaviour
         CrouchController();
         WallSlideController();
         MeleeAttackController();
+        RangedAttackController();
         PhaseShiftController();
         WallJumpController();
     }
@@ -56,7 +59,13 @@ public class TPB_Player_Controller : MonoBehaviour
     void MeleeAttackController()
     {
         bool isAttackKeyPressed = Input.GetButton("Melee");
-        player.MeleeAttack(isAttackKeyPressed);
+        attackManager.MeleeAttack(isAttackKeyPressed);
+    }
+
+    void RangedAttackController()
+    {
+        bool isAttackKeyPressed = Input.GetButton("Range");
+        attackManager.RangedAttack(isAttackKeyPressed);
     }
 
     /*

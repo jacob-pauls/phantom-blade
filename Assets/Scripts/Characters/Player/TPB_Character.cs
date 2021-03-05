@@ -102,7 +102,7 @@ public class TPB_Character : MonoBehaviour
         anim.SetBool("isGrounded", isGrounded);
     }
 
-    private void FlipCharacter() 
+    public void FlipCharacter() 
     {
         // Flip character direction and apply transform
         isFacingRight = !isFacingRight;

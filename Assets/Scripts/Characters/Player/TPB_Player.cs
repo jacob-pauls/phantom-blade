@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Events;
 
 /**
@@ -18,16 +19,8 @@ public class TPB_Player : TPB_Character
     [SerializeField] private Transform ceilingCheck;
     [SerializeField] private LayerMask phaseShiftWallLayer;
     [SerializeField] private Collider2D disabledColliderOnCrouch;
-
-    [Header ("Attack Data")]
-    [SerializeField] int attackDamage;
-    private float delayBetweenAttacks = 0f;
-    [SerializeField] float attackDelay = 0.3f;
-    [SerializeField] float attackHitBoxHeight;
-    [SerializeField] float attackHitBoxWidth;
-    [SerializeField] Transform attackCollider;
-    [SerializeField] LayerMask enemyLayer;
-    [HideInInspector] public int comboCounter = 0;
+    [Space]
+    [SerializeField] public int attackDamage;
 
     /**
      * Ability References
@@ -42,7 +35,6 @@ public class TPB_Player : TPB_Character
     public UnityEvent onWallEvent;
     public UnityEvent offWallEvent;
     public UnityEvent onCrouchEvent;
-    public UnityEvent onEnemyHit;
 
     private TPB_Ability_Controller abilities;
     private TPB_Ability_Cooldown abilityCooldownManager;
@@ -132,6 +124,7 @@ public class TPB_Player : TPB_Character
 
         if (isTouchingWall && !base.isGrounded) {
             isWallSliding = true;
+            base.anim.SetBool("isWallGrabbing", false);
             onWallEvent?.Invoke();
         } else {
             isWallSliding = false;
@@ -141,10 +134,13 @@ public class TPB_Player : TPB_Character
         // Modifying the material friction in order to 'latch' onto the wall
         if (isWallSliding && ((input == 1) || (input == -1))) {
             rb2D.sharedMaterial.friction = 0.4f;
+            base.anim.SetBool("isWallGrabbing", true);
         } else if (isWallSliding) {
             rb2D.sharedMaterial.friction = 0.0f;
             rb2D.velocity = new Vector2(rb2D.velocity.x, Mathf.Clamp(rb2D.velocity.y, -wallSlideSpeed/10, float.MaxValue));
-        }        
+        } else {
+            base.anim.SetBool("isWallGrabbing", false);
+        }
     }
 
     public void Crouch(float input)
@@ -184,37 +180,7 @@ public class TPB_Player : TPB_Character
         }
     }
 
-    /**
-     * Attacking Definitions/Logic
-     */
-    public void MeleeAttack(bool isAttackKeyPressed)
-    {
-        if(delayBetweenAttacks <= 0) {
-            if (isAttackKeyPressed) {
-                Collider2D[] enemyColliders = Physics2D.OverlapBoxAll(attackCollider.position, new Vector2(attackHitBoxWidth, attackHitBoxHeight), enemyLayer);
-                for (int i = 0; i < enemyColliders.Length; i++) {
-                    TPB_Enemy enemy = enemyColliders[i].GetComponent<TPB_Enemy>();
-                    if (enemy) {
-                        // TODO: The logic is here to hit ONE enemy, modify this to multiple?
-                        enemy.ChangeHealthAmount(-attackDamage);
-                        onEnemyHit?.Invoke();
-                        // gameObject.SetActive(false);
-                        break;
-                    }
-                }
-                delayBetweenAttacks = attackDelay;
-            }
-        } else {
-            delayBetweenAttacks -= Time.deltaTime;
-        }
-    }
 
-    public void RangedAttack(bool isAttack)
-    {
-        // TODO: Abstract Imput, Implement Ranged Attack Logic
-        if (Input.GetButton("Range"))
-            Debug.Log("Ranged Attack!");
-    }
 
     /**
      *  Ability Definitions/Casting Logic
@@ -273,11 +239,4 @@ public class TPB_Player : TPB_Character
     {
         ChangeHealthAmount(10);
     }
-
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(attackCollider.position, new Vector3(attackHitBoxWidth, attackHitBoxHeight, 1));
-    }
-
 }
