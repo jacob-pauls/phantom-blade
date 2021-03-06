@@ -3,28 +3,28 @@
 /**
  * Jake Pauls
  * TPB_Enemy.cs
- * Enemy definition in TPB
+ * Basic, collision-based enemy definition in TPB
  */
 
 public class TPB_Enemy : TPB_Character
 {
     [Header ("Enemy")]
     [Space]
-    public bool isFlyingUnit = false;
     public float aggroRange;
     public float stoppingDistance;
     [HideInInspector] public Transform target;
 
     [Header ("Enemy Stats")]
     [Space]
-    [SerializeField] private int attackDamage;
+    [SerializeField] protected int attackDamage;
     private float delayBetweenCollisions = 0f;
     [SerializeField] float collisionDelay = 0.3f;
     
     [Header ("Enemy Collision Detection")]
+    [SerializeField] Transform collisionHitBox;
     [SerializeField] float collisionHitBoxHeight;
     [SerializeField] float collisionHitBoxWidth;
-    private LayerMask playerLayer;
+    protected LayerMask playerLayer;
 
     protected override void Awake()
     {
@@ -39,8 +39,11 @@ public class TPB_Enemy : TPB_Character
     public bool CanMoveToTarget()
     {
         float distanceToTarget = Vector2.Distance(transform.position, target.position);
+
+        // Move to the target if in range, and not "close enough"
         if (distanceToTarget < aggroRange && distanceToTarget > stoppingDistance) 
             return true;
+
         return false;
     }
 
@@ -48,7 +51,7 @@ public class TPB_Enemy : TPB_Character
     {
         // Collide with the player, start a delay so that subsequent collisions are spaced out
         if (delayBetweenCollisions <= 0) {
-            Collider2D[] hitColliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(collisionHitBoxWidth, collisionHitBoxHeight), playerLayer);
+            Collider2D[] hitColliders = Physics2D.OverlapBoxAll(collisionHitBox.position, new Vector2(collisionHitBoxWidth, collisionHitBoxHeight), playerLayer);
             if (hitColliders.Length > 0) {
                 for (int i = 0; i < hitColliders.Length; i++) {
                     TPB_Player player = hitColliders[i].GetComponent<TPB_Player>();
@@ -68,6 +71,6 @@ public class TPB_Enemy : TPB_Character
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, new Vector3(collisionHitBoxWidth, collisionHitBoxHeight, 1));
+        Gizmos.DrawWireCube(collisionHitBox.position, new Vector3(collisionHitBoxWidth, collisionHitBoxHeight, 1));
     }
 }

@@ -20,7 +20,6 @@ public class TPB_Player_Attack_Manager : MonoBehaviour
     [Space]
     private float delayBetweenAttacks = 0f;
     [SerializeField] private float attackDelay = 0.3f;
-    bool isAttacking = false;
 
     private Animator anim;
     private TPB_Player player;
