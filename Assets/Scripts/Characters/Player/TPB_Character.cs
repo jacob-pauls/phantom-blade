@@ -133,6 +133,5 @@ public class TPB_Character : MonoBehaviour
     {
         Debug.Log("Ending Hit Animation...");
         anim.ResetTrigger("isHit");
-        anim.SetBool("endIsHit", true);
     }
 }
