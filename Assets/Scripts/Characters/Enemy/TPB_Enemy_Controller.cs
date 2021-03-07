@@ -9,32 +9,48 @@
 public class TPB_Enemy_Controller : MonoBehaviour
 {
     private TPB_Enemy enemy;
-    private TPB_Melee_Enemy meleeEnemy;
+    private TPB_Melee_Enemy mEnemy;
+    private bool isMelee = false;
 
     void Awake()
     {
-        if (gameObject.GetComponent<TPB_Enemy>()) 
+        if (GetComponent<TPB_Enemy>()) {
             enemy = GetComponent<TPB_Enemy>();
+        }
 
-        if (gameObject.GetComponent<TPB_Melee_Enemy>()) 
-            meleeEnemy = GetComponent<TPB_Melee_Enemy>();
+        if (GetComponent<TPB_Melee_Enemy>()) {
+            mEnemy = GetComponent<TPB_Melee_Enemy>();
+        }
     }
 
     void Update()
     {
-        // Patrol();
-        MoveToTarget();
+        MoveToTarget();   
+        Patrol();
         enemy.CheckForCollisionsWithPlayer();   
-        
-        if (meleeEnemy) {
+        if (mEnemy) 
             MeleeAttack();
-        }
     }
 
     void Patrol()
-    {
-        if (!enemy.CanMoveToTarget()) {
-            enemy.Move(-1);
+    {  
+        if (enemy.patrolWhenNotDetectingPlayer) {
+            if (!enemy.CanMoveToTarget()) {
+                if (enemy.GroundAheadCheckStatus() || enemy.WallAheadCheckStatus()) {
+                    // Enemy needs to flip direction
+                    if (enemy.isFacingRight) {
+                        enemy.Move(-1);
+                    } else {
+                        enemy.Move(1);
+                    }
+                } else {
+                    if (enemy.isFacingRight) {
+                        enemy.Move(1);
+                    } else {
+                        enemy.Move(-1);
+                    }
+                }
+            }
         }
     }
 
@@ -53,8 +69,8 @@ public class TPB_Enemy_Controller : MonoBehaviour
 
     void MeleeAttack()
     {
-        if (meleeEnemy.CanAttackPlayer()) {
-            meleeEnemy.MeleeAttack(true);
+        if (mEnemy.CanAttackPlayer()) {
+            mEnemy.MeleeAttack(true);
         }
     }
 }

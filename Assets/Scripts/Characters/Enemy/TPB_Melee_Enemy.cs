@@ -56,8 +56,9 @@ public class TPB_Melee_Enemy : TPB_Enemy
         anim.SetBool("firstAttack", false);
     }
 
-    void OnDrawGizmosSelected()
+    protected override void OnDrawGizmosSelected()
     {
+        base.OnDrawGizmosSelected();
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireCube(attackCollider.position, new Vector3(attackHitBoxWidth, attackHitBoxHeight, 1));
     }

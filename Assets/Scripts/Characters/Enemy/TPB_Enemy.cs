@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 /**
  * Jake Pauls
@@ -10,6 +11,7 @@ public class TPB_Enemy : TPB_Character
 {
     [Header ("Enemy")]
     [Space]
+    public bool patrolWhenNotDetectingPlayer = false;
     public float aggroRange;
     public float stoppingDistance;
     [HideInInspector] public Transform target;
@@ -24,6 +26,10 @@ public class TPB_Enemy : TPB_Character
     [SerializeField] Transform collisionHitBox;
     [SerializeField] float collisionHitBoxHeight;
     [SerializeField] float collisionHitBoxWidth;
+    [SerializeField] Transform groundAheadCheck;
+    [SerializeField] float groundAheadCheckLength;
+    [SerializeField] Transform wallAheadCheck;
+    [SerializeField] float wallAheadCheckLength;
     protected LayerMask playerLayer;
 
     protected override void Awake()
@@ -68,9 +74,58 @@ public class TPB_Enemy : TPB_Character
             delayBetweenCollisions -= Time.deltaTime;
     }
 
-    void OnDrawGizmosSelected()
+    public bool GroundAheadCheckStatus()
     {
+        bool shouldEnemyTurnAround = false;
+        RaycastHit2D groundCast = Physics2D.Raycast(groundAheadCheck.position, Vector2.down, groundAheadCheckLength, base.environmentLayer);
+        
+        // If enemy ground ahead check doesn't return a collider, turn around
+        if (groundCast.collider == null) {
+            shouldEnemyTurnAround = true;
+        }
+        
+        return shouldEnemyTurnAround;
+    }
+
+    public bool WallAheadCheckStatus()
+    {
+        bool shouldEnemyTurnAround = false;
+        RaycastHit2D wallCast;
+        
+        // Determine cast direction
+        if (isFacingRight) {
+            wallCast = Physics2D.Raycast(wallAheadCheck.position, Vector2.right, wallAheadCheckLength, base.environmentLayer);
+        } else {
+            wallCast = Physics2D.Raycast(wallAheadCheck.position, Vector2.left, wallAheadCheckLength, base.environmentLayer);
+        }
+
+        // If enemy wall check returns a wall collider, turn around
+        if (wallCast.collider != null) {
+            shouldEnemyTurnAround = true;
+        }
+
+        return shouldEnemyTurnAround;
+    }
+
+    protected virtual void OnDrawGizmosSelected()
+    {
+        // Enemy Hit Box (Red)
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(collisionHitBox.position, new Vector3(collisionHitBoxWidth, collisionHitBoxHeight, 1));
+        
+        // Ground Ahead Raycast (Green)
+        Gizmos.color = Color.green;
+        Vector2 groundAheadDirection = transform.TransformDirection(Vector2.down) * groundAheadCheckLength;
+        Gizmos.DrawRay(groundAheadCheck.position, groundAheadDirection);
+        
+        // Wall Ahead Raycast (Green)
+        Gizmos.color = Color.blue;
+        Vector2 wallAheadDirection;
+        if (isFacingRight) {
+            wallAheadDirection = transform.TransformDirection(Vector2.right) * wallAheadCheckLength;
+        } else {
+            wallAheadDirection = transform.TransformDirection(Vector2.left) * wallAheadCheckLength;
+        }
+        Gizmos.DrawRay(wallAheadCheck.position, wallAheadDirection);
     }
 }
