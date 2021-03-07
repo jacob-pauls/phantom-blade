@@ -114,7 +114,7 @@ public class TPB_Character : MonoBehaviour
     public void ChangeHealthAmount(int amount)
     {
         if (amount == 0) { return; }
-        if (amount <= 0) { anim.SetTrigger("isHit"); }
+        if (amount <= 0) { anim.SetBool("isHit", true); }
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         onHealthChange?.Invoke();
         if (currentHealth <= 0)
@@ -131,6 +131,6 @@ public class TPB_Character : MonoBehaviour
 
     public void EndHitAnimation() 
     {
-        anim.ResetTrigger("isHit");
+        anim.SetBool("isHit", false);
     }
 }

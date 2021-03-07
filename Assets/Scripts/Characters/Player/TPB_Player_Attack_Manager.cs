@@ -26,6 +26,8 @@ public class TPB_Player_Attack_Manager : MonoBehaviour
 
     private bool isAttackKeyPressed = false;
 
+    private int attackNumber;
+
     public UnityEvent onEnemyHit;
 
     void Awake()
@@ -38,7 +40,9 @@ public class TPB_Player_Attack_Manager : MonoBehaviour
         this.isAttackKeyPressed = isAttackKeyPressed;
         if(delayBetweenAttacks <= 0) {
             if (isAttackKeyPressed) {   
-                anim.SetBool("firstAttack", true);             
+                attackNumber = Random.Range(1,4);
+                anim.SetInteger("attack", attackNumber);
+                attackNumber = 0;             
                 Collider2D[] enemyColliders = Physics2D.OverlapBoxAll(attackCollider.position, new Vector2(attackHitBoxWidth, attackHitBoxHeight), enemyLayer);
                 for (int i = 0; i < enemyColliders.Length; i++) {
                     TPB_Enemy enemy = enemyColliders[i].GetComponent<TPB_Enemy>();
@@ -66,7 +70,7 @@ public class TPB_Player_Attack_Manager : MonoBehaviour
 
     public void ResetMeleeAttack() 
     {
-        anim.SetBool("firstAttack", false);
+        anim.SetInteger("attack", attackNumber);
     }
 
     void OnDrawGizmosSelected()
