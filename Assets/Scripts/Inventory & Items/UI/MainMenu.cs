@@ -11,9 +11,7 @@ public class MainMenu : MonoBehaviour
 
     private void Awake()
     {
-        PlayerData data = GameManager.Load();
-
-        if (data.lastStageName == null || data.lastStageName == string.Empty)
+        if (SaveManager.Load("PlayerData") == null)
         {
             continueButton.gameObject.SetActive(false);
         }
@@ -31,7 +29,7 @@ public class MainMenu : MonoBehaviour
     {
         PlayerData data = GameManager.Load();
 
-        SceneManager.LoadScene(data.lastStageName);
+        SceneManager.LoadScene(startSceneName);
     }
 
     public void Quit()

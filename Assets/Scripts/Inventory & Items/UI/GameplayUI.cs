@@ -27,7 +27,7 @@ public class GameplayUI : MonoBehaviour
     // Private Properties
     private const float barAdjustmentSpeed = 2;
 
-    private void Start()
+    private void Awake()
     {
         instance = this;
 

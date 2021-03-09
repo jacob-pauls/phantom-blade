@@ -18,14 +18,17 @@ public class ItemSlotUI : MonoBehaviour
             return;
         }
 
+        // Find item in inventory
         Item item = GameManager.Load().Inventory.Get(itemID);
+
+        // If it's not in inventory, find it in the Database
         if (item == null)
         {
-            item = ItemDatabase.GetItem(itemID);
+            item = ItemDatabase.GetItem(itemID).Item;
             item.SetStackAmount(0);
         }
 
-        displayImage.sprite = item.DisplayImage;
+        displayImage.sprite = item.GetDisplayImage();
         amountTextUI.text = item.CurrentStackAmount.ToString();
     }
 }

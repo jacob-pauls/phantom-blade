@@ -10,30 +10,30 @@ using UnityEngine.Events;
 /// </summary>
 public class PickupItem : MonoBehaviour
 {
-    [SerializeField] private Item storedItem;
+    [SerializeField] protected ItemContainer storedItem;
 
     public UnityEvent onCollect;
 
-    public void SetStoredItem(Item item)
+    public void SetStoredItem(ItemContainer item)
     {
         storedItem = item;
     }
 
-    public Item Collect()
+    public virtual Item Collect()
     {
         onCollect?.Invoke();
 
-        Item newItem = ScriptableObject.CreateInstance<Item>();
-        newItem.name = storedItem.name;
-        newItem.SetValues(storedItem.name,
-            storedItem.Id,
-            storedItem.Type,
-            storedItem.Description,
-            storedItem.CurrentStackAmount,
-            storedItem.MaximumStackAmount,
-            storedItem.DisplayImage,
-            storedItem.Prefab,
-            storedItem.Attributes);
+        Item newItem = new Item(); // ScriptableObject.CreateInstance<Item>();
+        //newItem.name = storedItem.name;
+        newItem.SetValues(storedItem.Item.Name,
+            storedItem.Item.Id,
+            storedItem.Item.Type,
+            storedItem.Item.Description,
+            storedItem.Item.CurrentStackAmount,
+            storedItem.Item.MaximumStackAmount,
+            //storedItem.DisplayImage,
+            //storedItem.Prefab,
+            storedItem.Item.Attributes);
 
         return newItem;
     }

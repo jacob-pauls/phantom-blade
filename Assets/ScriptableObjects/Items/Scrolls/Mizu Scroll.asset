@@ -9,16 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d454c6177f2717441b301c7617c4faee, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f4441ddedc79f648a1ed24f619346a9, type: 3}
   m_Name: Mizu Scroll
   m_EditorClassIdentifier: 
-  name: Mizu Scroll
-  id: water_scroll
-  type: 1
-  description: "Flowing like everlasting change the words in the scroll\r tell a
-    tale of adaptability and fluidity. "
-  currentStackAmount: 0
-  maximumStackAmount: 2
-  displayImage: {fileID: 21300000, guid: 9adffeb724650c745b56ee714f33e924, type: 3}
-  prefab: {fileID: 6480639513951116591, guid: 3c9cdb83522cff64090cc2dbac1af67c, type: 3}
-  attributes: []
+  item:
+    name: Mizu Scroll
+    id: scroll_03
+    type: 1
+    description: "Flowing like everlasting change the words in the scroll\r tell
+      a tale of adaptability and fluidity."
+    currentStackAmount: 1
+    maximumStackAmount: 2
+    attributes: []
+  displayImage: {fileID: 0}
+  prefab: {fileID: 0}

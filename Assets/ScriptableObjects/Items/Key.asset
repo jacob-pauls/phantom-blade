@@ -9,15 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d454c6177f2717441b301c7617c4faee, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f4441ddedc79f648a1ed24f619346a9, type: 3}
   m_Name: Key
   m_EditorClassIdentifier: 
-  name: Key
-  id: new_opportunities
-  type: 1
-  description: An old key that can unlock almost anything but breaks when used.
-  currentStackAmount: 1
-  maximumStackAmount: 10
+  item:
+    name: Key
+    id: new_opportunities
+    type: 1
+    description: 
+    currentStackAmount: 1
+    maximumStackAmount: 10
+    attributes: []
   displayImage: {fileID: 21300000, guid: 1eef36d1305e37b46a9377c8d12cdac6, type: 3}
   prefab: {fileID: 5636403770690251733, guid: a25f94990d147aa4f8a593d972e26f02, type: 3}
-  attributes: []

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Item", menuName = "Create New Item", order = 0)]
-public class Item : ScriptableObject
+[System.Serializable]
+public class Item
 {
     public enum ItemType
     {
@@ -49,7 +49,7 @@ public class Item : ScriptableObject
         }
     }
 
-    [SerializeField] private new string name;
+    [SerializeField] private string name;
     public string Name { get { return name; } }
 
     [SerializeField] private string id;
@@ -78,14 +78,6 @@ public class Item : ScriptableObject
 
     [Space]
 
-    [SerializeField] private Sprite displayImage;
-    public Sprite DisplayImage { get { return displayImage; } }
-
-    [SerializeField] private GameObject prefab;
-    public GameObject Prefab { get { return prefab; } }
-
-    [Space]
-
     [SerializeField] private List<Attribute> attributes = new List<Attribute>();
     public List<Attribute> Attributes { get { return attributes; } }
 
@@ -98,6 +90,50 @@ public class Item : ScriptableObject
     public void SetStackAmount(int amount)
     {
         currentStackAmount = Mathf.Clamp(amount, 0, maximumStackAmount);
+    }
+
+    public Sprite GetDisplayImage()
+    {
+        if (!ItemDatabase.instance)
+        {
+            Debug.LogWarning("There is no ItemDatabase, please make sure it's in the scene.");
+            return null;
+        }
+
+        Sprite sprite = null;
+
+        for (int i = 0; i < ItemDatabase.Items.Count; i++)
+        {
+            if (ItemDatabase.Items[i].Item.Id == id)
+            {
+                sprite = ItemDatabase.Items[i].DisplayImage;
+                break;
+            }
+        }
+
+        return sprite;
+    }
+
+    public GameObject GetPrefab()
+    {
+        if (!ItemDatabase.instance)
+        {
+            Debug.LogWarning("There is no ItemDatabase, please make sure it's in the scene.");
+            return null;
+        }
+
+        GameObject prefab = null;
+
+        for (int i = 0; i < ItemDatabase.Items.Count; i++)
+        {
+            if (ItemDatabase.Items[i].Item.Id == id)
+            {
+                prefab = ItemDatabase.Items[i].Prefab;
+                break;
+            }
+        }
+
+        return prefab;
     }
 
     public Attribute GetAttribute(string name, bool showWarning = true)
@@ -121,6 +157,21 @@ public class Item : ScriptableObject
         return attribute;
     }
 
+    public void SetValues(string name, string id, ItemType type, string description, int currentStackAmount, int maximumStackAmount, /*Sprite displayImage, GameObject prefab,*/ List<Attribute> attributes)
+    {
+        this.name = name;
+        this.id = id;
+        this.type = type;
+        this.description = description;
+        this.currentStackAmount = currentStackAmount;
+        this.maximumStackAmount = maximumStackAmount;
+        //this.displayImage = displayImage;
+        //this.prefab = prefab;
+        this.attributes = attributes;
+    }
+
+    public Item() { }
+
     public Item(Item item)
     {
         name = item.name;
@@ -129,22 +180,10 @@ public class Item : ScriptableObject
         description = item.description;
         currentStackAmount = item.currentStackAmount;
         maximumStackAmount = item.maximumStackAmount;
-        displayImage = item.displayImage;
-        prefab = item.prefab;
+        //displayImage = item.displayImage;
+        //prefab = item.prefab;
         attributes = item.attributes;
     }
 
-    public void SetValues(string name, string id, ItemType type, string description, int currentStackAmount, int maximumStackAmount, Sprite displayImage, GameObject prefab, List<Attribute> attributes)
-    {
-        this.name = name;
-        this.id = id;
-        this.type = type;
-        this.description = description;
-        this.currentStackAmount = currentStackAmount;
-        this.maximumStackAmount = maximumStackAmount;
-        this.displayImage = displayImage;
-        this.prefab = prefab;
-        this.attributes = attributes;
-    }
 
 }

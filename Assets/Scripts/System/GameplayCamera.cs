@@ -34,10 +34,7 @@ public class GameplayCamera : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        if (findPlayerAsTarget)
-        {
-            target = GameObject.FindGameObjectWithTag("Player").transform;
-        }
+        if (findPlayerAsTarget) { target = GameObject.FindGameObjectWithTag("Player").transform; }
     }
 
     private void OnDestroy()

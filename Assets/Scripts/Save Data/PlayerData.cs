@@ -21,8 +21,9 @@ public class PlayerData : GameSaveFile
         }
     }
 
-    // Stages -- Only add new stages, do not remove stages
-    public string lastStageName;
+    // Stage Items -- Do not add stages from the start. Stage Managers will be in charge of transferring information.
+    private List<string> stageItemIDs = new List<string>();
+
     #endregion
 
     public PlayerData()
@@ -56,46 +57,29 @@ public class PlayerData : GameSaveFile
         }
     }
 
-    //public StageInfo GetStageInfo(string id)
-    //{
-    //    StageInfo stage = null;
+    public bool IsStageItemPickedUp(string id)
+    {
+            bool isPickup = false;
 
-    //    if (stages == null) { stages = new List<StageInfo>(); }
+            if (stageItemIDs.Count > 0)
+            {
+                for (int i = 0; i<stageItemIDs.Count; i++)
+                {
+                    if (id == stageItemIDs[i])
+                    {
+                        isPickup = true;
+                        break;
+                    }
+                }
+            }
 
-    //    for (int i = 0; i < stages.Count; i++)
-    //    {
+            return isPickup;
+    }
 
-    //        if (id == stages[i].stageID)
-    //        {
-    //            stage = stages[i];
-    //            break;
-    //        }
-    //    }
-
-    //    if (stage == null)
-    //    {
-    //        Debug.LogWarning("Stage ID: " + id + " does not exist.");
-    //    }
-
-    //    return stage;
-    //}
-
-    //public void SetStageInfo(string id, float highscore)
-    //{
-    //    bool isSet = false;
-    //    for (int i = 0; i < stages.Count; i++)
-    //    {
-    //        if (id == stages[i].stageID)
-    //        {
-    //            stages[i].highscore = highscore;
-    //            isSet = true;
-    //            break;
-    //        }
-    //    }
-
-    //    if (!isSet)
-    //    {
-    //        Debug.LogWarning("Stage: " + id + " does not exist.");
-    //    }
-    //}
+    public void AddStageItem(string stageItemID)
+    {
+        if (stageItemIDs == null) { stageItemIDs = new List<string>(); }
+        stageItemIDs.Add(stageItemID);
+        Debug.Log(stageItemID + " has been added to the stageItemIDs list.");
+    }
 }

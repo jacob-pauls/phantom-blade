@@ -58,12 +58,28 @@ public class Inventory
 
     public void Drop(string id, Vector2 position, int amount = 1)
     {
+        if (!ItemDatabase.instance)
+        {
+            Debug.LogError("There is no ItemDatabase. Add it to the scene.");
+            return;
+        }
+
         for (int i = 0; i < items.Count; i++)
         {
             if (id == items[i].Id)
             {
-                GameObject drop = Object.Instantiate(items[i].Prefab, position, Quaternion.identity);
-                drop.GetComponent<PickupItem>().SetStoredItem(items[i]);
+                // There is an item in the inventory
+
+                ItemContainer container = ItemDatabase.GetItem(id);
+
+                if (container == null)
+                {
+                    Debug.LogError(id + " is not in the ItemDatabase. Check for spelling or add it to the database.");
+                    return;
+                }
+
+                GameObject drop = Object.Instantiate(container.Prefab, position, Quaternion.identity);
+                drop.GetComponent<PickupItem>().SetStoredItem(container);
                 break;
             }
         }

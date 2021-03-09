@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     private static PlayerData loadedData;
 
-    // Load data
-    private int startPosition;
+    // Loading next stage information
+    public int StartPosition { get; private set; }
 
     private void Awake()
     {
@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
     // Selects stage by name, then checks 
     public static void LoadScene(string sceneName, int startPosition)
     {
-        instance.startPosition = startPosition;
+        instance.StartPosition = startPosition;
         SceneManager.LoadScene(sceneName);
 
         // Eventually may need to add a loading screen

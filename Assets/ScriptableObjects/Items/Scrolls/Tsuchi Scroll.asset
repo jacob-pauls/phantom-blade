@@ -9,16 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d454c6177f2717441b301c7617c4faee, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f4441ddedc79f648a1ed24f619346a9, type: 3}
   m_Name: Tsuchi Scroll
   m_EditorClassIdentifier: 
-  name: Tsuchi Scroll
-  id: earth_scroll
-  type: 1
-  description: 'The energy of those who had sureness of action in the midst of a
-    world of permanence flows through its words. '
-  currentStackAmount: 0
-  maximumStackAmount: 2
-  displayImage: {fileID: 21300000, guid: ae68faab022fcf1468fa671be5a743d3, type: 3}
-  prefab: {fileID: 6481878677273324695, guid: 0f93b11420dfaf849b7d800cdf65e122, type: 3}
-  attributes: []
+  item:
+    name: Tsuchi Scroll
+    id: scroll_04
+    type: 1
+    description: "The energy of those who had sureness of action\r in the midst of
+      a world of permanence flows through its words."
+    currentStackAmount: 1
+    maximumStackAmount: 2
+    attributes: []
+  displayImage: {fileID: 0}
+  prefab: {fileID: 0}

@@ -88,7 +88,7 @@ public class Chest : MonoBehaviour
         }
         else
         {
-            GameObject pickup = Instantiate(inventory.Get(index).Prefab, dropPosition.position, Quaternion.identity);
+            GameObject pickup = Instantiate(inventory.Get(index).GetPrefab(), dropPosition.position, Quaternion.identity);
 
             float x = Random.Range(-xShootRange, xShootRange);
             float y = yShootAmount;
