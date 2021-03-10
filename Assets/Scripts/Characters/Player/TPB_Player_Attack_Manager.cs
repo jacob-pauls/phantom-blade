@@ -49,6 +49,7 @@ public class TPB_Player_Attack_Manager : MonoBehaviour
                     if (enemy) {
                         // TODO: The logic is here to hit ONE enemy, modify this to multiple?
                         enemy.ChangeHealthAmount(-player.attackDamage);
+                        Debug.Log("Enemy hit! Enemy health: " + enemy.currentHealth);
                         onEnemyHit?.Invoke();
                         // gameObject.SetActive(false);
                         break;

@@ -86,7 +86,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4495356742497405019}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.41, y: -3.25, z: 0}
+  m_LocalPosition: {x: 3, y: -3.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5664313696349349157}
@@ -116,7 +116,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4760077223659610378}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.22, y: -1.54, z: 0}
+  m_LocalPosition: {x: 4.08, y: -1.54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5664313696349349157}
@@ -146,11 +146,41 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4915451086045421452}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.38, z: 0}
+  m_LocalPosition: {x: 0, y: -0.57, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3786770657223453980}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6781903869126305507
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7597318315489874489}
+  m_Layer: 12
+  m_Name: SlashProjectileSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7597318315489874489
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6781903869126305507}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.08, y: -0.86, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5664313696349349157}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7023135082904441158
 GameObject:
@@ -162,7 +192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5664313696349349157}
   m_Layer: 12
-  m_Name: PositioningChecks
+  m_Name: Positioning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,6 +212,7 @@ Transform:
   - {fileID: 1707262698995742494}
   - {fileID: 8595800255085317158}
   - {fileID: 6094256306896604685}
+  - {fileID: 7597318315489874489}
   m_Father: {fileID: 8696327242822370804}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -209,7 +240,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7178392473768105033}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.05, y: -0.86, z: 0}
+  m_LocalPosition: {x: 3.33, y: -0.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3786770657223453980}
@@ -381,7 +412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d15b18b7216e523448314a61a9dcf6e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 200
+  maxHealth: 1000
   maxEssence: 0
   speed: 2
   jumpForce: 3
@@ -413,7 +444,7 @@ MonoBehaviour:
     items: []
   isFacingRight: 1
   patrolWhenNotDetectingPlayer: 0
-  aggroRange: 50
+  aggroRange: 25
   stoppingDistance: 3
   target: {fileID: 0}
   attackDamage: 5
@@ -429,6 +460,15 @@ MonoBehaviour:
   attackHitBoxWidth: 8.35
   attackCollider: {fileID: 4774179620330565342}
   attackDelay: 5
+  chargeSpeed: 1150
+  chargeDistance: 1
+  projectile: {fileID: 3568876001393057906, guid: 5f59a771d349ba6428ba9c2f0e787099,
+    type: 3}
+  projectileSpawnPoint: {fileID: 7597318315489874489}
+  projectileDelay: 3
+  projectileSpeed: 1000
+  isCharging: 0
+  isSlashing: 0
 --- !u!114 &6171203892609265356
 MonoBehaviour:
   m_ObjectHideFlags: 0

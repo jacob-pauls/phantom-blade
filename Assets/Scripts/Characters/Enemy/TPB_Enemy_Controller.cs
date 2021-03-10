@@ -30,10 +30,15 @@ public class TPB_Enemy_Controller : MonoBehaviour
         MoveToTarget();   
         Patrol();
         enemy.CheckForCollisionsWithPlayer();   
-        if (mEnemy) 
+        
+        if (mEnemy) {
             MeleeAttack();
-        if (gEnemy)
+        }
+
+        if (gEnemy) {
             GatekeeperCharge();
+            GatekeeperSlashProjectile();
+        }
     }
 
     void Patrol()
@@ -87,6 +92,11 @@ public class TPB_Enemy_Controller : MonoBehaviour
      */
     void GatekeeperCharge()
     {
-        gEnemy.Charge(Input.GetButtonDown("Jump"));
+        //gEnemy.Charge(Input.GetButtonDown("Jump"));
+    }
+
+    void GatekeeperSlashProjectile()
+    {
+        gEnemy.SlashProjectile(Input.GetButton("Jump"));
     }
 }
