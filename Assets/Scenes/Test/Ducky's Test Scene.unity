@@ -624,7 +624,7 @@ PrefabInstance:
     - target: {fileID: 2721434367492450593, guid: 2a2d3eb347e4aac4fbecb1308b1f997b,
         type: 3}
       propertyPath: m_Name
-      value: Tsuchi Scroll - Stage Pickup Item
+      value: Testing Stage Pickup Item
       objectReference: {fileID: 0}
     - target: {fileID: 2721434367492450596, guid: 2a2d3eb347e4aac4fbecb1308b1f997b,
         type: 3}

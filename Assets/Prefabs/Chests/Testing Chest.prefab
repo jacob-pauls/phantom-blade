@@ -179,13 +179,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 498598a1e95c0d346bf7299ea5ba2bbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory:
-    items:
-    - {fileID: 11400000, guid: 897d5162188add448a266718e2ead1bb, type: 2}
-    - {fileID: 11400000, guid: 897d5162188add448a266718e2ead1bb, type: 2}
-    - {fileID: 11400000, guid: 171d717b04449d04aaf98d293d2f354c, type: 2}
+  items:
+  - {fileID: 11400000, guid: edeffc42ae45dce49a309eb0c07ced8c, type: 2}
+  - {fileID: 11400000, guid: 60b9ab136611d244e95bfb49d8fed78b, type: 2}
+  - {fileID: 11400000, guid: 22181da9126f38a47bc4e00262acc67e, type: 2}
+  - {fileID: 11400000, guid: 171d717b04449d04aaf98d293d2f354c, type: 2}
+  - {fileID: 11400000, guid: 8499a1bff7c26704aa09770a8cfd1418, type: 2}
   doesRequiresKey: 1
-  isReopenable: 0
+  chestId: Testing_Chest_01
   dropPosition: {fileID: 8516591832672195970}
   dropType: 1
   dropStartDelay: 0.5

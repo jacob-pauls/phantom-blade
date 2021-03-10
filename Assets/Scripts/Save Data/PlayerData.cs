@@ -24,6 +24,9 @@ public class PlayerData : GameSaveFile
     // Stage Items -- Do not add stages from the start. Stage Managers will be in charge of transferring information.
     private List<string> stageItemIDs = new List<string>();
 
+    // Opened Chests -- Keep IDs unique else errors will occur.
+    private List<string> chestIDs = new List<string>();
+
     #endregion
 
     public PlayerData()
@@ -81,5 +84,32 @@ public class PlayerData : GameSaveFile
         if (stageItemIDs == null) { stageItemIDs = new List<string>(); }
         stageItemIDs.Add(stageItemID);
         Debug.Log(stageItemID + " has been added to the stageItemIDs list.");
+    }
+
+    public bool IsChestOpened(string id)
+    {
+        bool isOpened = false;
+
+        if (chestIDs.Count > 0)
+        {
+            for (int i = 0; i < chestIDs.Count; i++)
+            {
+                if (id == chestIDs[i])
+                {
+                    isOpened = true;
+                    break;
+                }
+            }
+        }
+
+        return isOpened;
+    }
+
+    public void AddOpenedChest(string chestID)
+    {
+        if (chestIDs == null) { chestIDs = new List<string>(); }
+        stageItemIDs.Add(chestID);
+        Debug.Log(chestID + " has been added to the chestIDs list.");
+
     }
 }

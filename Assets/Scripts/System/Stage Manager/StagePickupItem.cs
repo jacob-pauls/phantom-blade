@@ -10,11 +10,9 @@ public class StagePickupItem : PickupItem
     {
         if (GameManager.instance != null)
         {
-            Debug.Log("Checking item");
             // If the item is already pickup up, turn this item off
             if (GameManager.Load().IsStageItemPickedUp(stageItemId))
             {
-                Debug.Log("Turn off item");
                 gameObject.SetActive(false);
             }
         }

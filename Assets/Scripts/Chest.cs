@@ -14,15 +14,15 @@ public class Chest : MonoBehaviour
         DropAllItems,
     }
 
-    [SerializeField] private Inventory inventory;
+    [SerializeField] private List<ItemContainer> items = new List<ItemContainer>();
+    private Inventory inventory = new Inventory();
 
     [Header("Conditions")]
     [SerializeField] private bool doesRequiresKey;
-    [SerializeField] private bool isReopenable;
+    [SerializeField] private string chestId;
 
     [Header("Item Drop Settings")]
     [SerializeField] private Transform dropPosition;
-    [Space]
     [SerializeField] private DropType dropType;
     [SerializeField] private float dropStartDelay = 1;
     [SerializeField] private float dropDelayBetweenItems = 0.5f;
@@ -41,17 +41,39 @@ public class Chest : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
+
+        if (items != null && inventory != null)
+        {
+            for (int i = 0; i < items.Count; i++)
+            {
+                Item item = new Item(items[i].Item);
+                inventory.Add(item);
+            }
+        }
+
+        // If the ID is not empty
+        if (chestId != "")
+        {
+            if (GameManager.instance)
+            {
+                if (GameManager.Load().IsChestOpened(chestId))
+                {
+                    animator.SetTrigger("Open");
+                    isOpenedOnce = true;
+                }
+            }
+        }
     }
 
     public void Open(bool isKeyAvailable = false)
     {
+        if (isOpenedOnce /*&& !isReopenable*/) { return; }
+
         if (doesRequiresKey && !isKeyAvailable)
         {
             onLocked?.Invoke();
             return;
         }
-
-        if (isOpenedOnce && !isReopenable) { return; }
 
         animator.SetTrigger("Open");
 
@@ -64,6 +86,12 @@ public class Chest : MonoBehaviour
             case DropType.DropAllItems:
                 StartCoroutine(DropAllRoutine());
                 break;
+        }
+
+        if (GameManager.instance)
+        {
+            GameManager.Load().AddOpenedChest(chestId);
+            GameManager.Save();
         }
 
         onOpen?.Invoke();

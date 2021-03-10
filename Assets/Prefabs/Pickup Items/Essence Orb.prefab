@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 8331381427503557796}
   - component: {fileID: 2730727809768879703}
   m_Layer: 11
-  m_Name: Testing Pickup Item (Essence)
+  m_Name: Essence Orb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8de0e2c638d71c24f854f1228dc8a7d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storedItem: {fileID: 11400000, guid: 897d5162188add448a266718e2ead1bb, type: 2}
+  storedItem: {fileID: 11400000, guid: 171d717b04449d04aaf98d293d2f354c, type: 2}
   onCollect:
     m_PersistentCalls:
       m_Calls: []

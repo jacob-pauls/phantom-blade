@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff4b125ebaf39f46b71603c906d7421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storedItem: {fileID: 11400000, guid: 8499a1bff7c26704aa09770a8cfd1418, type: 2}
+  storedItem: {fileID: 11400000, guid: 60b9ab136611d244e95bfb49d8fed78b, type: 2}
   onCollect:
     m_PersistentCalls:
       m_Calls: []
