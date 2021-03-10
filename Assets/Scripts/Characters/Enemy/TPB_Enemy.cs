@@ -38,6 +38,22 @@ public class TPB_Enemy : TPB_Character
         playerLayer = LayerMask.GetMask("Player");
     }
 
+    protected override void Update()
+    {
+        base.Update();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        TPB_Player player = collision.gameObject.GetComponent<TPB_Player>();
+        if (player != null) {
+            base.rb2D.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other) {
+        base.rb2D.constraints = RigidbodyConstraints2D.None;
+    }
+
     /*
      * Helper Functions
      */

@@ -10,17 +10,19 @@ public class TPB_Enemy_Controller : MonoBehaviour
 {
     private TPB_Enemy enemy;
     private TPB_Melee_Enemy mEnemy;
+    private TPB_Gatekeeper gEnemy;
     private bool isMelee = false;
 
     void Awake()
     {
-        if (GetComponent<TPB_Enemy>()) {
+        if (GetComponent<TPB_Enemy>()) 
             enemy = GetComponent<TPB_Enemy>();
-        }
 
-        if (GetComponent<TPB_Melee_Enemy>()) {
+        if (GetComponent<TPB_Melee_Enemy>()) 
             mEnemy = GetComponent<TPB_Melee_Enemy>();
-        }
+
+        if (GetComponent<TPB_Gatekeeper>()) 
+            gEnemy = GetComponent<TPB_Gatekeeper>();
     }
 
     void Update()
@@ -30,6 +32,8 @@ public class TPB_Enemy_Controller : MonoBehaviour
         enemy.CheckForCollisionsWithPlayer();   
         if (mEnemy) 
             MeleeAttack();
+        if (gEnemy)
+            GatekeeperCharge();
     }
 
     void Patrol()
@@ -67,10 +71,22 @@ public class TPB_Enemy_Controller : MonoBehaviour
         }
     }
 
+    /**
+     *  Melee Controls
+     */
     void MeleeAttack()
     {
         if (mEnemy.CanAttackPlayer()) {
             mEnemy.MeleeAttack(true);
         }
+    }
+
+    /**
+     * Gatekeeper Controls
+     * TODO: Abstract this logic into seperate 'Gatekeeper Controller' in order to extend logic
+     */
+    void GatekeeperCharge()
+    {
+        gEnemy.Charge(Input.GetButtonDown("Jump"));
     }
 }

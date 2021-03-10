@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1877009441027394360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3786770657223453980}
+  m_Layer: 12
+  m_Name: HitBoxes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3786770657223453980
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877009441027394360}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5814082433200230296}
+  - {fileID: 4774179620330565342}
+  m_Father: {fileID: 8696327242822370804}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3794384020404374524
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,11 +145,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4915451086045421452}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8696327242822370804}
+  m_Father: {fileID: 3786770657223453980}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7023135082904441158
@@ -153,6 +185,36 @@ Transform:
   m_Father: {fileID: 8696327242822370804}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7178392473768105033
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4774179620330565342}
+  m_Layer: 12
+  m_Name: AttackHitBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4774179620330565342
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7178392473768105033}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.05, y: -0.86, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3786770657223453980}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8696327242822370806
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,6 +228,8 @@ GameObject:
   - component: {fileID: 8696327242822370802}
   - component: {fileID: 8696327242822370805}
   - component: {fileID: 8696327242822370803}
+  - component: {fileID: 1732627664086741898}
+  - component: {fileID: 6171203892609265356}
   m_Layer: 12
   m_Name: GateKeeper
   m_TagString: Untagged
@@ -184,7 +248,7 @@ Transform:
   m_LocalPosition: {x: 3.91, y: 0.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5814082433200230296}
+  - {fileID: 3786770657223453980}
   - {fileID: 5664313696349349157}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -305,3 +369,75 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.2, y: 8.13}
   m_EdgeRadius: 0
+--- !u!114 &1732627664086741898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8696327242822370806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d15b18b7216e523448314a61a9dcf6e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 200
+  maxEssence: 0
+  speed: 2
+  jumpForce: 3
+  fallMultiplier: 4
+  shortHopMultiplier: 8
+  groundCheck: {fileID: 1707262698995742494}
+  environmentLayer:
+    serializedVersion: 2
+    m_Bits: 17408
+  onHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onEssenceChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  onGroundEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onItemCollected:
+    m_PersistentCalls:
+      m_Calls: []
+  onItemUsed:
+    m_PersistentCalls:
+      m_Calls: []
+  inventory:
+    items: []
+  isFacingRight: 1
+  patrolWhenNotDetectingPlayer: 0
+  aggroRange: 50
+  stoppingDistance: 3
+  target: {fileID: 0}
+  attackDamage: 5
+  collisionDelay: 0.3
+  collisionHitBox: {fileID: 5814082433200230296}
+  collisionHitBoxHeight: 7.12
+  collisionHitBoxWidth: 6.12
+  groundAheadCheck: {fileID: 8595800255085317158}
+  groundAheadCheckLength: 2.34
+  wallAheadCheck: {fileID: 6094256306896604685}
+  wallAheadCheckLength: 3.9
+  attackHitBoxHeight: 8.26
+  attackHitBoxWidth: 8.35
+  attackCollider: {fileID: 4774179620330565342}
+  attackDelay: 5
+--- !u!114 &6171203892609265356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8696327242822370806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9762e89b621d9d148a8fcc6d069adfbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

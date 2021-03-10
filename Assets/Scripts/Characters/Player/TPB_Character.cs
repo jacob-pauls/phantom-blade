@@ -55,7 +55,7 @@ public class TPB_Character : MonoBehaviour
         currentEssence = maxEssence;
     }
 
-    void Update()
+    protected virtual void Update()
     {
         GroundCheck();
     }
