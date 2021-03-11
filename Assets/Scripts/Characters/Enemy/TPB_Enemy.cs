@@ -30,7 +30,7 @@ public class TPB_Enemy : TPB_Character
     [SerializeField] Transform wallAheadCheck;
     [SerializeField] float wallAheadCheckLength;
     protected LayerMask playerLayer;
-
+    
     protected override void Awake()
     {
         base.Awake();

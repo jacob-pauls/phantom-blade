@@ -30,12 +30,14 @@ public class TPB_Gatekeeper : TPB_Melee_Enemy
         if (startCharging || isCharging) {
             if (chargeTime <= 0) {
                 isCharging = false;
+                isAttackingDisabled = false;
                 base.anim.SetBool("isCharging", false);
 
                 chargeTime = chargeDistance;
                 base.rb2D.velocity = Vector2.zero;
             } else {
                 isCharging = true;
+                base.isAttackingDisabled = true;
                 base.anim.SetBool("isCharging", true);
                 
                 chargeTime -= Time.deltaTime;
@@ -58,6 +60,7 @@ public class TPB_Gatekeeper : TPB_Melee_Enemy
     private void FireProjectile(Vector2 direction, float force) 
     {
         GameObject slashProjectile = (GameObject) Instantiate(projectile, projectileSpawnPoint.position, Quaternion.identity);
+        
         Rigidbody2D projectileRigidBody = slashProjectile.GetComponent<Rigidbody2D>();
         projectileRigidBody.AddForce(direction * force);
 
@@ -71,6 +74,7 @@ public class TPB_Gatekeeper : TPB_Melee_Enemy
         if (timeBetweenProjectiles <= 0) {
             if (startSlash) {
                 base.anim.SetBool("firstAttack", true);
+                base.isAttackingDisabled = true;
 
                 if (base.isFacingRight) {
                     FireProjectile(Vector2.right, projectileSpeed);
@@ -81,6 +85,7 @@ public class TPB_Gatekeeper : TPB_Melee_Enemy
                 timeBetweenProjectiles = projectileDelay;
             }
         } else {
+            base.isAttackingDisabled = false;
             timeBetweenProjectiles -= Time.deltaTime;
         }
     }

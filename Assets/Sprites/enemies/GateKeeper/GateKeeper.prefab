@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 8696327242822370805}
   - component: {fileID: 8696327242822370803}
   - component: {fileID: 1732627664086741898}
-  - component: {fileID: 6171203892609265356}
+  - component: {fileID: 5312023507010057455}
   m_Layer: 12
   m_Name: GateKeeper
   m_TagString: Untagged
@@ -424,13 +424,35 @@ MonoBehaviour:
     m_Bits: 17408
   onHealthChange:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5312023507010057455}
+        m_MethodName: GatekeeperPhaseManager
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onEssenceChange:
     m_PersistentCalls:
       m_Calls: []
   onDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5312023507010057455}
+        m_MethodName: EndGatekeeperBattle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onGroundEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -460,8 +482,9 @@ MonoBehaviour:
   attackHitBoxWidth: 8.35
   attackCollider: {fileID: 4774179620330565342}
   attackDelay: 5
+  isAttackingDisabled: 0
   chargeSpeed: 1150
-  chargeDistance: 1
+  chargeDistance: 0.45
   projectile: {fileID: 3568876001393057906, guid: 5f59a771d349ba6428ba9c2f0e787099,
     type: 3}
   projectileSpawnPoint: {fileID: 7597318315489874489}
@@ -469,7 +492,7 @@ MonoBehaviour:
   projectileSpeed: 1000
   isCharging: 0
   isSlashing: 0
---- !u!114 &6171203892609265356
+--- !u!114 &5312023507010057455
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -478,6 +501,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8696327242822370806}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9762e89b621d9d148a8fcc6d069adfbd, type: 3}
+  m_Script: {fileID: 11500000, guid: 23b3e10767ecf1f4987b073291d679c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controllerAbilityDelay: 0

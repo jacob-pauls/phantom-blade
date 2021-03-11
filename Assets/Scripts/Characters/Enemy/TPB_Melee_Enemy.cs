@@ -19,8 +19,13 @@ public class TPB_Melee_Enemy : TPB_Enemy
     private float delayBetweenAttacks = 0f;
     [SerializeField] private float attackDelay = 0.3f;
 
+    // Miscellaneous field to disable attacks during abilities
+    [HideInInspector] public bool isAttackingDisabled = false;
+
     public bool CanAttackPlayer() 
     {
+        if (isAttackingDisabled) { return false; }
+
         Collider2D[] playerColliders = Physics2D.OverlapBoxAll(attackCollider.position, new Vector2(attackHitBoxWidth, attackHitBoxHeight), base.playerLayer);
         for (int i = 0; i < playerColliders.Length; i++) {
             TPB_Player player = playerColliders[i].GetComponent<TPB_Player>();

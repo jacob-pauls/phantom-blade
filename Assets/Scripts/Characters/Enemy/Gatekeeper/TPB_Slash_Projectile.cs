@@ -14,7 +14,7 @@ public class TPB_Slash_Projectile : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision) {
         TPB_Player player = collision.GetComponent<TPB_Player>();
-        if (player != null) {
+        if (player != null && !player.isPhaseShifting) {
             player.ChangeHealthAmount(-projectileDamage);
         }
     }

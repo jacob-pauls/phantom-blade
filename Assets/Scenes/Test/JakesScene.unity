@@ -1762,6 +1762,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d15b18b7216e523448314a61a9dcf6e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &245552160 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5312023507010057455, guid: 477361223b46fb944bb8052af14f4bd7,
+    type: 3}
+  m_PrefabInstance: {fileID: 346602207}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23b3e10767ecf1f4987b073291d679c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &282584782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1994,6 +2006,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1732627664086741898, guid: 477361223b46fb944bb8052af14f4bd7,
         type: 3}
+      propertyPath: onHealthChange.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1732627664086741898, guid: 477361223b46fb944bb8052af14f4bd7,
+        type: 3}
       propertyPath: chargeDelay
       value: 5
       objectReference: {fileID: 0}
@@ -2001,6 +2018,41 @@ PrefabInstance:
         type: 3}
       propertyPath: projectileForce
       value: 12.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1732627664086741898, guid: 477361223b46fb944bb8052af14f4bd7,
+        type: 3}
+      propertyPath: chargeDistance
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1732627664086741898, guid: 477361223b46fb944bb8052af14f4bd7,
+        type: 3}
+      propertyPath: onHealthChange.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1732627664086741898, guid: 477361223b46fb944bb8052af14f4bd7,
+        type: 3}
+      propertyPath: onHealthChange.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1732627664086741898, guid: 477361223b46fb944bb8052af14f4bd7,
+        type: 3}
+      propertyPath: onHealthChange.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 245552160}
+    - target: {fileID: 1732627664086741898, guid: 477361223b46fb944bb8052af14f4bd7,
+        type: 3}
+      propertyPath: onHealthChange.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GatekeeperPhaseManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 1732627664086741898, guid: 477361223b46fb944bb8052af14f4bd7,
+        type: 3}
+      propertyPath: onHealthChange.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1732627664086741898, guid: 477361223b46fb944bb8052af14f4bd7,
+        type: 3}
+      propertyPath: attackDelay
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6781903869126305507, guid: 477361223b46fb944bb8052af14f4bd7,
         type: 3}

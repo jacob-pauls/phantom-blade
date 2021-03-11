@@ -13,19 +13,16 @@ public class TPB_Enemy_Controller : MonoBehaviour
     private TPB_Gatekeeper gEnemy;
     private bool isMelee = false;
 
-    void Awake()
+    protected virtual void Awake()
     {
         if (GetComponent<TPB_Enemy>()) 
             enemy = GetComponent<TPB_Enemy>();
 
         if (GetComponent<TPB_Melee_Enemy>()) 
             mEnemy = GetComponent<TPB_Melee_Enemy>();
-
-        if (GetComponent<TPB_Gatekeeper>()) 
-            gEnemy = GetComponent<TPB_Gatekeeper>();
     }
 
-    void Update()
+    protected virtual void Update()
     {
         MoveToTarget();   
         Patrol();
@@ -33,11 +30,6 @@ public class TPB_Enemy_Controller : MonoBehaviour
         
         if (mEnemy) {
             MeleeAttack();
-        }
-
-        if (gEnemy) {
-            GatekeeperCharge();
-            GatekeeperSlashProjectile();
         }
     }
 
@@ -84,19 +76,5 @@ public class TPB_Enemy_Controller : MonoBehaviour
         if (mEnemy.CanAttackPlayer()) {
             mEnemy.MeleeAttack(true);
         }
-    }
-
-    /**
-     * Gatekeeper Controls
-     * TODO: Abstract this logic into seperate 'Gatekeeper Controller' in order to extend logic
-     */
-    void GatekeeperCharge()
-    {
-        //gEnemy.Charge(Input.GetButtonDown("Jump"));
-    }
-
-    void GatekeeperSlashProjectile()
-    {
-        gEnemy.SlashProjectile(Input.GetButton("Jump"));
     }
 }
