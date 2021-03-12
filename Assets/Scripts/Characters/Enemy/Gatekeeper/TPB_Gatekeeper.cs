@@ -61,6 +61,16 @@ public class TPB_Gatekeeper : TPB_Melee_Enemy
     {
         GameObject slashProjectile = (GameObject) Instantiate(projectile, projectileSpawnPoint.position, Quaternion.identity);
         
+        if (base.isFacingRight) {
+            Vector3 newScale = slashProjectile.transform.localScale;
+            newScale.x = -Mathf.Abs(newScale.x);
+            slashProjectile.transform.localScale = newScale;
+        } else {
+            Vector3 newScale = slashProjectile.transform.localScale;
+            newScale.x = Mathf.Abs(newScale.x);
+            slashProjectile.transform.localScale = newScale;
+        }
+
         Rigidbody2D projectileRigidBody = slashProjectile.GetComponent<Rigidbody2D>();
         projectileRigidBody.AddForce(direction * force);
 
@@ -73,6 +83,7 @@ public class TPB_Gatekeeper : TPB_Melee_Enemy
     {
         if (timeBetweenProjectiles <= 0) {
             if (startSlash) {
+                isSlashing = true;
                 base.anim.SetBool("firstAttack", true);
                 base.isAttackingDisabled = true;
 
@@ -83,6 +94,8 @@ public class TPB_Gatekeeper : TPB_Melee_Enemy
                 }
 
                 timeBetweenProjectiles = projectileDelay;
+            } else {
+                isSlashing = false;
             }
         } else {
             base.isAttackingDisabled = false;

@@ -71,7 +71,6 @@ public class TPB_Player_Controller : MonoBehaviour
             source.clip = Blade;
             source.Play();
         }
-
     }
 
     void RangedAttackController()
@@ -92,8 +91,6 @@ public class TPB_Player_Controller : MonoBehaviour
             source.clip = PhaseShift;
             source.Play();
         }
-        
-
     }
 
     void WallJumpController()

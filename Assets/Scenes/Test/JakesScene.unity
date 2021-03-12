@@ -2007,11 +2007,6 @@ PrefabInstance:
       propertyPath: controllerAttackDelay
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 5312023507010057455, guid: 477361223b46fb944bb8052af14f4bd7,
-        type: 3}
-      propertyPath: controllerAbilityDelay
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 6781903869126305507, guid: 477361223b46fb944bb8052af14f4bd7,
         type: 3}
       propertyPath: m_Icon
@@ -2036,7 +2031,7 @@ PrefabInstance:
     - target: {fileID: 8696327242822370804, guid: 477361223b46fb944bb8052af14f4bd7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -27.24
+      value: -51.38
       objectReference: {fileID: 0}
     - target: {fileID: 8696327242822370804, guid: 477361223b46fb944bb8052af14f4bd7,
         type: 3}

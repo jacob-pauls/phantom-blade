@@ -17,6 +17,7 @@ public class GameplayUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI keyAmountTextUI;
 
     private bool isPlayerInitialized;
+    private bool isBossInitialized;
     //[SerializeField] private PlayerComboUI playerComboUI;
 
     [Header("Boss")]
@@ -27,7 +28,7 @@ public class GameplayUI : MonoBehaviour
     // Private Properties
     private const float barAdjustmentSpeed = 2;
 
-    private void Awake()
+    private void Start()
     {
         instance = this;
 
@@ -37,6 +38,7 @@ public class GameplayUI : MonoBehaviour
         }
 
         if (player != null) { SetPlayer(player); }
+        if (boss != null) { SetBoss(boss); }
         if (boss == null) { bossHealthBar.gameObject.SetActive(false); }
 
         //boss.onDeath?.AddListener();
@@ -146,22 +148,22 @@ public class GameplayUI : MonoBehaviour
     {
         instance.boss = boss;
 
-        if (!instance.isPlayerInitialized)
+        if (!instance.isBossInitialized)
         {
             instance.boss.onHealthChange?.AddListener(UpdateBossHealthBar);
             //player.onComboUpdate?.AddListener(UpdatePlayerHealthBar());
-            instance.isPlayerInitialized = true;
+            instance.isBossInitialized = true;
         }
 
-        if (bossNameTextUI != null) { bossNameTextUI.text = boss.name; }
+        if (bossNameTextUI != null) { bossNameTextUI.text = boss.characterName; }
 
-        instance.bossHealthBar.maxValue = player.maxHealth;
-        instance.bossHealthBar.value = player.currentHealth;
+        instance.bossHealthBar.maxValue = boss.maxHealth;
+        instance.bossHealthBar.value = boss.currentHealth;
     }
 
     public void UpdateBossHealthBar()
     {
-        if (instance.playerHealthBar == null)
+        if (instance.bossHealthBar == null)
         {
             Debug.LogWarning("Please attach a slider for the player's health");
         }
@@ -174,6 +176,7 @@ public class GameplayUI : MonoBehaviour
 
     private IEnumerator UpdateBossHealthBarRoutine()
     {
+        Debug.Log("UpdateBossHealth -> " + boss.currentHealth);
         float characterHealth = boss.currentHealth; // Need to replace this with the Character.Health
         float currentHealth = bossHealthBar.value;
         float progress = 0;

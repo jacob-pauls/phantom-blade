@@ -482,6 +482,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e2206131775bdd41a6038c8b0553191, type: 3}
+--- !u!114 &797795253 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1685422410332198185, guid: 9cef380600c1e5645a9415b43798e261,
+    type: 3}
+  m_PrefabInstance: {fileID: 1817193629}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b31695fd24d6c94eac3e16a01921072, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &915394421
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -489,6 +501,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1732627664086741898, guid: 477361223b46fb944bb8052af14f4bd7,
+        type: 3}
+      propertyPath: patrolWhenNotDetectingPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1732627664086741898, guid: 477361223b46fb944bb8052af14f4bd7,
+        type: 3}
+      propertyPath: characterName
+      value: Gatekeeper
+      objectReference: {fileID: 0}
+    - target: {fileID: 3786770657223453980, guid: 477361223b46fb944bb8052af14f4bd7,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664313696349349157, guid: 477361223b46fb944bb8052af14f4bd7,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8696327242822370804, guid: 477361223b46fb944bb8052af14f4bd7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -544,15 +576,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8696327242822370805, guid: 477361223b46fb944bb8052af14f4bd7,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8696327242822370806, guid: 477361223b46fb944bb8052af14f4bd7,
         type: 3}
       propertyPath: m_Name
       value: GateKeeper
-      objectReference: {fileID: 0}
-    - target: {fileID: 8696327242822370807, guid: 477361223b46fb944bb8052af14f4bd7,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 318081315
       objectReference: {fileID: 0}
     - target: {fileID: 8696327242822370807, guid: 477361223b46fb944bb8052af14f4bd7,
         type: 3}
@@ -882,10 +914,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1685422410332198185, guid: 9cef380600c1e5645a9415b43798e261,
+        type: 3}
+      propertyPath: characterName
+      value: Akiro
+      objectReference: {fileID: 0}
     - target: {fileID: 3427020085238654359, guid: 9cef380600c1e5645a9415b43798e261,
         type: 3}
       propertyPath: m_Name
       value: JakesPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427020085238654359, guid: 9cef380600c1e5645a9415b43798e261,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 7134867002066762118, guid: 9cef380600c1e5645a9415b43798e261,
         type: 3}
@@ -899,6 +941,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cef380600c1e5645a9415b43798e261, type: 3}
+--- !u!114 &1826463003 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1732627664086741898, guid: 477361223b46fb944bb8052af14f4bd7,
+    type: 3}
+  m_PrefabInstance: {fileID: 915394421}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d15b18b7216e523448314a61a9dcf6e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2102166173
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1026,6 +1080,16 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1525550642291415144, guid: 649b9a307f87822459ff4422ba570135,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 797795253}
+    - target: {fileID: 1525550642291415144, guid: 649b9a307f87822459ff4422ba570135,
+        type: 3}
+      propertyPath: boss
+      value: 
+      objectReference: {fileID: 1826463003}
     - target: {fileID: 2816246865999432996, guid: 649b9a307f87822459ff4422ba570135,
         type: 3}
       propertyPath: m_AnchorMin.y

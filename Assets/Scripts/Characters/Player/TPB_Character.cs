@@ -9,6 +9,7 @@ using UnityEngine.Events;
 
 public class TPB_Character : MonoBehaviour
 {
+    public string characterName; 
     [Header ("Character Health and Essence")]
     public int maxHealth = 100;
     public int maxEssence = 50;
@@ -115,6 +116,7 @@ public class TPB_Character : MonoBehaviour
     {
         if (amount == 0) { return; }
         if (amount <= 0) { anim.SetBool("isHit", true); }
+        
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         onHealthChange?.Invoke();
         if (currentHealth <= 0)

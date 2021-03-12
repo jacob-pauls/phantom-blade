@@ -49,9 +49,11 @@ public class TPB_Gatekeeper_Controller : TPB_Enemy_Controller
         CheckGatekeeperAbilityOptions();
         DetermineGatekeeperAbility();
 
-        // TODO: Find way to make this work without persistent Update call
         if (gatekeeper.isCharging)
             gatekeeper.Charge(true);
+
+        if (gatekeeper.isSlashing)
+            gatekeeper.SlashProjectile(false);
     }
 
     /**
@@ -158,6 +160,7 @@ public class TPB_Gatekeeper_Controller : TPB_Enemy_Controller
                 ChargeCast();
                 break;
             case GatekeeperAbilityOptions.Projectile:
+                Debug.Log("Fired a projectile");
                 SlashProjectileCast();
                 break;
         }

@@ -320,8 +320,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1479322107
-  m_SortingLayer: 11
+  m_SortingLayerID: 318081315
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b17d8a6a88e4786409f726508f5f7e06, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -421,7 +421,7 @@ MonoBehaviour:
   groundCheck: {fileID: 1707262698995742494}
   environmentLayer:
     serializedVersion: 2
-    m_Bits: 17408
+    m_Bits: 1024
   onHealthChange:
     m_PersistentCalls:
       m_Calls:
@@ -504,4 +504,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23b3e10767ecf1f4987b073291d679c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controllerAbilityDelay: 0
+  controllerAbilityDelay: 10
