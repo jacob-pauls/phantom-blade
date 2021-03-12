@@ -6,8 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/graveYard.unity
-    guid: b7bd338800c81e04186551902cb9dcf1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 069309f5b40ef8e469ac482303a1ab63
+  - enabled: 1
+    path: Assets/Scenes/GraveYard/graveYard.unity
+    guid: a700ac1926919e74aadf693a4b2b960d
   - enabled: 1
     path: Assets/Scenes/Dead Woods/DeadWoodsScene1.unity
     guid: f15c85aed34ca6149a55a9864beadb07
@@ -23,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dead Woods/BossStage.unity
     guid: 7b16e43059b3f5746b1fd521c8eedf7e
+  - enabled: 1
+    path: Assets/Scenes/Dead Woods/DeadWoodsScene1A.unity
+    guid: 94b21fc80704e1141aa6381094b2ad7f
+  - enabled: 1
+    path: Assets/Scenes/GraveYard/graveYardA.unity
+    guid: 634489060a05eb449a28e9ac3aeae0e3
   m_configObjects: {}
