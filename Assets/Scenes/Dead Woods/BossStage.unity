@@ -504,7 +504,7 @@ PrefabInstance:
     - target: {fileID: 1732627664086741898, guid: 477361223b46fb944bb8052af14f4bd7,
         type: 3}
       propertyPath: patrolWhenNotDetectingPlayer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1732627664086741898, guid: 477361223b46fb944bb8052af14f4bd7,
         type: 3}
@@ -928,6 +928,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3936595000865554176, guid: 9cef380600c1e5645a9415b43798e261,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.05
       objectReference: {fileID: 0}
     - target: {fileID: 7134867002066762118, guid: 9cef380600c1e5645a9415b43798e261,
         type: 3}

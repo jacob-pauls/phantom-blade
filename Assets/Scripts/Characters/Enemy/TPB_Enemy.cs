@@ -111,6 +111,18 @@ public class TPB_Enemy : TPB_Character
         return shouldEnemyTurnAround;
     }
 
+    // When a skeleton dies, leave only their sprite on the ground
+    public void TriggerSkeletonDeath()
+    {
+        MonoBehaviour[] components = GetComponents<MonoBehaviour>();
+        foreach(MonoBehaviour component in components) {
+            if (component != GetComponent<SpriteRenderer>())
+                component.enabled = false;
+        }
+        GetComponent<Animator>().enabled = false;
+        GetComponent<CircleCollider2D>().enabled = false;
+    }
+
     protected virtual void OnDrawGizmosSelected()
     {
         // Enemy Hit Box (Red)
