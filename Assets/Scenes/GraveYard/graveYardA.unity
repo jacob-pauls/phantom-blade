@@ -2365,6 +2365,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: JakesPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 4171346240624892545, guid: 9cef380600c1e5645a9415b43798e261,
+        type: 3}
+      propertyPath: PhaseShift
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171346240624892545, guid: 9cef380600c1e5645a9415b43798e261,
+        type: 3}
+      propertyPath: Blade
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5796907756411289695, guid: 9cef380600c1e5645a9415b43798e261,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -8954,7 +8964,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8f570f8e9b36f354c9343435b2e231a9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.692
+  m_Volume: 0.214
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -9133,6 +9143,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1921110412 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3427020085238654359, guid: 9cef380600c1e5645a9415b43798e261,
+    type: 3}
+  m_PrefabInstance: {fileID: 422765852}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1921110421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921110412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c09b93f63fb3afa49a9cb7d5caf1a777, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blade: {fileID: 8300000, guid: 596fb8e2b58f7194b924837c38cf36c3, type: 3}
+  phaseShift: {fileID: 8300000, guid: 5d22c39ece9df38488e1522cd927d5e5, type: 3}
+  footstep: {fileID: 8300000, guid: 08be0cdb9059e6546a6cc3efdd4ae02d, type: 3}
 --- !u!1 &1953324887
 GameObject:
   m_ObjectHideFlags: 0

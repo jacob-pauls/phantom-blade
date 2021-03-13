@@ -10,9 +10,7 @@ public class TPB_Player_Controller : MonoBehaviour
 {
     private TPB_Player player;
     private TPB_Player_Attack_Manager attackManager;
-    private AudioSource source;
-    public AudioClip PhaseShift;
-    public AudioClip Blade;
+   
 
     void Awake()
     {
@@ -22,7 +20,7 @@ public class TPB_Player_Controller : MonoBehaviour
 
     void Update() 
     {
-        source = GetComponent<AudioSource>();
+        
         MovementController();
         JumpController();
         CrouchController();
@@ -66,11 +64,7 @@ public class TPB_Player_Controller : MonoBehaviour
     {
         bool isAttackKeyPressed = Input.GetButton("Melee");
         attackManager.MeleeAttack(isAttackKeyPressed);
-        if (isAttackKeyPressed) 
-        {
-            source.clip = Blade;
-            source.Play();
-        }
+       
     }
 
     void RangedAttackController()
@@ -86,11 +80,7 @@ public class TPB_Player_Controller : MonoBehaviour
     {
         bool isPhaseShiftKeyPressed = Input.GetButton("Phase Shift");
         player.PhaseShift(isPhaseShiftKeyPressed);
-        if (isPhaseShiftKeyPressed)
-        {
-            source.clip = PhaseShift;
-            source.Play();
-        }
+        
     }
 
     void WallJumpController()

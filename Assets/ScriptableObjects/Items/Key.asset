@@ -20,5 +20,5 @@ MonoBehaviour:
     currentStackAmount: 1
     maximumStackAmount: 10
     attributes: []
-  displayImage: {fileID: 21300000, guid: 1eef36d1305e37b46a9377c8d12cdac6, type: 3}
+  displayImage: {fileID: 21300000, guid: bf79da60de146cb418c5c02ab6c4f9db, type: 3}
   prefab: {fileID: 5636403770690251733, guid: a25f94990d147aa4f8a593d972e26f02, type: 3}

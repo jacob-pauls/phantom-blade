@@ -760,6 +760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 502280e780e24c241ab63cd14721ed90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterName: 
   maxHealth: 100
   maxEssence: 50
   speed: 5
@@ -795,11 +796,11 @@ MonoBehaviour:
   aggroRange: 10
   stoppingDistance: 1.65
   target: {fileID: 0}
-  attackDamage: 25
+  attackDamage: 10
   collisionDelay: 0.5
   collisionHitBox: {fileID: 1328452803357580683}
   collisionHitBoxHeight: 2.55
-  collisionHitBoxWidth: 1.36
+  collisionHitBoxWidth: 1
   groundAheadCheck: {fileID: 1328452803437529403}
   groundAheadCheckLength: 1.76
   wallAheadCheck: {fileID: 1328452803456271410}

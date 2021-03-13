@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 489747470935763073}
   - component: {fileID: 1077866188330656144}
   - component: {fileID: 6735294252362201065}
+  - component: {fileID: 1394786552}
   m_Layer: 13
   m_Name: JakesPlayer
   m_TagString: Player
@@ -243,7 +244,7 @@ MonoBehaviour:
   maxHealth: 100
   maxEssence: 50
   speed: 10
-  jumpForce: 10
+  jumpForce: 13
   fallMultiplier: 15
   shortHopMultiplier: 4
   groundCheck: {fileID: 5796907756411289695}
@@ -326,8 +327,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5280260a60bdfb4da4fa2440c76942f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PhaseShift: {fileID: 8300000, guid: 5d22c39ece9df38488e1522cd927d5e5, type: 3}
-  Blade: {fileID: 8300000, guid: 596fb8e2b58f7194b924837c38cf36c3, type: 3}
 --- !u!114 &6929011654092703451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,12 +340,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackHitBoxHeight: 1.75
-  attackHitBoxWidth: 3
+  attackHitBoxWidth: 2.46
   attackCollider: {fileID: 8680866281344516790}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 4096
-  attackDelay: 0.3
+  attackDelay: 0.25
   onEnemyHit:
     m_PersistentCalls:
       m_Calls: []
@@ -475,7 +474,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.078
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -559,6 +558,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1394786552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3427020085238654359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c09b93f63fb3afa49a9cb7d5caf1a777, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blade: {fileID: 8300000, guid: 7ac392ed4ae3ec84b9e4bccd19a623d7, type: 3}
+  phaseShift: {fileID: 8300000, guid: 0169f5cbafa1a6743be42165dd8eb2e5, type: 3}
+  footstep1: {fileID: 8300000, guid: 2514e932f126fa14fabdf8a5ef4360c8, type: 3}
+  footstep2: {fileID: 8300000, guid: b6fcff1364b8d1e4fa53f55bdc8672ce, type: 3}
+  Jump1: {fileID: 8300000, guid: 4e0622bb826752549a63585782847dc1, type: 3}
+  Jump2: {fileID: 8300000, guid: 29dac51e7611bc041808d3a19a49a08e, type: 3}
 --- !u!1 &3683469234220641506
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,7 +600,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3683469234220641506}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.4199998, y: -0.5499999, z: 0}
+  m_LocalPosition: {x: 1.01, y: -0.5499999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3547908381185127603}

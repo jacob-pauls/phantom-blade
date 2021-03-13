@@ -22,9 +22,9 @@ AnimationClip:
     - time: 0
       value: {fileID: 21300000, guid: 4f955a7287b5f1643b44be5a14c697ba, type: 3}
     - time: 0.0625
-      value: {fileID: 21300000, guid: 69e60159326354a40afada5b15495973, type: 3}
+      value: {fileID: 21300000, guid: efcda9dfc9e9467499915066180c7fa7, type: 3}
     - time: 0.125
-      value: {fileID: 21300000, guid: 69e60159326354a40afada5b15495973, type: 3}
+      value: {fileID: 21300000, guid: c9ea2e524f8502f419907b5480dfdb33, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -45,8 +45,8 @@ AnimationClip:
       isPPtrCurve: 1
     pptrCurveMapping:
     - {fileID: 21300000, guid: 4f955a7287b5f1643b44be5a14c697ba, type: 3}
-    - {fileID: 21300000, guid: 69e60159326354a40afada5b15495973, type: 3}
-    - {fileID: 21300000, guid: 69e60159326354a40afada5b15495973, type: 3}
+    - {fileID: 21300000, guid: efcda9dfc9e9467499915066180c7fa7, type: 3}
+    - {fileID: 21300000, guid: c9ea2e524f8502f419907b5480dfdb33, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -72,6 +72,13 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0
+    functionName: PlayBladeSound
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.125
     functionName: ResetMeleeAttack
     data: 
