@@ -20,15 +20,16 @@ public class TPB_Player_Controller : MonoBehaviour
 
     void Update() 
     {
-        
-        MovementController();
-        JumpController();
-        CrouchController();
-        WallSlideController();
-        MeleeAttackController();
-        RangedAttackController();
-        PhaseShiftController();
-        WallJumpController();
+        if (!player.isDead) {
+            MovementController();
+            JumpController();
+            CrouchController();
+            WallSlideController();
+            MeleeAttackController();
+            RangedAttackController();
+            PhaseShiftController();
+            WallJumpController();
+        }
     }
 
     void MovementController() 
@@ -79,8 +80,7 @@ public class TPB_Player_Controller : MonoBehaviour
     void PhaseShiftController()
     {
         bool isPhaseShiftKeyPressed = Input.GetButton("Phase Shift");
-        player.PhaseShift(isPhaseShiftKeyPressed);
-        
+        player.PhaseShift(isPhaseShiftKeyPressed);   
     }
 
     void WallJumpController()

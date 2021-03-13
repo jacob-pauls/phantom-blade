@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 2528811568853665737}
   - component: {fileID: 2528811568853665739}
   - component: {fileID: 2528811568853665738}
-  - component: {fileID: 8717058593081838137}
   - component: {fileID: 6414278674489211432}
+  - component: {fileID: 8717058593081838137}
   m_Layer: 10
-  m_Name: Short Spikes
+  m_Name: Spike Tile Set #1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -385,18 +385,6 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!114 &8717058593081838137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2528811568853665736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e21e0c0d94ab3f640a8f31991d3aa3d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!19719996 &6414278674489211432
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -413,3 +401,17 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!114 &8717058593081838137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2528811568853665736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e21e0c0d94ab3f640a8f31991d3aa3d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  killOnCollision: 1
+  collisionDamage: 0

@@ -43,7 +43,7 @@ public class TPB_Character : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     
     protected bool isGrounded;
-    protected bool amIDead = false;
+    [HideInInspector] public bool isDead = false;
     [HideInInspector] public bool isFacingRight = true;    
 
     protected virtual void Awake() 
@@ -116,14 +116,14 @@ public class TPB_Character : MonoBehaviour
     public void ChangeHealthAmount(int amount)
     {
         if (amount == 0) { return; }
-        if (amount <= 0 && !amIDead) { anim.SetBool("isHit", true); }
+        if (amount <= 0 && !isDead) { anim.SetBool("isHit", true); }
         
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         onHealthChange?.Invoke();
 
         if (currentHealth <= 0) {
             onDeath?.Invoke();
-            amIDead = true;
+            isDead = true;
             anim.SetBool("isDead", true);
         }
     }
