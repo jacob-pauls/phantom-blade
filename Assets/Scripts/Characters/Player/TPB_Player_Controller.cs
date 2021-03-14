@@ -42,8 +42,14 @@ public class TPB_Player_Controller : MonoBehaviour
     void JumpController() 
     {
         float input = Input.GetAxisRaw("Jump");
-        player.Jump(input);
-       
+        bool buttonInput = Input.GetButtonDown("Jump");
+
+        if (buttonInput && player.canDoubleJump) {
+            Debug.Log("sending double");
+            player.DoubleJump(buttonInput);
+        } else {
+            player.Jump(input);
+        }
     }
 
     void CrouchController() 

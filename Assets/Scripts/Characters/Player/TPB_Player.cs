@@ -188,6 +188,7 @@ public class TPB_Player : TPB_Character
     void InitializeCurrentAbilities()
     {
         // Only initialize the abilities that are unlocked
+        // TODO: Modify this to be a part of the ability manager, use Generics to make initialization portable
         foreach(TPB_Ability_Controller.AbilityTypes ability in abilities.unlockedAbilities) {
             if (ability == TPB_Ability_Controller.AbilityTypes.PhaseShift) {
                 phaseShift.Initialize(player);
@@ -226,6 +227,16 @@ public class TPB_Player : TPB_Character
                 wallJump.Cast();
             }
             wallJump.AddForceIfWallJumping();
+        }
+    }
+
+    public void DoubleJump(bool isDoubleJumpPressed)
+    {
+        if (abilities.IsAbilityUnlocked(TPB_Ability_Controller.AbilityTypes.DoubleJump)) {
+            // Check if the player is already jumping
+            if (base.canDoubleJump && isDoubleJumpPressed && rb2D.velocity.y > 0) {
+                base.Jump(isDoubleJumpPressed ? 2 : 0);
+            }
         }
     }
 

@@ -3249,6 +3249,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1540285403}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1210236572 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4171346240624892545, guid: 9cef380600c1e5645a9415b43798e261,
+    type: 3}
+  m_PrefabInstance: {fileID: 1540285403}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5280260a60bdfb4da4fa2440c76942f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1216153160 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5790767738038719447, guid: 9d9537018437a89458e5d9d12a4c1fa0,
@@ -4098,6 +4110,42 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1685422410332198185, guid: 9cef380600c1e5645a9415b43798e261,
+        type: 3}
+      propertyPath: onJumpEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1685422410332198185, guid: 9cef380600c1e5645a9415b43798e261,
+        type: 3}
+      propertyPath: doubleJump
+      value: 
+      objectReference: {fileID: 11400000, guid: a3df1ec44a083b644bf124603a5c43d5,
+        type: 2}
+    - target: {fileID: 1685422410332198185, guid: 9cef380600c1e5645a9415b43798e261,
+        type: 3}
+      propertyPath: onJumpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1685422410332198185, guid: 9cef380600c1e5645a9415b43798e261,
+        type: 3}
+      propertyPath: onJumpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1685422410332198185, guid: 9cef380600c1e5645a9415b43798e261,
+        type: 3}
+      propertyPath: onJumpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1210236572}
+    - target: {fileID: 1685422410332198185, guid: 9cef380600c1e5645a9415b43798e261,
+        type: 3}
+      propertyPath: onJumpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DoubleJumpController
+      objectReference: {fileID: 0}
+    - target: {fileID: 1685422410332198185, guid: 9cef380600c1e5645a9415b43798e261,
+        type: 3}
+      propertyPath: onJumpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3427020085238654359, guid: 9cef380600c1e5645a9415b43798e261,
         type: 3}
