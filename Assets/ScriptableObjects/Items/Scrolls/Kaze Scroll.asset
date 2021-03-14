@@ -18,8 +18,8 @@ MonoBehaviour:
     type: 1
     description: "The mind, aware of itself. The body, breathing. Here\r one finds
       old words: open-minded as ever, elusive as the wind."
-    currentStackAmount: 1
+    currentStackAmount: 0
     maximumStackAmount: 2
     attributes: []
-  displayImage: {fileID: 21300000, guid: 303b4ba09dce1fd43a099ccaa9bc3f54, type: 3}
+  displayImage: {fileID: 21300000, guid: 1c1b2f8e47ecc574894a996e6da0a5c7, type: 3}
   prefab: {fileID: 6179774254829690877, guid: 1b10465699e9c9b4ca9393112b98bc76, type: 3}

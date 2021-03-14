@@ -32,4 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GraveYard/graveYardA.unity
     guid: 634489060a05eb449a28e9ac3aeae0e3
+  - enabled: 1
+    path: Assets/Scenes/Dead Woods/DeadWoodsScene3.unity
+    guid: 5bc5cb581a8769b429be43995ae196c2
+  - enabled: 1
+    path: Assets/Scenes/Dead Woods/DeadWoodsScene2A.unity
+    guid: 4a21aa714d7001c4ba6ac9b36a8eae39
   m_configObjects: {}

@@ -16,6 +16,14 @@ public class MenuManager : MonoBehaviour
 
     public List<Menu> menus = new List<Menu>();
 
+    private void Awake()
+    {
+        for (int i = 0; i < menus.Count; i++)
+        {
+            menus[i].StandardMenu.Initialize();
+        }
+    }
+
     private void Update()
     {
         for (int i = 0; i < menus.Count; i++)

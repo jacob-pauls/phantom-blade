@@ -31,13 +31,13 @@ public class PlayerSounds : MonoBehaviour
         audio.Play();
     }
 
-    public void footStepSound1()
+    public void FootStepSound1()
     {
         audio.clip = footstep1;
         audio.Play();
     }
 
-    public void footStepSound2()
+    public void FootStepSound2()
     {
         audio.clip = footstep2;
         audio.Play();

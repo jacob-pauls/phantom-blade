@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: PhaseShift
   damage: 0
-  essenceCost: 10
+  essenceCost: 5
   cooldown: 1.5
   phaseShiftSpeed: 1250
   phaseShiftDistance: 0.3

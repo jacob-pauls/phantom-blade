@@ -204,7 +204,8 @@ public class TPB_Player : TPB_Character
             // Check if the character is mid-phaseshift, casting continues if shift is not complete
             if (isPhaseShiftKeyPressed && !abilityCooldownManager.isAbilityOnCooldown(phaseShift) && !isPhaseShifting) {
                 phaseShift.Cast();
-                
+                ChangeEssenceAmount(-phaseShift.essenceCost);
+
                 // Start the phase shift cooldown, lock player input
                 abilityCooldownManager.StartCooldown(phaseShift);
 

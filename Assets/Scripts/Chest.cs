@@ -122,7 +122,9 @@ public class Chest : MonoBehaviour
             float y = yShootAmount;
             Vector2 force = new Vector2(x, y);
 
-            pickup.GetComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Impulse);
+            // Checking to see if the pickup has a rigidbody2D
+            Rigidbody2D rb2d = pickup.GetComponent<Rigidbody2D>();
+            if (rb2d != null) { rb2d.AddForce(force, ForceMode2D.Impulse); }
 
             inventory.RemoveAt(index);
 

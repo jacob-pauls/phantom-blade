@@ -7,12 +7,12 @@ public class StandardMenu : MonoBehaviour
 {
     public UnityEvent onShow, onClose;
 
-    private Animator animator;
+    protected Animator animator;
 
     public bool isMenuOpen { get; protected set; }
 
 
-    private bool isInitialized;
+    protected bool isInitialized;
 
     public virtual void Initialize()
     {

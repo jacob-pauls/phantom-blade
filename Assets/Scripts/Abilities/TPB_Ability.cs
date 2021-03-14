@@ -16,7 +16,7 @@ public abstract class TPB_Ability : ScriptableObject
     [Header("Default Ability Data")]
     [SerializeField] protected string abilityName;
     [SerializeField] protected int damage;
-    [SerializeField] protected int essenceCost = 10; 
+    [SerializeField] public int essenceCost = 10; 
     [SerializeField] public float cooldown = 0f;
 
     public abstract void Initialize(GameObject obj);
