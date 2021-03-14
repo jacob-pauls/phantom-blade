@@ -31,18 +31,24 @@ public class PlayerStatManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("currentHealth", player.currentHealth);
         PlayerPrefs.SetInt("currentEssence", player.currentEssence);
+        
+        if (player.abilities.IsAbilityUnlocked(TPB_Ability_Controller.AbilityTypes.DoubleJump))
+            PlayerPrefs.SetInt("DoubleJump", 1);
     }
 
     public void GetHealthAndEssenceOnSceneLoad()
     {
         currentScene = SceneManager.GetActiveScene();
         if (currentScene.name == firstSceneName) {
-            Debug.Log("Max");
             player.currentHealth = player.maxHealth;
             player.currentEssence = player.maxEssence;
+            PlayerPrefs.SetInt("DoubleJump", 0);
         } else {
             player.currentHealth = PlayerPrefs.GetInt("currentHealth", player.maxHealth);
             player.currentEssence = PlayerPrefs.GetInt("currentEssence", player.maxEssence);
+            
+            if (PlayerPrefs.GetInt("DoubleJump") == 1)
+                player.abilities.UnlockAbility(TPB_Ability_Controller.AbilityTypes.DoubleJump);
         }
     }
 }

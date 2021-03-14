@@ -36,7 +36,7 @@ public class TPB_Player : TPB_Character
     public UnityEvent offWallEvent;
     public UnityEvent onCrouchEvent;
 
-    private TPB_Ability_Controller abilities;
+    public TPB_Ability_Controller abilities;
     private TPB_Ability_Cooldown abilityCooldownManager;
     private CircleCollider2D cc2D;
 

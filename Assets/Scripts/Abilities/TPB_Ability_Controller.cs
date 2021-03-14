@@ -32,8 +32,6 @@ public class TPB_Ability_Controller
     {
         unlockedAbilities.Add(AbilityTypes.PhaseShift);
         unlockedAbilities.Add(AbilityTypes.WallJump);
-        // TODO: Remove
-        unlockedAbilities.Add(AbilityTypes.DoubleJump);
     }
 
     public void UnlockAbility(AbilityTypes ability)
