@@ -161,7 +161,7 @@ public class TPB_Player : TPB_Character
     
     private void DisableCrouchColliderCheck() 
     {
-        RaycastHit2D ceilingRaycast = Physics2D.Raycast(ceilingCheck.position, Vector2.up, 0.1f);
+        RaycastHit2D ceilingRaycast = Physics2D.Raycast(ceilingCheck.position, Vector2.up, 0.1f, base.environmentLayer);
 
         // If we're not crouching, check if we can stand up
         if (!isCrouching) {

@@ -17,7 +17,7 @@ public class TPB_Character : MonoBehaviour
     public int currentEssence { get; private set; }
 
     [Header ("General Character Movement")]
-    [SerializeField] private float speed = 1f;
+    [SerializeField] protected float speed = 1f;
     [SerializeField] private float jumpForce = 1f;
     [SerializeField] private float fallMultiplier = 1.5f;
     [SerializeField] private float shortHopMultiplier = 3f;

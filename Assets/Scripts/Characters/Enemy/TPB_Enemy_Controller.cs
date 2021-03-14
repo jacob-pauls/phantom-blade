@@ -10,6 +10,7 @@ public class TPB_Enemy_Controller : MonoBehaviour
 {
     private TPB_Enemy enemy;
     private TPB_Melee_Enemy mEnemy;
+    private TPB_Flying_Enemy fEnemy;
     private TPB_Gatekeeper gEnemy;
     private bool isMelee = false;
 
@@ -20,13 +21,19 @@ public class TPB_Enemy_Controller : MonoBehaviour
 
         if (GetComponent<TPB_Melee_Enemy>()) 
             mEnemy = GetComponent<TPB_Melee_Enemy>();
+
+        if (GetComponent<TPB_Flying_Enemy>())
+            fEnemy = GetComponent<TPB_Flying_Enemy>();
     }
 
     protected virtual void Update()
     {
-        MoveToTarget();   
-        Patrol();
         enemy.CheckForCollisionsWithPlayer();   
+
+        if ((enemy  || mEnemy) && !fEnemy) {
+            MoveToTarget();   
+            Patrol();
+        }
         
         if (mEnemy) {
             MeleeAttack();
