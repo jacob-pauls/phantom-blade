@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8007279919317489238}
   - component: {fileID: 8007279919317489225}
   - component: {fileID: 8007279919317489239}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: DEADWOODSLOADER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,3 +72,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 1
   levelName: deadtest
+  onSceneChange:
+    m_PersistentCalls:
+      m_Calls: []

@@ -2843,6 +2843,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: JakesPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 5404411860029786085, guid: 9cef380600c1e5645a9415b43798e261,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerStatManager
+      objectReference: {fileID: 0}
     - target: {fileID: 5796907756411289695, guid: 9cef380600c1e5645a9415b43798e261,
         type: 3}
       propertyPath: m_LocalPosition.y

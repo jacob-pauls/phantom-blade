@@ -13,8 +13,8 @@ public class TPB_Character : MonoBehaviour
     [Header ("Character Health and Essence")]
     public int maxHealth = 100;
     public int maxEssence = 50;
-    public int currentHealth { get; private set; }
-    public int currentEssence { get; private set; }
+    public int currentHealth { get; set; }
+    public int currentEssence { get; set; }
 
     [Header ("General Character Movement")]
     [SerializeField] protected float speed = 1f;

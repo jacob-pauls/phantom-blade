@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3285911445101134282}
   - component: {fileID: 1156489035902045538}
   m_Layer: 12
-  m_Name: Flying Oni 1
+  m_Name: Flying Oni
   m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -205,7 +205,18 @@ MonoBehaviour:
       m_Calls: []
   onDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3285911445101134282}
+        m_MethodName: TriggerFlyingEnemyDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onGroundEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -479,12 +490,12 @@ PrefabInstance:
     - target: {fileID: 8122685998352831593, guid: 3b12171efd42c504a907b37ff6b02395,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 28.74578
+      value: 0.065
       objectReference: {fileID: 0}
     - target: {fileID: 8122685998352831593, guid: 3b12171efd42c504a907b37ff6b02395,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -3.5077453
+      value: 2.155
       objectReference: {fileID: 0}
     - target: {fileID: 8122685998352831593, guid: 3b12171efd42c504a907b37ff6b02395,
         type: 3}
