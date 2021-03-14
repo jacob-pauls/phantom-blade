@@ -119,8 +119,9 @@ public class TPB_Enemy : TPB_Character
             if (component != GetComponent<SpriteRenderer>())
                 component.enabled = false;
         }
-        GetComponent<Animator>().enabled = false;
         GetComponent<CircleCollider2D>().enabled = false;
+        GetComponent<Animator>().enabled = false;
+        
     }
 
     protected virtual void OnDrawGizmosSelected()

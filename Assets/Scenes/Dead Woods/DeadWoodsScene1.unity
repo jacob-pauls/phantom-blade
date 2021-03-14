@@ -5094,8 +5094,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1916655560}
   - component: {fileID: 1916655559}
-  - component: {fileID: 1916655562}
   - component: {fileID: 1916655561}
+  - component: {fileID: 1916655562}
   - component: {fileID: 1916655558}
   m_Layer: 0
   m_Name: Flying Oni
