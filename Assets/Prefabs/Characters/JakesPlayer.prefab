@@ -54,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1736815559052867018}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.16, y: 8.05, z: 0}
+  m_LocalPosition: {x: -0.09, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3547908381185127603}
@@ -273,6 +273,8 @@ MonoBehaviour:
     items: []
   isDead: 0
   isFacingRight: 1
+  outOfEssence: 0
+  canDoubleJump: 0
   wallSlideSpeed: 10
   crouchResistance: 0.25
   wallCheck: {fileID: 3415898980036599291}

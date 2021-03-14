@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59bc713878201a14d8b3b512f9e2140f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 9
+  index: 10
   levelName: deadtest
 --- !u!61 &69732912
 BoxCollider2D:
@@ -1526,7 +1526,7 @@ PrefabInstance:
     - target: {fileID: 8007279919317489239, guid: f4cc07e34254cd74ab15d2fac06cdc9f,
         type: 3}
       propertyPath: index
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4cc07e34254cd74ab15d2fac06cdc9f, type: 3}
@@ -2113,7 +2113,7 @@ Animator:
   m_GameObject: {fileID: 4869471837643562892}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d08e43c1a34c4e24cb416607a4553684, type: 2}
+  m_Controller: {fileID: 9100000, guid: ee37cab864d5b7c489729ea68c8f686b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2633,7 +2633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59bc713878201a14d8b3b512f9e2140f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 7
+  index: 8
   levelName: deadtest
 --- !u!4 &8865678022026551271
 Transform:

@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 069309f5b40ef8e469ac482303a1ab63
   - enabled: 1
+    path: Assets/Scenes/CutScenes/OpeningCutScene.unity
+    guid: 116338499c25c5e44b5ab99a95c8710e
+  - enabled: 1
     path: Assets/Scenes/GraveYard/graveYard.unity
     guid: a700ac1926919e74aadf693a4b2b960d
   - enabled: 1
