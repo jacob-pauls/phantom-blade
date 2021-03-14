@@ -202,7 +202,7 @@ public class TPB_Player : TPB_Character
         if (abilities.IsAbilityUnlocked(TPB_Ability_Controller.AbilityTypes.PhaseShift)) {
             isPhaseShifting = phaseShift.isPhaseShifting;
             // Check if the character is mid-phaseshift, casting continues if shift is not complete
-            if (isPhaseShiftKeyPressed && !abilityCooldownManager.isAbilityOnCooldown(phaseShift) && !isPhaseShifting) {
+            if (isPhaseShiftKeyPressed && !abilityCooldownManager.isAbilityOnCooldown(phaseShift) && !isPhaseShifting && !base.outOfEssence) {
                 phaseShift.Cast();
                 ChangeEssenceAmount(-phaseShift.essenceCost);
 

@@ -27,8 +27,8 @@ public class TPB_Player_Controller : MonoBehaviour
             WallSlideController();
             MeleeAttackController();
             RangedAttackController();
-            PhaseShiftController();
             WallJumpController();
+            PhaseShiftController();
         }
     }
 

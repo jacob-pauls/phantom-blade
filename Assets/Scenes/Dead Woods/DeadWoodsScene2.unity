@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 69732913}
   - component: {fileID: 69732912}
   - component: {fileID: 69732911}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: LeftSideLefvel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,7 +318,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 69732910}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -166.5, y: 2.3, z: -91.67578}
+  m_LocalPosition: {x: -166.5, y: 2.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1443,6 +1443,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: bossstageloader
       objectReference: {fileID: 0}
+    - target: {fileID: 8007279919317489224, guid: f4cc07e34254cd74ab15d2fac06cdc9f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 8007279919317489225, guid: f4cc07e34254cd74ab15d2fac06cdc9f,
         type: 3}
       propertyPath: m_Size.x
@@ -1476,7 +1481,7 @@ PrefabInstance:
     - target: {fileID: 8007279919317489238, guid: f4cc07e34254cd74ab15d2fac06cdc9f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -91.67578
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8007279919317489238, guid: f4cc07e34254cd74ab15d2fac06cdc9f,
         type: 3}
@@ -1974,7 +1979,7 @@ PrefabInstance:
     - target: {fileID: 4537049261671684482, guid: c48a982d25f0fc54c9980f8f38c7e6de,
         type: 3}
       propertyPath: jumpForce
-      value: 12
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 5373118982971634989, guid: c48a982d25f0fc54c9980f8f38c7e6de,
         type: 3}
@@ -2638,7 +2643,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8865678022026551289}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -106.3, y: 3.35, z: -91.67578}
+  m_LocalPosition: {x: -106.3, y: 3.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2681,7 +2686,7 @@ GameObject:
   - component: {fileID: 8865678022026551271}
   - component: {fileID: 8865678022026551288}
   - component: {fileID: 8865678022026551270}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: RightsideLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -5383,6 +5383,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DEADWOODSLOADER
       objectReference: {fileID: 0}
+    - target: {fileID: 8007279919317489224, guid: f4cc07e34254cd74ab15d2fac06cdc9f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8007279919317489238, guid: f4cc07e34254cd74ab15d2fac06cdc9f,
         type: 3}
       propertyPath: m_LocalPosition.x

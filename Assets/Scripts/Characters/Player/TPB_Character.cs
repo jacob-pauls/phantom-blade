@@ -45,6 +45,7 @@ public class TPB_Character : MonoBehaviour
     protected bool isGrounded;
     [HideInInspector] public bool isDead = false;
     [HideInInspector] public bool isFacingRight = true;    
+    [HideInInspector] public bool outOfEssence = false;
 
     protected virtual void Awake() 
     {
@@ -134,6 +135,10 @@ public class TPB_Character : MonoBehaviour
 
         currentEssence = Mathf.Clamp(currentEssence + amount, 0, maxEssence);
         onEssenceChange?.Invoke();
+
+        if (currentEssence <= 0) {
+            outOfEssence = true;
+        }
     }
 
     public void EndHitAnimation() 

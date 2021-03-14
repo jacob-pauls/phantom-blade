@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 69732913}
   - component: {fileID: 69732912}
   - component: {fileID: 69732911}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: LeftSideLefvel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2517,7 +2517,7 @@ GameObject:
   - component: {fileID: 8865678022026551271}
   - component: {fileID: 8865678022026551288}
   - component: {fileID: 8865678022026551270}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: RightsideLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
