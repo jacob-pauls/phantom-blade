@@ -60,7 +60,7 @@ public class TPB_Enemy : TPB_Character
     public void CheckForCollisionsWithPlayer() 
     {
         // Collide with the player, start a delay so that subsequent collisions are spaced out
-        if (delayBetweenCollisions <= 0) {
+        if (delayBetweenCollisions <= 0 && !base.isDead) {
             Collider2D[] hitColliders = Physics2D.OverlapBoxAll(collisionHitBox.position, new Vector2(collisionHitBoxWidth, collisionHitBoxHeight), playerLayer);
             if (hitColliders.Length > 0) {
                 for (int i = 0; i < hitColliders.Length; i++) {

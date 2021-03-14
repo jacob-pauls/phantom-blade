@@ -45,7 +45,6 @@ public class TPB_Player_Controller : MonoBehaviour
         bool buttonInput = Input.GetButtonDown("Jump");
 
         if (buttonInput && player.canDoubleJump) {
-            Debug.Log("sending double");
             player.DoubleJump(buttonInput);
         } else {
             player.Jump(input);

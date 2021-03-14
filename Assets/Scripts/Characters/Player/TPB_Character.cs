@@ -83,11 +83,9 @@ public class TPB_Character : MonoBehaviour
     public void Jump(float input)
     {
         if ((input > 0) && isGrounded) {
-            Debug.Log("Single Jump");
             rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
             canDoubleJump = true;
         } else if (!isGrounded && canDoubleJump && input == 2) {
-            Debug.Log("Double Jump");
             rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
             canDoubleJump = false;
         }
