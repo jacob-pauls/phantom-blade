@@ -12,6 +12,7 @@ public class PlayerStatManager : MonoBehaviour
     [SerializeField] private TPB_Player player;
     [SerializeField] private string firstSceneName;
     private LevelControl[] levelControl;
+    private CountDownTimer cutsceneTimer;
     private Scene currentScene;
     private int healthPref;
     private int essencePref;
@@ -19,15 +20,17 @@ public class PlayerStatManager : MonoBehaviour
     void Awake()
     {
         levelControl = Object.FindObjectsOfType<LevelControl>();
-        
+
         // Listen for scene loads and changes to apply health and essence
-        foreach(LevelControl sceneCollider in levelControl) {
-            sceneCollider.onSceneChange.AddListener(SetHealthAndEssenceOnSceneChange);
-            sceneCollider.onSceneLoad.AddListener(GetHealthAndEssenceOnSceneLoad);
-        } 
+        if (levelControl != null) {
+            foreach(LevelControl sceneCollider in levelControl) {
+                sceneCollider.onSceneChange.AddListener(SavePlayerStatsOnSceneChange);
+                sceneCollider.onSceneLoad.AddListener(GetPlayerStatsOnSceneLoad);
+            } 
+        }
     }
 
-    public void SetHealthAndEssenceOnSceneChange() 
+    public void SavePlayerStatsOnSceneChange() 
     {
         PlayerPrefs.SetInt("currentHealth", player.currentHealth);
         PlayerPrefs.SetInt("currentEssence", player.currentEssence);
@@ -36,7 +39,7 @@ public class PlayerStatManager : MonoBehaviour
             PlayerPrefs.SetInt("DoubleJump", 1);
     }
 
-    public void GetHealthAndEssenceOnSceneLoad()
+    public void GetPlayerStatsOnSceneLoad()
     {
         currentScene = SceneManager.GetActiveScene();
         if (currentScene.name == firstSceneName) {
@@ -44,6 +47,7 @@ public class PlayerStatManager : MonoBehaviour
             player.currentEssence = player.maxEssence;
             PlayerPrefs.SetInt("DoubleJump", 0);
         } else {
+            Debug.Log("Getting player stats...");
             player.currentHealth = PlayerPrefs.GetInt("currentHealth", player.maxHealth);
             player.currentEssence = PlayerPrefs.GetInt("currentEssence", player.maxEssence);
             

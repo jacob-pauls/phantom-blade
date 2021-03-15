@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class CountDownTimer : MonoBehaviour
 {
 
-    public string levelToLoad;
+    public int levelToLoad;
     public float timer = 34f;
     private Text timerSeconds;
+    private LevelControl levelController;
 
     // Start is called before the first frame update
     void Start()
     {
+        levelController = new LevelControl();
         timerSeconds = GetComponent<Text>();
     }
 
@@ -24,7 +27,7 @@ public class CountDownTimer : MonoBehaviour
         timerSeconds.text = timer.ToString("f2");
         if (timer <= 0)
         {
-            SceneManager.LoadScene(levelToLoad);
+            levelController.LoadLevel(levelToLoad);
         }
     }
 }
