@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 /**
  * Jake Pauls
@@ -19,6 +20,8 @@ public class TPB_Ability_Unlock_Manager : MonoBehaviour
      */
     public void UnlockDoubleJump()
     {
+        Debug.Log("Double Jump unlock event invoked");
+        player.onDoubleJumpUnlocked?.Invoke();
         player.abilities.UnlockAbility(TPB_Ability_Controller.AbilityTypes.DoubleJump);
     }
 }

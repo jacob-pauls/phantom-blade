@@ -246,6 +246,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87f09a0f72ef3b444812acd417dedb60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onDoubleJumpUnlock:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6955003697412243511
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,8 +9,6 @@ public class GameOverMenu : StandardMenu
 
     public override void Initialize()
     {
-        
-
         if (!isInitialized)
         {
             player.onDeath?.AddListener(Dying);
