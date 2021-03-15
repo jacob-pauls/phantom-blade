@@ -85,7 +85,7 @@ public class Inventory
         }
     }
 
-    public void DropAll(int index, Vector2 position, int amount = 1)
+    public void DropAll(Vector2 position, int amount = 1)
     {
         if (!ItemDatabase.instance)
         {
@@ -107,6 +107,14 @@ public class Inventory
 
             GameObject drop = Object.Instantiate(container.Prefab, position, Quaternion.identity);
             drop.GetComponent<PickupItem>().SetStoredItem(container);
+
+            float x = Random.Range(-3, 3);
+            float y = 5;
+            Vector2 force = new Vector2(x, y);
+            
+            // Drop items in vicinity of enemy
+            Rigidbody2D rb2d = drop.GetComponent<Rigidbody2D>();
+            if (rb2d != null) { rb2d.AddForce(force, ForceMode2D.Impulse); }
         }
     }
 

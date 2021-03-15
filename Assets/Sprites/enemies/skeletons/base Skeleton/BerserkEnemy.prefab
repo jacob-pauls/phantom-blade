@@ -790,8 +790,46 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   inventory:
-    items: []
+    items:
+    - name: Health Orb
+      id: orb_1
+      type: 0
+      description: 
+      currentStackAmount: 1
+      maximumStackAmount: 1
+      attributes: []
+    - name: Health Orb
+      id: orb_1
+      type: 0
+      description: 
+      currentStackAmount: 0
+      maximumStackAmount: 0
+      attributes: []
+    - name: Health Orb
+      id: orb_1
+      type: 0
+      description: 
+      currentStackAmount: 0
+      maximumStackAmount: 0
+      attributes: []
+    - name: Essence Orb
+      id: orb_2
+      type: 0
+      description: 
+      currentStackAmount: 0
+      maximumStackAmount: 0
+      attributes: []
+    - name: Essence Orb
+      id: orb_2
+      type: 0
+      description: 
+      currentStackAmount: 0
+      maximumStackAmount: 0
+      attributes: []
+  isDead: 0
   isFacingRight: 1
+  outOfEssence: 0
+  canDoubleJump: 0
   patrolWhenNotDetectingPlayer: 0
   aggroRange: 10
   stoppingDistance: 1.65

@@ -46,7 +46,7 @@ public class TPB_Player_Attack_Manager : MonoBehaviour
                 Collider2D[] enemyColliders = Physics2D.OverlapBoxAll(attackCollider.position, new Vector2(attackHitBoxWidth, attackHitBoxHeight), enemyLayer);
                 for (int i = 0; i < enemyColliders.Length; i++) {
                     TPB_Enemy enemy = enemyColliders[i].GetComponent<TPB_Enemy>();
-                    if (enemy) {
+                    if (enemy && !enemy.isDead) {
                         // TODO: The logic is here to hit ONE enemy, modify this to multiple?
                         enemy.ChangeHealthAmount(-player.attackDamage);
                         onEnemyHit?.Invoke();

@@ -47,4 +47,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GraveYard/graveYardC.unity
     guid: 9685566d9be719c419e3cd5e1e14c4ee
+  - enabled: 1
+    path: Assets/Scenes/CutScenes/thanks4Playiing.unity
+    guid: 7e2bcc1f5b83f934883c3d715c76f586
   m_configObjects: {}

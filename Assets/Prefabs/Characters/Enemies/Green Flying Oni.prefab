@@ -216,7 +216,21 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   inventory:
-    items: []
+    items:
+    - name: Essence Orb
+      id: orb_1
+      type: 0
+      description: 
+      currentStackAmount: 0
+      maximumStackAmount: 0
+      attributes: []
+    - name: Essence Orb
+      id: orb_1
+      type: 0
+      description: 
+      currentStackAmount: 0
+      maximumStackAmount: 0
+      attributes: []
   isDead: 0
   isFacingRight: 1
   outOfEssence: 0

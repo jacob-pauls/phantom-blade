@@ -132,6 +132,7 @@ public class TPB_Character : MonoBehaviour
         if (currentHealth <= 0) {
             onDeath?.Invoke();
             isDead = true;
+            inventory.DropAll(transform.position);
             anim.SetBool("isDead", true);
         }
     }
@@ -145,6 +146,8 @@ public class TPB_Character : MonoBehaviour
 
         if (currentEssence <= 0) {
             outOfEssence = true;
+        } else {
+            outOfEssence = false;
         }
     }
 

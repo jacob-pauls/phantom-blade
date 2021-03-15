@@ -75,7 +75,7 @@ public class TPB_Player : TPB_Character
                 // Finding Essence
                 attribute = item.GetAttribute("Essence", false);
                 int essence = attribute != null ? attribute.GetValueAsInt : 0;
-                ChangeHealthAmount(essence);
+                ChangeEssenceAmount(essence);
             }
             else
             {

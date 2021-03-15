@@ -22,5 +22,5 @@ MonoBehaviour:
     attributes:
     - name: Essence
       value: 5
-  displayImage: {fileID: 21300000, guid: 84bd6ab8ed780494380593d3bbafa811, type: 3}
+  displayImage: {fileID: 21300000, guid: 8ee9f8f73f486c04795d59f1740a1013, type: 3}
   prefab: {fileID: 2730727809768879702, guid: 9746d45b5645c144ab9568f3f4011f3f, type: 3}

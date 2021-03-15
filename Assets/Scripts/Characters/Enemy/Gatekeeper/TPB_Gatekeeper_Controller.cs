@@ -46,14 +46,16 @@ public class TPB_Gatekeeper_Controller : TPB_Enemy_Controller
     protected override void Update()
     {
         base.Update();
-        CheckGatekeeperAbilityOptions();
-        DetermineGatekeeperAbility();
+        if (!gatekeeper.isDead) {
+            CheckGatekeeperAbilityOptions();
+            DetermineGatekeeperAbility();
 
-        if (gatekeeper.isCharging)
-            gatekeeper.Charge(true);
+            if (gatekeeper.isCharging)
+                gatekeeper.Charge(true);
 
-        if (gatekeeper.isSlashing)
-            gatekeeper.SlashProjectile(false);
+            if (gatekeeper.isSlashing)
+                gatekeeper.SlashProjectile(false);
+        }
     }
 
     /**
