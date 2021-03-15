@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: Oni
-  maxHealth: 100
+  maxHealth: 150
   maxEssence: 50
   speed: 400
   jumpForce: 1

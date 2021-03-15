@@ -21,6 +21,6 @@ MonoBehaviour:
     maximumStackAmount: 1
     attributes:
     - name: Health
-      value: 5
+      value: 3
   displayImage: {fileID: 21300000, guid: ee3766b4c3860974a930f74d0eeb73ab, type: 3}
   prefab: {fileID: 7984324706785848398, guid: 38c3e0f07126b2b4cadb794441a7edc0, type: 3}

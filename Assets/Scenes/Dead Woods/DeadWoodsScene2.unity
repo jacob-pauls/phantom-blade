@@ -284,6 +284,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 10
   levelName: deadtest
+  onSceneChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onSceneLoad:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &69732912
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1756,7 +1762,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4537049261671684482, guid: c48a982d25f0fc54c9980f8f38c7e6de,
         type: 3}
-      propertyPath: jumpForce
+      propertyPath: speed
       value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 5373118982971634989, guid: c48a982d25f0fc54c9980f8f38c7e6de,
@@ -1828,6 +1834,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: -1.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250501909210350972, guid: c48a982d25f0fc54c9980f8f38c7e6de,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -20.986
+      objectReference: {fileID: 0}
+    - target: {fileID: 7250501909210350972, guid: c48a982d25f0fc54c9980f8f38c7e6de,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2821606
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c48a982d25f0fc54c9980f8f38c7e6de, type: 3}
@@ -2413,6 +2429,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 8
   levelName: deadtest
+  onSceneChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onSceneLoad:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &8865678022026551271
 Transform:
   m_ObjectHideFlags: 0

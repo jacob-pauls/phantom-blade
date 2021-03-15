@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 /**
@@ -82,7 +83,14 @@ public class TPB_Gatekeeper_Controller : TPB_Enemy_Controller
 
     public void EndGatekeeperBattle() 
     {
-        Debug.Log("Gatekeeper is dead");
+        StartCoroutine("LoadFinalScene");
+    }
+
+    private IEnumerator LoadFinalScene()
+    {
+        yield return new WaitForSeconds(5);
+        LevelControl levelController = new LevelControl();
+        levelController.LoadLevel(14);
     }
 
     public void GatekeeperPhaseManager()

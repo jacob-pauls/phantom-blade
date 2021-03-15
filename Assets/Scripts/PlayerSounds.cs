@@ -22,7 +22,6 @@ public class PlayerSounds : MonoBehaviour
     {
         audio.clip = blade;
         audio.Play();
-        Debug.Log("bladeSound");
     }
 
     public void PlayPhaseShiftSound()

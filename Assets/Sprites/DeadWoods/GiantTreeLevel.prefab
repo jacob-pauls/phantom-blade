@@ -1344,6 +1344,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   levelName: 
+  onSceneChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onSceneLoad:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2996306089557096236
 GameObject:
   m_ObjectHideFlags: 0
@@ -2184,7 +2190,12 @@ PrefabInstance:
     - target: {fileID: 1685422410332198185, guid: 9cef380600c1e5645a9415b43798e261,
         type: 3}
       propertyPath: jumpForce
-      value: 20
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1685422410332198185, guid: 9cef380600c1e5645a9415b43798e261,
+        type: 3}
+      propertyPath: speed
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3427020085238654359, guid: 9cef380600c1e5645a9415b43798e261,
         type: 3}

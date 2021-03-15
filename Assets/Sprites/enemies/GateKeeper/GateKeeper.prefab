@@ -486,7 +486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: Gatekeeper
-  maxHealth: 1000
+  maxHealth: 800
   maxEssence: 0
   speed: 3
   jumpForce: 3
@@ -540,6 +540,8 @@ MonoBehaviour:
     items: []
   isDead: 0
   isFacingRight: 1
+  outOfEssence: 0
+  canDoubleJump: 0
   patrolWhenNotDetectingPlayer: 0
   aggroRange: 25
   stoppingDistance: 3
