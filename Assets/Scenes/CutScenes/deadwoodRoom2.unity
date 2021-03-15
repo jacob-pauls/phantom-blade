@@ -1207,7 +1207,7 @@ PrefabInstance:
     - target: {fileID: 4265884408484123577, guid: cec4f0548bccf31448d122839111913e,
         type: 3}
       propertyPath: levelToLoad
-      value: DeadWoodsScene2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4265884408484123577, guid: cec4f0548bccf31448d122839111913e,
         type: 3}
